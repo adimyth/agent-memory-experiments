@@ -17,14 +17,14 @@ Every probe across every run. A probe that comes back at the cap means
 nothing else excluded a row: no threshold, no floor, no gate. A probe below
 the cap means something other than the cap decided to stop.
 
-system         cap    probes at the cap    probes below it
+system                   cap   at the cap     below it   note
 ------------------------------------------------------------------------------
-graphiti       10     15/18                3
-langmem        10     15/15                0
-langmem-nodistractors 10     0/15                 15
-letta          5      15/15                0
-mem0           20     15/15                0
-weave          8      6/15                 9
+graphiti                 10    15/18          3          
+langmem                  10    15/15          0          
+langmem-nodistractors    10    -              -          store smaller than the cap; uninformative
+letta                    5     15/15          0          
+mem0                     20    15/15          0          
+weave                    8     6/15           9          
 
 ==============================================================================
 STORE SIZE

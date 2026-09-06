@@ -100,14 +100,31 @@ def main() -> None:
     print("nothing else excluded a row: no threshold, no floor, no gate. A probe below")
     print("the cap means something other than the cap decided to stop.")
     print()
-    print(f"{'system':<14} {'cap':<6} {'probes at the cap':<20} {'probes below it'}")
+    print(f"{'system':<24} {'cap':<5} {'at the cap':<14} {'below it':<10} {'note'}")
     print("-" * 78)
     for s in systems:
         cap = CAPS.get(s)
-        counts = [p["returned"] for d in runs[s] for p in d["probes"]]
-        at_cap = sum(1 for c in counts if cap is not None and c >= cap)
-        below = len(counts) - at_cap
-        print(f"{s:<14} {str(cap):<6} {f'{at_cap}/{len(counts)}':<20} {below}")
+        counts, skipped = [], 0
+        for d in runs[s]:
+            for p in d["probes"]:
+                stage = (
+                    "store_after_session_1"
+                    if p["probe_id"] == "p1_latency_graph"
+                    else "store_after_update"
+                )
+                # A probe only says anything about gating if the store could have
+                # filled the cap. A 3-row store against a cap of 10 returns 3 because
+                # that is all there is, not because a threshold excluded anything.
+                if cap is not None and len(d[stage]) < cap:
+                    skipped += 1
+                    continue
+                counts.append(p["returned"])
+        if not counts:
+            print(f"{s:<24} {str(cap):<5} {'-':<14} {'-':<10} store smaller than the cap; uninformative")
+            continue
+        at_cap = sum(1 for c in counts if c >= cap)
+        note = f"{skipped} probe(s) excluded: store < cap" if skipped else ""
+        print(f"{s:<24} {str(cap):<5} {f'{at_cap}/{len(counts)}':<14} {len(counts)-at_cap:<10} {note}")
 
     print()
     print("=" * 78)
