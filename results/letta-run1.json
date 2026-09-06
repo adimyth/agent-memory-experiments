@@ -1,0 +1,635 @@
+{
+  "system": "letta",
+  "run": 1,
+  "started_at": "2026-09-06T15:36:48.394961+00:00",
+  "finished_at": "2026-09-06T15:37:02.774792+00:00",
+  "config": {
+    "llm": "gpt-4o",
+    "embedder": "BAAI/bge-m3",
+    "embedder_note": "Served locally to Letta via an OpenAI-shaped shim at http://host.docker.internal:8399/v1, so the weights match every other system.",
+    "memory_model": "core blocks + archival + recall (server 0.16.8 has no MemFS)",
+    "search_defaults": "passages.search, no documented top_k default",
+    "server": "http://localhost:8283"
+  },
+  "versions": {
+    "letta-client": "1.12.1",
+    "letta-server": "0.16.8"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "id": "passage-d08e5051-8d90-401f-9cd0-5d356b9df87e",
+      "memory": "The checkout service runs on ECS Fargate in ap-south-1.",
+      "created_at": "2026-09-06 15:36:48.779481+00:00"
+    },
+    {
+      "id": "passage-0c57cb70-acf3-463f-8a6b-a495fd6673cd",
+      "memory": "The payments database is Postgres 16 on RDS with a read replica.",
+      "created_at": "2026-09-06 15:36:48.903356+00:00"
+    },
+    {
+      "id": "passage-2446e6f0-408a-49d1-97b1-8f498fd03949",
+      "memory": "Redis is used for session storage and rate limiting.",
+      "created_at": "2026-09-06 15:36:49.028026+00:00"
+    },
+    {
+      "id": "passage-411dcbbd-0b59-48ed-a945-6697f02ef41d",
+      "memory": "The retry policy for outbound webhooks uses exponential backoff.",
+      "created_at": "2026-09-06 15:36:49.145115+00:00"
+    },
+    {
+      "id": "passage-b0c3f95a-6fa8-4656-8a92-f6287875379a",
+      "memory": "Feature flags are managed in LaunchDarkly.",
+      "created_at": "2026-09-06 15:36:49.278354+00:00"
+    },
+    {
+      "id": "passage-42c03253-5065-4671-a98a-ab0a9bbd36bc",
+      "memory": "The staging environment mirrors production at a quarter of the capacity.",
+      "created_at": "2026-09-06 15:36:49.391161+00:00"
+    },
+    {
+      "id": "passage-ad31e89a-8113-477f-a0de-c2a84b27d479",
+      "memory": "Deploys go out through GitHub Actions on merge to main.",
+      "created_at": "2026-09-06 15:36:49.500949+00:00"
+    },
+    {
+      "id": "passage-55896622-4ac8-488e-b8eb-c9f324df5d95",
+      "memory": "The API gateway enforces a 30 second request timeout.",
+      "created_at": "2026-09-06 15:36:49.606675+00:00"
+    },
+    {
+      "id": "passage-181fb3a7-a8dd-4bdb-b7b0-110c520d27f2",
+      "memory": "Background jobs run on Celery with RabbitMQ as the broker.",
+      "created_at": "2026-09-06 15:36:49.716949+00:00"
+    },
+    {
+      "id": "passage-d9a9302d-8120-487d-a885-dc8d1be97086",
+      "memory": "Observability is Grafana dashboards on top of Prometheus.",
+      "created_at": "2026-09-06 15:36:49.840313+00:00"
+    },
+    {
+      "id": "passage-78f527c2-5190-425e-af06-88c4037263cd",
+      "memory": "The search index is OpenSearch, reindexed nightly.",
+      "created_at": "2026-09-06 15:36:49.987108+00:00"
+    },
+    {
+      "id": "passage-1513cc2b-09c7-4978-ae93-af02efe279a6",
+      "memory": "Object storage is S3 with lifecycle rules moving old objects to Glacier.",
+      "created_at": "2026-09-06 15:36:50.106598+00:00"
+    },
+    {
+      "id": "passage-2ba4eab3-b410-472a-8d08-5b00c0eccf71",
+      "memory": "A checkout outage in February was caused by connection pool exhaustion.",
+      "created_at": "2026-09-06 15:36:50.226312+00:00"
+    },
+    {
+      "id": "passage-dbeccf80-6afa-40b0-85f1-93aa617ded08",
+      "memory": "The March incident review recommended adding circuit breakers.",
+      "created_at": "2026-09-06 15:36:50.353428+00:00"
+    },
+    {
+      "id": "passage-1c9b3ee5-e090-423f-87ff-61acc17932cb",
+      "memory": "An earlier retry storm doubled load on the payments service.",
+      "created_at": "2026-09-06 15:36:50.465074+00:00"
+    },
+    {
+      "id": "passage-71eda876-3c01-411a-8463-abb60377bef1",
+      "memory": "The team postponed the Kafka migration to next quarter.",
+      "created_at": "2026-09-06 15:36:50.594987+00:00"
+    },
+    {
+      "id": "passage-dabbd67c-83f6-4ca9-8702-e829a51712e5",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "created_at": "2026-09-06 15:36:50.714966+00:00"
+    },
+    {
+      "id": "passage-b6b9d44c-3a22-4b9c-a317-ce3a620760d6",
+      "memory": "The load test in July peaked at 4K requests per second.",
+      "created_at": "2026-09-06 15:36:50.834875+00:00"
+    },
+    {
+      "id": "passage-d0a9e70c-2302-4cbf-9570-3e16f10113c4",
+      "memory": "Priya leads the platform team.",
+      "created_at": "2026-09-06 15:36:50.962640+00:00"
+    },
+    {
+      "id": "passage-218e7526-cfdb-473f-bae0-d57307232cd5",
+      "memory": "Karthik reviews all database migrations.",
+      "created_at": "2026-09-06 15:36:51.097095+00:00"
+    },
+    {
+      "id": "passage-87c5d6f6-b470-4a56-858c-2f19ba10ae3b",
+      "memory": "Sneha manages the on-call rotation.",
+      "created_at": "2026-09-06 15:36:51.236578+00:00"
+    },
+    {
+      "id": "passage-1b2e9b0b-6a8d-4901-a4b5-b068fe15a6e3",
+      "memory": "Vikram works on the mobile client.",
+      "created_at": "2026-09-06 15:36:51.348329+00:00"
+    },
+    {
+      "id": "passage-2c6a16b9-d075-4642-9456-962aa09be8a2",
+      "memory": "The design system is maintained by Ananya.",
+      "created_at": "2026-09-06 15:36:51.465430+00:00"
+    },
+    {
+      "id": "passage-5b459f90-340d-4f6e-8a55-237acaf64df4",
+      "memory": "Meera is the product manager for checkout.",
+      "created_at": "2026-09-06 15:36:51.576033+00:00"
+    },
+    {
+      "id": "passage-f6af8527-dc74-449f-b22e-8332b44b01c7",
+      "memory": "Code review requires one approval before merge.",
+      "created_at": "2026-09-06 15:36:51.692969+00:00"
+    },
+    {
+      "id": "passage-c1e2e1c2-19f8-4282-a931-56cf3d51d9d5",
+      "memory": "Migrations must be backwards compatible for one release.",
+      "created_at": "2026-09-06 15:36:51.825534+00:00"
+    },
+    {
+      "id": "passage-85e9a710-0d37-4426-9d87-2a1ad0ec81b4",
+      "memory": "The team writes runbooks for every alert.",
+      "created_at": "2026-09-06 15:36:51.970560+00:00"
+    },
+    {
+      "id": "passage-359e76fb-0570-4b98-a4a6-013459c395aa",
+      "memory": "Documentation lives in the docs directory of each repository.",
+      "created_at": "2026-09-06 15:36:52.092363+00:00"
+    },
+    {
+      "id": "passage-60579b73-b750-475d-afa6-5ab022e0a8e6",
+      "memory": "Secrets are stored in AWS Secrets Manager, never in environment files.",
+      "created_at": "2026-09-06 15:36:52.200861+00:00"
+    },
+    {
+      "id": "passage-9cb9573e-dcdb-4b11-9c1b-48fc42f0951f",
+      "memory": "Type hints are required on all new Python code.",
+      "created_at": "2026-09-06 15:36:52.333498+00:00"
+    },
+    {
+      "id": "passage-4f8428d4-8fc0-43a6-afb4-21573d3506ce",
+      "memory": "Line length is capped at 100 characters.",
+      "created_at": "2026-09-06 15:36:52.447102+00:00"
+    },
+    {
+      "id": "passage-cb08115c-6fd1-41e2-9c81-4a8cc653462e",
+      "memory": "Dependency updates are batched weekly.",
+      "created_at": "2026-09-06 15:36:52.559992+00:00"
+    },
+    {
+      "id": "passage-f999b748-6ece-476b-878e-2b6a1fa377fc",
+      "memory": "Local development uses Docker Compose.",
+      "created_at": "2026-09-06 15:36:52.672710+00:00"
+    },
+    {
+      "id": "passage-4cfbea25-b193-46de-9486-19c8877ada4a",
+      "memory": "Dependencies are managed with uv.",
+      "created_at": "2026-09-06 15:36:52.786442+00:00"
+    },
+    {
+      "id": "passage-7820b440-02a0-4327-85fb-9db6dd9d53f5",
+      "memory": "Linting is ruff, formatting is ruff format.",
+      "created_at": "2026-09-06 15:36:52.907720+00:00"
+    },
+    {
+      "id": "passage-87023357-51a7-47d6-bcfc-32fcb44c6703",
+      "memory": "Type checking is mypy in strict mode.",
+      "created_at": "2026-09-06 15:36:53.011902+00:00"
+    },
+    {
+      "id": "passage-0d527c22-c84c-4fcd-bfe7-795e4f02fab7",
+      "memory": "The monorepo is split into services and packages directories.",
+      "created_at": "2026-09-06 15:36:53.127106+00:00"
+    },
+    {
+      "id": "passage-364626d4-b68e-436f-a839-af6b5a91e0f1",
+      "memory": "Terraform manages all cloud infrastructure.",
+      "created_at": "2026-09-06 15:36:53.246424+00:00"
+    },
+    {
+      "id": "passage-fface135-5dd8-4a3e-ba30-0457bbd4eecc",
+      "memory": "Alerting routes through PagerDuty.",
+      "created_at": "2026-09-06 15:36:53.371590+00:00"
+    },
+    {
+      "id": "passage-b49b230a-4ddc-4984-adc4-ab434bc214fc",
+      "memory": "The changelog is generated from conventional commit messages.",
+      "created_at": "2026-09-06 15:36:53.505636+00:00"
+    }
+  ],
+  "store_after_update": [
+    {
+      "id": "passage-d08e5051-8d90-401f-9cd0-5d356b9df87e",
+      "memory": "The checkout service runs on ECS Fargate in ap-south-1.",
+      "created_at": "2026-09-06 15:36:48.779481+00:00"
+    },
+    {
+      "id": "passage-0c57cb70-acf3-463f-8a6b-a495fd6673cd",
+      "memory": "The payments database is Postgres 16 on RDS with a read replica.",
+      "created_at": "2026-09-06 15:36:48.903356+00:00"
+    },
+    {
+      "id": "passage-2446e6f0-408a-49d1-97b1-8f498fd03949",
+      "memory": "Redis is used for session storage and rate limiting.",
+      "created_at": "2026-09-06 15:36:49.028026+00:00"
+    },
+    {
+      "id": "passage-411dcbbd-0b59-48ed-a945-6697f02ef41d",
+      "memory": "The retry policy for outbound webhooks uses exponential backoff.",
+      "created_at": "2026-09-06 15:36:49.145115+00:00"
+    },
+    {
+      "id": "passage-b0c3f95a-6fa8-4656-8a92-f6287875379a",
+      "memory": "Feature flags are managed in LaunchDarkly.",
+      "created_at": "2026-09-06 15:36:49.278354+00:00"
+    },
+    {
+      "id": "passage-42c03253-5065-4671-a98a-ab0a9bbd36bc",
+      "memory": "The staging environment mirrors production at a quarter of the capacity.",
+      "created_at": "2026-09-06 15:36:49.391161+00:00"
+    },
+    {
+      "id": "passage-ad31e89a-8113-477f-a0de-c2a84b27d479",
+      "memory": "Deploys go out through GitHub Actions on merge to main.",
+      "created_at": "2026-09-06 15:36:49.500949+00:00"
+    },
+    {
+      "id": "passage-55896622-4ac8-488e-b8eb-c9f324df5d95",
+      "memory": "The API gateway enforces a 30 second request timeout.",
+      "created_at": "2026-09-06 15:36:49.606675+00:00"
+    },
+    {
+      "id": "passage-181fb3a7-a8dd-4bdb-b7b0-110c520d27f2",
+      "memory": "Background jobs run on Celery with RabbitMQ as the broker.",
+      "created_at": "2026-09-06 15:36:49.716949+00:00"
+    },
+    {
+      "id": "passage-d9a9302d-8120-487d-a885-dc8d1be97086",
+      "memory": "Observability is Grafana dashboards on top of Prometheus.",
+      "created_at": "2026-09-06 15:36:49.840313+00:00"
+    },
+    {
+      "id": "passage-78f527c2-5190-425e-af06-88c4037263cd",
+      "memory": "The search index is OpenSearch, reindexed nightly.",
+      "created_at": "2026-09-06 15:36:49.987108+00:00"
+    },
+    {
+      "id": "passage-1513cc2b-09c7-4978-ae93-af02efe279a6",
+      "memory": "Object storage is S3 with lifecycle rules moving old objects to Glacier.",
+      "created_at": "2026-09-06 15:36:50.106598+00:00"
+    },
+    {
+      "id": "passage-2ba4eab3-b410-472a-8d08-5b00c0eccf71",
+      "memory": "A checkout outage in February was caused by connection pool exhaustion.",
+      "created_at": "2026-09-06 15:36:50.226312+00:00"
+    },
+    {
+      "id": "passage-dbeccf80-6afa-40b0-85f1-93aa617ded08",
+      "memory": "The March incident review recommended adding circuit breakers.",
+      "created_at": "2026-09-06 15:36:50.353428+00:00"
+    },
+    {
+      "id": "passage-1c9b3ee5-e090-423f-87ff-61acc17932cb",
+      "memory": "An earlier retry storm doubled load on the payments service.",
+      "created_at": "2026-09-06 15:36:50.465074+00:00"
+    },
+    {
+      "id": "passage-71eda876-3c01-411a-8463-abb60377bef1",
+      "memory": "The team postponed the Kafka migration to next quarter.",
+      "created_at": "2026-09-06 15:36:50.594987+00:00"
+    },
+    {
+      "id": "passage-dabbd67c-83f6-4ca9-8702-e829a51712e5",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "created_at": "2026-09-06 15:36:50.714966+00:00"
+    },
+    {
+      "id": "passage-b6b9d44c-3a22-4b9c-a317-ce3a620760d6",
+      "memory": "The load test in July peaked at 4K requests per second.",
+      "created_at": "2026-09-06 15:36:50.834875+00:00"
+    },
+    {
+      "id": "passage-d0a9e70c-2302-4cbf-9570-3e16f10113c4",
+      "memory": "Priya leads the platform team.",
+      "created_at": "2026-09-06 15:36:50.962640+00:00"
+    },
+    {
+      "id": "passage-218e7526-cfdb-473f-bae0-d57307232cd5",
+      "memory": "Karthik reviews all database migrations.",
+      "created_at": "2026-09-06 15:36:51.097095+00:00"
+    },
+    {
+      "id": "passage-87c5d6f6-b470-4a56-858c-2f19ba10ae3b",
+      "memory": "Sneha manages the on-call rotation.",
+      "created_at": "2026-09-06 15:36:51.236578+00:00"
+    },
+    {
+      "id": "passage-1b2e9b0b-6a8d-4901-a4b5-b068fe15a6e3",
+      "memory": "Vikram works on the mobile client.",
+      "created_at": "2026-09-06 15:36:51.348329+00:00"
+    },
+    {
+      "id": "passage-2c6a16b9-d075-4642-9456-962aa09be8a2",
+      "memory": "The design system is maintained by Ananya.",
+      "created_at": "2026-09-06 15:36:51.465430+00:00"
+    },
+    {
+      "id": "passage-5b459f90-340d-4f6e-8a55-237acaf64df4",
+      "memory": "Meera is the product manager for checkout.",
+      "created_at": "2026-09-06 15:36:51.576033+00:00"
+    },
+    {
+      "id": "passage-f6af8527-dc74-449f-b22e-8332b44b01c7",
+      "memory": "Code review requires one approval before merge.",
+      "created_at": "2026-09-06 15:36:51.692969+00:00"
+    },
+    {
+      "id": "passage-c1e2e1c2-19f8-4282-a931-56cf3d51d9d5",
+      "memory": "Migrations must be backwards compatible for one release.",
+      "created_at": "2026-09-06 15:36:51.825534+00:00"
+    },
+    {
+      "id": "passage-85e9a710-0d37-4426-9d87-2a1ad0ec81b4",
+      "memory": "The team writes runbooks for every alert.",
+      "created_at": "2026-09-06 15:36:51.970560+00:00"
+    },
+    {
+      "id": "passage-359e76fb-0570-4b98-a4a6-013459c395aa",
+      "memory": "Documentation lives in the docs directory of each repository.",
+      "created_at": "2026-09-06 15:36:52.092363+00:00"
+    },
+    {
+      "id": "passage-60579b73-b750-475d-afa6-5ab022e0a8e6",
+      "memory": "Secrets are stored in AWS Secrets Manager, never in environment files.",
+      "created_at": "2026-09-06 15:36:52.200861+00:00"
+    },
+    {
+      "id": "passage-9cb9573e-dcdb-4b11-9c1b-48fc42f0951f",
+      "memory": "Type hints are required on all new Python code.",
+      "created_at": "2026-09-06 15:36:52.333498+00:00"
+    },
+    {
+      "id": "passage-4f8428d4-8fc0-43a6-afb4-21573d3506ce",
+      "memory": "Line length is capped at 100 characters.",
+      "created_at": "2026-09-06 15:36:52.447102+00:00"
+    },
+    {
+      "id": "passage-cb08115c-6fd1-41e2-9c81-4a8cc653462e",
+      "memory": "Dependency updates are batched weekly.",
+      "created_at": "2026-09-06 15:36:52.559992+00:00"
+    },
+    {
+      "id": "passage-f999b748-6ece-476b-878e-2b6a1fa377fc",
+      "memory": "Local development uses Docker Compose.",
+      "created_at": "2026-09-06 15:36:52.672710+00:00"
+    },
+    {
+      "id": "passage-4cfbea25-b193-46de-9486-19c8877ada4a",
+      "memory": "Dependencies are managed with uv.",
+      "created_at": "2026-09-06 15:36:52.786442+00:00"
+    },
+    {
+      "id": "passage-7820b440-02a0-4327-85fb-9db6dd9d53f5",
+      "memory": "Linting is ruff, formatting is ruff format.",
+      "created_at": "2026-09-06 15:36:52.907720+00:00"
+    },
+    {
+      "id": "passage-87023357-51a7-47d6-bcfc-32fcb44c6703",
+      "memory": "Type checking is mypy in strict mode.",
+      "created_at": "2026-09-06 15:36:53.011902+00:00"
+    },
+    {
+      "id": "passage-0d527c22-c84c-4fcd-bfe7-795e4f02fab7",
+      "memory": "The monorepo is split into services and packages directories.",
+      "created_at": "2026-09-06 15:36:53.127106+00:00"
+    },
+    {
+      "id": "passage-364626d4-b68e-436f-a839-af6b5a91e0f1",
+      "memory": "Terraform manages all cloud infrastructure.",
+      "created_at": "2026-09-06 15:36:53.246424+00:00"
+    },
+    {
+      "id": "passage-fface135-5dd8-4a3e-ba30-0457bbd4eecc",
+      "memory": "Alerting routes through PagerDuty.",
+      "created_at": "2026-09-06 15:36:53.371590+00:00"
+    },
+    {
+      "id": "passage-b49b230a-4ddc-4984-adc4-ab434bc214fc",
+      "memory": "The changelog is generated from conventional commit messages.",
+      "created_at": "2026-09-06 15:36:53.505636+00:00"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 5,
+      "hits": [
+        {
+          "text": "A checkout outage in February was caused by connection pool exhaustion.",
+          "score": null,
+          "id": "passage-2ba4eab3-b410-472a-8d08-5b00c0eccf71",
+          "extra": {}
+        },
+        {
+          "text": "Meera is the product manager for checkout.",
+          "score": null,
+          "id": "passage-5b459f90-340d-4f6e-8a55-237acaf64df4",
+          "extra": {}
+        },
+        {
+          "text": "The API gateway enforces a 30 second request timeout.",
+          "score": null,
+          "id": "passage-55896622-4ac8-488e-b8eb-c9f324df5d95",
+          "extra": {}
+        },
+        {
+          "text": "The checkout service runs on ECS Fargate in ap-south-1.",
+          "score": null,
+          "id": "passage-d08e5051-8d90-401f-9cd0-5d356b9df87e",
+          "extra": {}
+        },
+        {
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": null,
+          "id": "passage-1c9b3ee5-e090-423f-87ff-61acc17932cb",
+          "extra": {}
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan."
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 5,
+      "hits": [
+        {
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": null,
+          "id": "passage-1c9b3ee5-e090-423f-87ff-61acc17932cb",
+          "extra": {}
+        },
+        {
+          "text": "The retry policy for outbound webhooks uses exponential backoff.",
+          "score": null,
+          "id": "passage-411dcbbd-0b59-48ed-a945-6697f02ef41d",
+          "extra": {}
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "passage-dbeccf80-6afa-40b0-85f1-93aa617ded08",
+          "extra": {}
+        },
+        {
+          "text": "The team writes runbooks for every alert.",
+          "score": null,
+          "id": "passage-85e9a710-0d37-4426-9d87-2a1ad0ec81b4",
+          "extra": {}
+        },
+        {
+          "text": "Code review requires one approval before merge.",
+          "score": null,
+          "id": "passage-f6af8527-dc74-449f-b22e-8332b44b01c7",
+          "extra": {}
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it."
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 5,
+      "hits": [
+        {
+          "text": "The team writes runbooks for every alert.",
+          "score": null,
+          "id": "passage-85e9a710-0d37-4426-9d87-2a1ad0ec81b4",
+          "extra": {}
+        },
+        {
+          "text": "Type checking is mypy in strict mode.",
+          "score": null,
+          "id": "passage-87023357-51a7-47d6-bcfc-32fcb44c6703",
+          "extra": {}
+        },
+        {
+          "text": "Type hints are required on all new Python code.",
+          "score": null,
+          "id": "passage-9cb9573e-dcdb-4b11-9c1b-48fc42f0951f",
+          "extra": {}
+        },
+        {
+          "text": "Documentation lives in the docs directory of each repository.",
+          "score": null,
+          "id": "passage-359e76fb-0570-4b98-a4a6-013459c395aa",
+          "extra": {}
+        },
+        {
+          "text": "Line length is capped at 100 characters.",
+          "score": null,
+          "id": "passage-4f8428d4-8fc0-43a6-afb4-21573d3506ce",
+          "extra": {}
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high."
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 5,
+      "hits": [
+        {
+          "text": "Line length is capped at 100 characters.",
+          "score": null,
+          "id": "passage-4f8428d4-8fc0-43a6-afb4-21573d3506ce",
+          "extra": {}
+        },
+        {
+          "text": "Type checking is mypy in strict mode.",
+          "score": null,
+          "id": "passage-87023357-51a7-47d6-bcfc-32fcb44c6703",
+          "extra": {}
+        },
+        {
+          "text": "The search index is OpenSearch, reindexed nightly.",
+          "score": null,
+          "id": "passage-78f527c2-5190-425e-af06-88c4037263cd",
+          "extra": {}
+        },
+        {
+          "text": "The team writes runbooks for every alert.",
+          "score": null,
+          "id": "passage-85e9a710-0d37-4426-9d87-2a1ad0ec81b4",
+          "extra": {}
+        },
+        {
+          "text": "Alerting routes through PagerDuty.",
+          "score": null,
+          "id": "passage-fface135-5dd8-4a3e-ba30-0457bbd4eecc",
+          "extra": {}
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty."
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 5,
+      "hits": [
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "passage-dbeccf80-6afa-40b0-85f1-93aa617ded08",
+          "extra": {}
+        },
+        {
+          "text": "Vikram works on the mobile client.",
+          "score": null,
+          "id": "passage-1b2e9b0b-6a8d-4901-a4b5-b068fe15a6e3",
+          "extra": {}
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": null,
+          "id": "passage-87c5d6f6-b470-4a56-858c-2f19ba10ae3b",
+          "extra": {}
+        },
+        {
+          "text": "Meera is the product manager for checkout.",
+          "score": null,
+          "id": "passage-5b459f90-340d-4f6e-8a55-237acaf64df4",
+          "extra": {}
+        },
+        {
+          "text": "Karthik reviews all database migrations.",
+          "score": null,
+          "id": "passage-218e7526-cfdb-473f-bae0-d57307232cd5",
+          "extra": {}
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
+    }
+  ],
+  "notes": [
+    "Letta's docs describe MemFS as universal; the newest published server image has memory_blocks and enable_sleeptime and no MemFS. This runs the blocks model.",
+    "Seeded 40 archival passages verbatim.",
+    "Core blocks after January: [{'label': 'persona', 'value': 'You are a coding assistant.', 'limit': 100000, 'chars': 27}, {'label': 'human', 'value': 'The user is Aditya, a software engineer.\\nAditya writes tests in pytest and keeps commit messages conventional. Rohan is on-call, working at Nimbus on payments.', 'limit': 100000, 'chars': 159}]",
+    "Core blocks after the update: [{'label': 'persona', 'value': 'You are a coding assistant.', 'limit': 100000, 'chars': 27}, {'label': 'human', 'value': 'The user is Aditya, a software engineer.\\nAditya now writes tests in unittest and keeps commit messages conventional. Rohan joined Lattice after leaving Nimbus in April.', 'limit': 100000, 'chars': 168}]",
+    "Core block characters reach the model on every turn with no search: 195"
+  ]
+}

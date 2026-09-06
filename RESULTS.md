@@ -23,7 +23,7 @@ ever kept a row out**.
 | Graphiti | 10 | 15 of 18 | 3 |
 | Memory Weave | 8 | 6 of 15 | 9 |
 
-For Mem0 and LangMem the cap is the only thing limiting output. Not once, on any
+For Mem0, LangMem, and Letta the cap is the only thing limiting output. Not once, on any
 probe, in any run, did a threshold or a floor exclude a row. That includes
 `What is my dog's name?`, where nothing in the store is about a dog and an empty
 result is the only correct answer. Mem0 applies a similarity threshold of `0.1` by
@@ -32,6 +32,35 @@ Neither is high enough to bind on anything.
 
 Graphiti's three exceptions are the as-of query described below, one per run. Its
 ordinary search returns the cap like the others.
+
+### Letta does not need a search to leak
+
+Letta is the only system here that puts memory in the prompt with no query at all. Its
+core memory blocks are compiled into the system prompt on every turn:
+
+| Run | Characters in the prompt on every turn |
+| --- | --- |
+| 1 | 195 |
+| 2 | 185 |
+| 3 | 200 |
+
+After the update turn, run 1's human block read:
+
+> The user is Aditya, a software engineer.
+> Aditya now writes tests in unittest and keeps commit messages conventional.
+> Rohan joined Lattice after leaving Nimbus in April.
+
+That text reaches the model on `Bump the retry count to 3.` exactly as it reaches it on
+a question about testing. There is no threshold to tune and no gate to pass, because
+there is no retrieval step to gate. Every other system in this comparison has to be
+asked before it says anything; Letta has already spoken.
+
+It is doubly exposed, because the archival search runs on top of that and returns its
+full cap of five on every probe as well.
+
+The agent also rewrote the block in place. The January wording ("Aditya writes tests in
+pytest") is gone, with no lineage, in all three runs. Same overwrite semantics LangMem
+showed on a small store, reached by a different mechanism.
 
 Memory Weave returned fewer than its cap on nine probes of fifteen. Its gate is the
 only mechanism in this comparison that ever decides to stop early. It is also not yet
@@ -132,6 +161,10 @@ From the identical January paragraph, with the identical model:
 - LangMem wrote **3** rows, every run, splitting them.
 - Graphiti wrote **12** edges from 41 episodes, discarding most preference-style facts
   entirely because they do not fit an entity-relationship-entity shape.
+- Letta wrote **0** archival rows from the transcript, because its agent chose to put
+  those facts in the core block instead. Its archival store holds only the forty seeded
+  facts, which is why its answerable probe returns five unrelated rows: the answer is
+  real and it is in the system prompt, not in the searchable store.
 
 Each is internally consistent across runs. They simply disagree about what a fact is.
 Any row count quoted for these systems is a property of the extraction prompt, not of
@@ -164,3 +197,32 @@ should merge.
 
 Neither is a finding about the harness. Both are recorded here because running the
 thing is how they surfaced.
+
+
+## Letta's documentation and Letta's server disagree
+
+Letta's current documentation says "All Letta agents use MemFS" and describes a
+git-backed memory filesystem where files under `system/` load into the system prompt
+every turn.
+
+`letta/letta:0.16.8`, published 14 May 2026 and the newest image on Docker Hub, has no
+MemFS. `agents.create` takes `memory_blocks` and `enable_sleeptime`. A fresh agent's
+system prompt says "Your memory consists of memory blocks and external memory". The
+1.12.1 client's agent API exposes `blocks`, `archives`, `passages`, and `folders`, and
+nothing filesystem-shaped.
+
+So MemFS is either Letta Cloud only or not yet in a released server, and a self-hoster
+runs the core-blocks model. This experiment runs what exists.
+
+One more correction while here: the block character limit. Letta's docs examples use
+5000. A block created by the 0.16.8 server defaults to a limit of **100,000**.
+
+## A note on Letta's embedder
+
+Letta is the one system whose server owns its embedding pipeline, and the only OpenAI
+key available for this work has no embedding model access. Rather than let Letta run on
+a different embedder and quietly confound the comparison, `tools/embedding_shim.py`
+serves an OpenAI-shaped `/v1/embeddings` from the same local `bge-m3` weights, and the
+agent's `embedding_config` points at it. Letta's chat model still goes to the real API.
+Every system in this repo is therefore on identical embedding weights, not merely the
+same model name.

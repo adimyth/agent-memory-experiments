@@ -53,17 +53,27 @@ load_dotenv()
 
 BASE_URL = os.environ.get("AMX_LETTA_URL", "http://localhost:8283")
 
-# Letta's server embeds the embedding model in the agent config and does not accept an
-# arbitrary local one, so this is the one place the harness cannot hold the embedder
-# constant. Recorded in the result file rather than papered over.
-LETTA_EMBEDDING = "openai/text-embedding-3-small"
+# Letta takes an embedding_config with a custom endpoint, so it can be pointed at the
+# same bge-m3 weights every other system here uses. `tools/embedding_shim.py` serves an
+# OpenAI-shaped /v1/embeddings from the local model; only embeddings go there, the chat
+# model still goes to the real API.
+SHIM_URL = os.environ.get("AMX_SHIM_URL", "http://host.docker.internal:8399/v1")
+
+EMBEDDING_CONFIG = {
+    "embedding_endpoint_type": "openai",
+    "embedding_endpoint": SHIM_URL,
+    "embedding_model": harness.EMBED_MODEL,
+    "embedding_dim": harness.EMBED_DIMS,
+    "embedding_chunk_size": 300,
+    "handle": "local/bge-m3",
+}
 
 
 def build_agent(client, run: int):
     return client.agents.create(
         name=f"amx-run{run}",
         model=f"openai/{harness.LLM_MODEL}",
-        embedding=LETTA_EMBEDDING,
+        embedding_config=EMBEDDING_CONFIG,
         memory_blocks=[
             {"label": "human", "value": "The user is Aditya, a software engineer."},
             {"label": "persona", "value": "You are a coding assistant."},
@@ -128,8 +138,8 @@ def main() -> None:
         started_at=harness.now(),
         config={
             "llm": harness.LLM_MODEL,
-            "embedder": LETTA_EMBEDDING,
-            "embedder_note": "Letta pins its own embedder; this is the one system not on bge-m3.",
+            "embedder": harness.EMBED_MODEL,
+            "embedder_note": f"Served locally to Letta via an OpenAI-shaped shim at {SHIM_URL}, so the weights match every other system.",
             "memory_model": "core blocks + archival + recall (server 0.16.8 has no MemFS)",
             "search_defaults": "passages.search, no documented top_k default",
             "server": BASE_URL,

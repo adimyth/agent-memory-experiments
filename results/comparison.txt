@@ -1,14 +1,14 @@
 ==============================================================================
 ROWS RETURNED PER PROBE, at each system's documented defaults
 ==============================================================================
-probe                              kind        want   graphiti     langmem      mem0         weave       
+probe                              kind        want   graphiti     langmem      letta        mem0         weave       
 ------------------------------------------------------------------------------
-The checkout latency graph is red  ordinary    empty  10           10           20           8           
-Bump the retry count to 3.         ordinary    empty  10           10           20           8           
-What do I write tests in?          answerable  hit    10           10           20           3           
-What is my dog's name?             absent      empty  10           10           20           1           
-Where was Rohan working in March?  answerable  hit    10           10           20           2           
-Where was Rohan working? [valid_a  answerable  hit    1            -            -            -           
+The checkout latency graph is red  ordinary    empty  10           10           5            20           8           
+Bump the retry count to 3.         ordinary    empty  10           10           5            20           8           
+What do I write tests in?          answerable  hit    10           10           5            20           3           
+What is my dog's name?             absent      empty  10           10           5            20           1           
+Where was Rohan working in March?  answerable  hit    10           10           5            20           2           
+Where was Rohan working? [valid_a  answerable  hit    1            -            -            -            -           
 
 ==============================================================================
 DOES ANYTHING BUT THE CAP LIMIT THE RESULT?
@@ -21,6 +21,7 @@ system         cap    probes at the cap    probes below it
 ------------------------------------------------------------------------------
 graphiti       10     15/18                3
 langmem        10     15/15                0
+letta          5      15/15                0
 mem0           20     15/15                0
 weave          8      6/15                 9
 
@@ -31,6 +32,7 @@ system         after January      after the update   net change
 ------------------------------------------------------------------------------
 graphiti       12                 14                 2
 langmem        42-43 (42, 43, 43) 44-45 (44, 45, 45) 2
+letta          40                 40                 0
 mem0           42                 44                 2
 weave          43                 45                 2
 
@@ -48,6 +50,10 @@ changed was edited in place; the January wording is gone.
   langmem   run 2:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
   langmem   run 3:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
 
+  letta     run 1:  40 -> 40 rows   kept 40, edited in place 0, added 0, removed 0
+  letta     run 2:  40 -> 40 rows   kept 40, edited in place 0, added 0, removed 0
+  letta     run 3:  40 -> 40 rows   kept 40, edited in place 0, added 0, removed 0
+
   mem0      run 1:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
   mem0      run 2:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
   mem0      run 3:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
@@ -58,12 +64,24 @@ changed was edited in place; the January wording is gone.
 
 
 ==============================================================================
+CHARACTERS REACHING THE MODEL WITH NO SEARCH AT ALL
+==============================================================================
+Text that is in the prompt on every turn regardless of what was asked.
+Every other system in this comparison requires a search to surface anything.
+
+  letta      run 1:  195 characters
+  letta      run 2:  185 characters
+  letta      run 3:  200 characters
+
+==============================================================================
 CONFIG (must be identical across systems for the comparison to hold)
 ==============================================================================
   graphiti     llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
                versions: {'graphiti-core': '0.30.1'}
   langmem      llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
                versions: {'langmem': '0.0.30', 'langgraph': '1.2.11'}
+  letta        llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
+               versions: {'letta-client': '1.12.1', 'letta-server': '0.16.8'}
   mem0         llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
                retrieval signals: {'semantic': True, 'bm25': True, 'entity': True}
                versions: {'mem0ai': '2.0.20'}

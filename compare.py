@@ -20,7 +20,7 @@ RESULTS = Path(__file__).parent / "results"
 # matters: a system that returns 20 rows and one that returns 8 are not necessarily
 # behaving differently, they may just have different caps. What matters is whether
 # anything other than the cap ever kept a row out.
-CAPS = {"mem0": 20, "langmem": 10, "graphiti": 10, "weave": 8}
+CAPS = {"mem0": 20, "langmem": 10, "graphiti": 10, "weave": 8, "letta": 5}
 
 
 def row_id(row: dict) -> str:
@@ -142,6 +142,23 @@ def main() -> None:
                 f" added {len(added)}, removed {len(gone)}"
             )
         print()
+
+    always_on = []
+    for s in systems:
+        for data in runs[s]:
+            for n in data.get("notes", []):
+                if n.startswith("Core block characters reach the model"):
+                    always_on.append((s, data["run"], n.rsplit(":", 1)[1].strip()))
+    if always_on:
+        print()
+        print("=" * 78)
+        print("CHARACTERS REACHING THE MODEL WITH NO SEARCH AT ALL")
+        print("=" * 78)
+        print("Text that is in the prompt on every turn regardless of what was asked.")
+        print("Every other system in this comparison requires a search to surface anything.")
+        print()
+        for sysname, run, chars in always_on:
+            print(f"  {sysname:<10} run {run}:  {chars} characters")
 
     print()
     print("=" * 78)
