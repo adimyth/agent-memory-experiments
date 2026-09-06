@@ -1,0 +1,302 @@
+{
+  "system": "langmem",
+  "run": 3,
+  "started_at": "2026-09-06T14:09:51.164472+00:00",
+  "finished_at": "2026-09-06T14:09:55.771005+00:00",
+  "config": {
+    "llm": "gpt-4o",
+    "embedder": "BAAI/bge-m3",
+    "namespace": [
+      "memories",
+      "aditya"
+    ],
+    "write_path": "create_memory_store_manager (background extractor)",
+    "read_path": "store.search(namespace, query=turn_text)  [eager, no threshold]",
+    "search_defaults": "search_memory limit=10, no similarity threshold",
+    "manager_defaults": "enable_inserts=True, enable_deletes=False"
+  },
+  "versions": {
+    "langmem": "0.0.30",
+    "langgraph": "1.2.11"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan, who works at Nimbus, is on-call and specializes in payments."
+        }
+      },
+      "created_at": "2026-09-06 14:09:53.416254+00:00",
+      "updated_at": "2026-09-06 14:09:53.416257+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests using the pytest framework."
+        }
+      },
+      "created_at": "2026-09-06 14:09:53.416380+00:00",
+      "updated_at": "2026-09-06 14:09:53.416381+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user's commit messages adhere to conventional commit standards."
+        }
+      },
+      "created_at": "2026-09-06 14:09:53.416421+00:00",
+      "updated_at": "2026-09-06 14:09:53.416421+00:00"
+    }
+  ],
+  "store_after_update": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan, who joined Lattice in April, is on-call and specializes in payments."
+        }
+      },
+      "created_at": "2026-09-06 14:09:55.685214+00:00",
+      "updated_at": "2026-09-06 14:09:55.685217+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests using the pytest framework."
+        }
+      },
+      "created_at": "2026-09-06 14:09:53.416380+00:00",
+      "updated_at": "2026-09-06 14:09:53.416381+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user's commit messages adhere to conventional commit standards."
+        }
+      },
+      "created_at": "2026-09-06 14:09:53.416421+00:00",
+      "updated_at": "2026-09-06 14:09:53.416421+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user switched from pytest to unittest for writing tests."
+        }
+      },
+      "created_at": "2026-09-06 14:09:55.685527+00:00",
+      "updated_at": "2026-09-06 14:09:55.685528+00:00"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan, who works at Nimbus, is on-call and specializes in payments.'}",
+          "score": 0.5242414898501666,
+          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "extra": {}
+        },
+        {
+          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
+          "score": 0.49081083283926713,
+          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using the pytest framework.'}",
+          "score": 0.4223075544480389,
+          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "extra": {}
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan."
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 4,
+      "hits": [
+        {
+          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
+          "score": 0.49694212251051745,
+          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "extra": {}
+        },
+        {
+          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
+          "score": 0.4660807626303886,
+          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using the pytest framework.'}",
+          "score": 0.45241261822640677,
+          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
+          "score": 0.4406074962128441,
+          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "extra": {}
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it."
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 4,
+      "hits": [
+        {
+          "text": "{'content': 'The user writes tests using the pytest framework.'}",
+          "score": 0.614807743345505,
+          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
+          "score": 0.5992623154289407,
+          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "extra": {}
+        },
+        {
+          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
+          "score": 0.4443167435960567,
+          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
+          "score": 0.3642678305744913,
+          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "extra": {}
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high."
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 4,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
+          "score": 0.3784104478353139,
+          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "extra": {}
+        },
+        {
+          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
+          "score": 0.3556102670249307,
+          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using the pytest framework.'}",
+          "score": 0.3468771051751242,
+          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
+          "score": 0.3342094560244837,
+          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "extra": {}
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty."
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 4,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
+          "score": 0.5126964188140551,
+          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using the pytest framework.'}",
+          "score": 0.25287385246183663,
+          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
+          "score": 0.25207033278367136,
+          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "extra": {}
+        },
+        {
+          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
+          "score": 0.23590074392198082,
+          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "extra": {}
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
+    }
+  ],
+  "notes": []
+}

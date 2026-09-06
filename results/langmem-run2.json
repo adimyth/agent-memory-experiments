@@ -1,0 +1,263 @@
+{
+  "system": "langmem",
+  "run": 2,
+  "started_at": "2026-09-06T14:09:30.889408+00:00",
+  "finished_at": "2026-09-06T14:09:36.165965+00:00",
+  "config": {
+    "llm": "gpt-4o",
+    "embedder": "BAAI/bge-m3",
+    "namespace": [
+      "memories",
+      "aditya"
+    ],
+    "write_path": "create_memory_store_manager (background extractor)",
+    "read_path": "store.search(namespace, query=turn_text)  [eager, no threshold]",
+    "search_defaults": "search_memory limit=10, no similarity threshold",
+    "manager_defaults": "enable_inserts=True, enable_deletes=False"
+  },
+  "versions": {
+    "langmem": "0.0.30",
+    "langgraph": "1.2.11"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests using pytest, a testing framework for Python."
+        }
+      },
+      "created_at": "2026-09-06 14:09:32.572412+00:00",
+      "updated_at": "2026-09-06 14:09:32.572415+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan is on-call and works at Nimbus, specifically on the payments team."
+        }
+      },
+      "created_at": "2026-09-06 14:09:32.572519+00:00",
+      "updated_at": "2026-09-06 14:09:32.572520+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user maintains conventional commit messages in their version control practices."
+        }
+      },
+      "created_at": "2026-09-06 14:09:32.572652+00:00",
+      "updated_at": "2026-09-06 14:09:32.572654+00:00"
+    }
+  ],
+  "store_after_update": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests using unittest, a testing framework for Python."
+        }
+      },
+      "created_at": "2026-09-06 14:09:36.068136+00:00",
+      "updated_at": "2026-09-06 14:09:36.068139+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan is currently employed at Lattice. He left Nimbus, where he was on-call, working on the payments team, in April."
+        }
+      },
+      "created_at": "2026-09-06 14:09:36.068216+00:00",
+      "updated_at": "2026-09-06 14:09:36.068217+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user maintains conventional commit messages in their version control practices."
+        }
+      },
+      "created_at": "2026-09-06 14:09:32.572652+00:00",
+      "updated_at": "2026-09-06 14:09:32.572654+00:00"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan is on-call and works at Nimbus, specifically on the payments team.'}",
+          "score": 0.5296768490317862,
+          "id": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user maintains conventional commit messages in their version control practices.'}",
+          "score": 0.4497581380011254,
+          "id": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using pytest, a testing framework for Python.'}",
+          "score": 0.415441951031444,
+          "id": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+          "extra": {}
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan."
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'The user writes tests using unittest, a testing framework for Python.'}",
+          "score": 0.4651604157729016,
+          "id": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user maintains conventional commit messages in their version control practices.'}",
+          "score": 0.44198802273683374,
+          "id": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'Rohan is currently employed at Lattice. He left Nimbus, where he was on-call, working on the payments team, in April.'}",
+          "score": 0.4286050875003386,
+          "id": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+          "extra": {}
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it."
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'The user writes tests using unittest, a testing framework for Python.'}",
+          "score": 0.6314630775245372,
+          "id": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user maintains conventional commit messages in their version control practices.'}",
+          "score": 0.4193782752938608,
+          "id": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'Rohan is currently employed at Lattice. He left Nimbus, where he was on-call, working on the payments team, in April.'}",
+          "score": 0.3659092598761278,
+          "id": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+          "extra": {}
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high."
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan is currently employed at Lattice. He left Nimbus, where he was on-call, working on the payments team, in April.'}",
+          "score": 0.37084740217972917,
+          "id": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using unittest, a testing framework for Python.'}",
+          "score": 0.34354993719209087,
+          "id": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user maintains conventional commit messages in their version control practices.'}",
+          "score": 0.33758226896015253,
+          "id": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+          "extra": {}
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty."
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan is currently employed at Lattice. He left Nimbus, where he was on-call, working on the payments team, in April.'}",
+          "score": 0.5305239370256518,
+          "id": "dabcc1b8-b493-4cca-a97e-9f8ca1659b8e",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user writes tests using unittest, a testing framework for Python.'}",
+          "score": 0.27797411085555196,
+          "id": "de16ae59-d9f2-4c69-9c3c-0ee07af9320a",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'The user maintains conventional commit messages in their version control practices.'}",
+          "score": 0.2379600245782566,
+          "id": "b2b838c8-02c9-46c9-bbe3-207fc8faadf5",
+          "extra": {}
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
+    }
+  ],
+  "notes": []
+}

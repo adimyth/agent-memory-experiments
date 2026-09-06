@@ -1,0 +1,263 @@
+{
+  "system": "langmem",
+  "run": 1,
+  "started_at": "2026-09-06T14:08:39.920794+00:00",
+  "finished_at": "2026-09-06T14:08:46.293819+00:00",
+  "config": {
+    "llm": "gpt-4o",
+    "embedder": "BAAI/bge-m3",
+    "namespace": [
+      "memories",
+      "aditya"
+    ],
+    "write_path": "create_memory_store_manager (background extractor)",
+    "read_path": "store.search(namespace, query=turn_text)  [eager, no threshold]",
+    "search_defaults": "search_memory limit=10, no similarity threshold",
+    "manager_defaults": "enable_inserts=True, enable_deletes=False"
+  },
+  "versions": {
+    "langmem": "0.0.30",
+    "langgraph": "1.2.11"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices."
+        }
+      },
+      "created_at": "2026-09-06 14:08:43.217020+00:00",
+      "updated_at": "2026-09-06 14:08:43.217024+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "User writes tests in pytest, indicating proficiency with this testing framework."
+        }
+      },
+      "created_at": "2026-09-06 14:08:43.217451+00:00",
+      "updated_at": "2026-09-06 14:08:43.217452+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan is currently on-call and works at Nimbus, focusing on payments, indicating his role or team specialty."
+        }
+      },
+      "created_at": "2026-09-06 14:08:43.217555+00:00",
+      "updated_at": "2026-09-06 14:08:43.217555+00:00"
+    }
+  ],
+  "store_after_update": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices."
+        }
+      },
+      "created_at": "2026-09-06 14:08:43.217020+00:00",
+      "updated_at": "2026-09-06 14:08:43.217024+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "User switched to unittest, indicating a shift from pytest and suggesting adaptability with different testing frameworks."
+        }
+      },
+      "created_at": "2026-09-06 14:08:46.203868+00:00",
+      "updated_at": "2026-09-06 14:08:46.203871+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan left Nimbus in April and joined Lattice, indicating a change in his role or team specialty."
+        }
+      },
+      "created_at": "2026-09-06 14:08:46.204368+00:00",
+      "updated_at": "2026-09-06 14:08:46.204369+00:00"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan is currently on-call and works at Nimbus, focusing on payments, indicating his role or team specialty.'}",
+          "score": 0.5156568090306012,
+          "id": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices.'}",
+          "score": 0.45475769331760973,
+          "id": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User writes tests in pytest, indicating proficiency with this testing framework.'}",
+          "score": 0.42355030921689885,
+          "id": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+          "extra": {}
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan."
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'User switched to unittest, indicating a shift from pytest and suggesting adaptability with different testing frameworks.'}",
+          "score": 0.47179783496123484,
+          "id": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices.'}",
+          "score": 0.44118880163131785,
+          "id": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'Rohan left Nimbus in April and joined Lattice, indicating a change in his role or team specialty.'}",
+          "score": 0.4082023023842532,
+          "id": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+          "extra": {}
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it."
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'User switched to unittest, indicating a shift from pytest and suggesting adaptability with different testing frameworks.'}",
+          "score": 0.5221474086095135,
+          "id": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices.'}",
+          "score": 0.45077974946188637,
+          "id": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'Rohan left Nimbus in April and joined Lattice, indicating a change in his role or team specialty.'}",
+          "score": 0.3491783413625032,
+          "id": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+          "extra": {}
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high."
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan left Nimbus in April and joined Lattice, indicating a change in his role or team specialty.'}",
+          "score": 0.4033606210744847,
+          "id": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices.'}",
+          "score": 0.34563810612266926,
+          "id": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User switched to unittest, indicating a shift from pytest and suggesting adaptability with different testing frameworks.'}",
+          "score": 0.32625949705805146,
+          "id": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+          "extra": {}
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty."
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "{'content': 'Rohan left Nimbus in April and joined Lattice, indicating a change in his role or team specialty.'}",
+          "score": 0.49557980380143385,
+          "id": "48590f8e-d47d-41f1-84e7-92c2e352b41c",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User follows conventional commit message guidelines, suggesting a preference for organized and standardized coding practices.'}",
+          "score": 0.23428317998660272,
+          "id": "ed26115d-cc5d-451f-b2cb-cebb87b910e7",
+          "extra": {}
+        },
+        {
+          "text": "{'content': 'User switched to unittest, indicating a shift from pytest and suggesting adaptability with different testing frameworks.'}",
+          "score": 0.23022652956102996,
+          "id": "c393bcec-ecea-49e0-8827-2b19fce9657f",
+          "extra": {}
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
+    }
+  ],
+  "notes": []
+}
