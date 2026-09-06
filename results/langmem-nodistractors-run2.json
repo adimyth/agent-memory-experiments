@@ -1,0 +1,265 @@
+{
+  "system": "langmem-nodistractors",
+  "run": 2,
+  "started_at": "2026-09-06T17:17:41.807960+00:00",
+  "finished_at": "2026-09-06T17:17:47.177431+00:00",
+  "config": {
+    "llm": "gpt-4o",
+    "embedder": "BAAI/bge-m3",
+    "namespace": [
+      "memories",
+      "aditya"
+    ],
+    "write_path": "create_memory_store_manager (background extractor)",
+    "read_path": "store.search(namespace, query=turn_text)  [eager, no threshold]",
+    "search_defaults": "search_memory limit=10, no similarity threshold",
+    "manager_defaults": "enable_inserts=True, enable_deletes=False"
+  },
+  "versions": {
+    "langmem": "0.0.30",
+    "langgraph": "1.2.11"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user adheres to conventional commit message standards."
+        }
+      },
+      "created_at": "2026-09-06 17:17:44.329308+00:00",
+      "updated_at": "2026-09-06 17:17:44.329310+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "d800137d-5658-4fde-ad87-1dd4af48a360",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan is currently on-call and works at Nimbus, focusing on payments."
+        }
+      },
+      "created_at": "2026-09-06 17:17:44.329479+00:00",
+      "updated_at": "2026-09-06 17:17:44.329480+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests using the pytest testing framework."
+        }
+      },
+      "created_at": "2026-09-06 17:17:44.329785+00:00",
+      "updated_at": "2026-09-06 17:17:44.329786+00:00"
+    }
+  ],
+  "store_after_update": [
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user adheres to conventional commit message standards."
+        }
+      },
+      "created_at": "2026-09-06 17:17:44.329308+00:00",
+      "updated_at": "2026-09-06 17:17:44.329310+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "d800137d-5658-4fde-ad87-1dd4af48a360",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan left Nimbus in April and joined Lattice."
+        }
+      },
+      "created_at": "2026-09-06 17:17:47.088050+00:00",
+      "updated_at": "2026-09-06 17:17:47.088051+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests using the unittest framework."
+        }
+      },
+      "created_at": "2026-09-06 17:17:47.087715+00:00",
+      "updated_at": "2026-09-06 17:17:47.087718+00:00"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "Rohan is currently on-call and works at Nimbus, focusing on payments.",
+          "score": 0.5336615284441945,
+          "id": "d800137d-5658-4fde-ad87-1dd4af48a360",
+          "extra": {}
+        },
+        {
+          "text": "The user adheres to conventional commit message standards.",
+          "score": 0.5035983525517175,
+          "id": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+          "extra": {}
+        },
+        {
+          "text": "The user writes tests using the pytest testing framework.",
+          "score": 0.41693620647310575,
+          "id": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+          "extra": {}
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan."
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "The user adheres to conventional commit message standards.",
+          "score": 0.46880502209788116,
+          "id": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+          "extra": {}
+        },
+        {
+          "text": "The user writes tests using the unittest framework.",
+          "score": 0.46792304678155366,
+          "id": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+          "extra": {}
+        },
+        {
+          "text": "Rohan left Nimbus in April and joined Lattice.",
+          "score": 0.37570153707657644,
+          "id": "d800137d-5658-4fde-ad87-1dd4af48a360",
+          "extra": {}
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it."
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "The user writes tests using the unittest framework.",
+          "score": 0.6295345446664138,
+          "id": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+          "extra": {}
+        },
+        {
+          "text": "The user adheres to conventional commit message standards.",
+          "score": 0.440143110160569,
+          "id": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+          "extra": {}
+        },
+        {
+          "text": "Rohan left Nimbus in April and joined Lattice.",
+          "score": 0.32554355535133617,
+          "id": "d800137d-5658-4fde-ad87-1dd4af48a360",
+          "extra": {}
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high."
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "Rohan left Nimbus in April and joined Lattice.",
+          "score": 0.36524173447907043,
+          "id": "d800137d-5658-4fde-ad87-1dd4af48a360",
+          "extra": {}
+        },
+        {
+          "text": "The user adheres to conventional commit message standards.",
+          "score": 0.36271210884083027,
+          "id": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+          "extra": {}
+        },
+        {
+          "text": "The user writes tests using the unittest framework.",
+          "score": 0.3308967043773745,
+          "id": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+          "extra": {}
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty."
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "Rohan left Nimbus in April and joined Lattice.",
+          "score": 0.49623783940788985,
+          "id": "d800137d-5658-4fde-ad87-1dd4af48a360",
+          "extra": {}
+        },
+        {
+          "text": "The user adheres to conventional commit message standards.",
+          "score": 0.2513952675610812,
+          "id": "ff1e180d-4f43-4d39-88e3-5e67044b6ddb",
+          "extra": {}
+        },
+        {
+          "text": "The user writes tests using the unittest framework.",
+          "score": 0.24911001094355892,
+          "id": "ea282183-0f3c-4b87-9bd8-383a31bbb3f2",
+          "extra": {}
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
+    }
+  ],
+  "notes": [
+    "No distractors: the store holds only what the transcript produced."
+  ]
+}

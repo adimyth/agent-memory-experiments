@@ -106,25 +106,34 @@ That is v3's specified ADD-only extraction and it is perfectly consistent. After
 the store holds both the pytest fact and the unittest fact. Ranking, not the store,
 decides which one the model sees.
 
-LangMem is more interesting, because its behaviour changed when the store got bigger.
+LangMem is more interesting, because its behaviour changes with the size of the store.
+Run both variants and only one thing differs: whether the forty prior facts were seeded.
+Same code, same transcript, same model, same temperature.
 
-With only the transcript's own facts in the store, LangMem's background manager
-**overwrote two rows in place**, at the same UUIDs. The row that said
-`User writes tests in pytest` became `User switched to unittest`. The January wording
-was gone with no lineage.
+| Store | Runs | Rows | Edited in place | Added |
+| --- | --- | --- | --- | --- |
+| Transcript only | 3 of 3 | 3 to 3 | 2 | 0 |
+| Plus 40 prior facts | 3 of 3 | 42-43 to 44-45 | 0 | 2 |
 
-With forty prior facts in the store, the same code on the same transcript
-**appended instead**, leaving `The user writes tests using pytest.` and
-`The agent switched to using unittest for testing.` both live at different keys.
+On a small store the background manager **overwrote in place** at the same UUIDs. The
+row reading `User writes tests in pytest, indicating proficiency with this testing
+framework` became `User prefers working with tests written in the unittest framework`.
+Same key, January wording gone, no lineage.
 
-The likely cause is `create_memory_store_manager`'s `query_limit`, which defaults to
-5: the manager only sees the five most similar existing memories when it decides
-whether to update or insert. Once the store is large enough that the pytest row falls
-outside that window, the manager cannot update what it cannot see, so it inserts.
+On a large store the same code **appended**, leaving the pytest row and the unittest row
+both live at different keys.
 
-That is a scaling property worth knowing about. A memory layer that consolidates
-correctly in a demo can quietly degrade to append-only in production, and nothing in
-the output says it happened.
+The cause is almost certainly `create_memory_store_manager`'s `query_limit`, which
+defaults to 5: the manager only sees the five most similar existing memories when it
+decides whether to update or insert. Once the store is big enough that the pytest row
+falls outside that window, the manager cannot update what it never retrieved, so it
+inserts a second one.
+
+That is a scaling property worth knowing about, and it is unanimous in both directions
+rather than a tendency. A memory layer that consolidates correctly in a demo can quietly
+degrade to append-only in production, and nothing in the output says it happened.
+
+Reproduce with `uv run --script runners/run_langmem.py --run 1 --no-distractors`.
 
 ## A caution about text matching
 

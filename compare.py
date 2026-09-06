@@ -20,7 +20,7 @@ RESULTS = Path(__file__).parent / "results"
 # matters: a system that returns 20 rows and one that returns 8 are not necessarily
 # behaving differently, they may just have different caps. What matters is whether
 # anything other than the cap ever kept a row out.
-CAPS = {"mem0": 20, "langmem": 10, "graphiti": 10, "weave": 8, "letta": 5}
+CAPS = {"mem0": 20, "langmem": 10, "langmem-nodistractors": 10, "graphiti": 10, "weave": 8, "letta": 5}
 
 
 def row_id(row: dict) -> str:

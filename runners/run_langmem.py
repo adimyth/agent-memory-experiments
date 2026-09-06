@@ -137,6 +137,15 @@ async def ingest(manager, store, write: transcript.Write) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", type=int, default=1)
+    ap.add_argument(
+        "--no-distractors",
+        action="store_true",
+        help=(
+            "Skip the shared prior store. LangMem's manager only inspects its top few "
+            "existing memories when deciding update-versus-insert, so store size changes "
+            "what it does. This variant is the evidence for that claim."
+        ),
+    )
     args = ap.parse_args()
 
     if not os.environ.get("OPENAI_API_KEY"):
@@ -146,7 +155,7 @@ def main() -> None:
     manager = build_manager(store)
 
     result = RunResult(
-        system="langmem",
+        system="langmem-nodistractors" if args.no_distractors else "langmem",
         run=args.run,
         started_at=harness.now(),
         config={
@@ -164,10 +173,13 @@ def main() -> None:
         },
     )
 
-    seed_distractors(store)
-    result.notes.append(
-        f"Seeded {len(distractors.DISTRACTORS)} distractor rows verbatim via store.put."
-    )
+    if args.no_distractors:
+        result.notes.append("No distractors: the store holds only what the transcript produced.")
+    else:
+        seed_distractors(store)
+        result.notes.append(
+            f"Seeded {len(distractors.DISTRACTORS)} distractor rows verbatim via store.put."
+        )
 
     asyncio.run(ingest(manager, store, transcript.SESSION_1))
     result.store_after_session_1 = dump_store(store)
