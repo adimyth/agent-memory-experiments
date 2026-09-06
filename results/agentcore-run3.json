@@ -1,0 +1,2068 @@
+{
+  "system": "agentcore",
+  "run": 3,
+  "started_at": "2026-09-06T17:54:04.373534+00:00",
+  "finished_at": "2026-09-06T18:01:32.676188+00:00",
+  "config": {
+    "llm": "service-managed (built-in strategies invoke no model in this account)",
+    "embedder": "service-managed",
+    "strategies": [
+      "semantic",
+      "summary",
+      "userPreference"
+    ],
+    "search_defaults": "RetrieveMemoryRecords with no topK; service default",
+    "region": "us-east-1",
+    "profile": "personal-agentcore"
+  },
+  "versions": {
+    "api": "bedrock-agentcore + bedrock-agentcore-control"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "id": "mem-ea84128c-dcdc-4585-ac35-f40b41a042ed",
+      "memory": "The user's object storage is S3 with lifecycle rules moving old objects to Glacier.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-49f292f5-1c2b-4bb6-b7ea-091124f549cb",
+      "memory": "The user's API gateway enforces a 30 second request timeout.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-0a835be16a5c9bb011af15d3fd8551b73018",
+      "memory": "                <topic name=\"Data Storage\">\n        - Redis is used for session storage and rate limiting.\n- Payments database is Postgres 16 hosted on RDS with a read replica.\n- Object storage uses S3 with lifecycle rules that move old objects to Glacier.\n        </topic>\n        <topic name=\"Services and Infrastructure\">\n        - The checkout service runs on ECS Fargate in the ap-south-1 region.\n- Background jobs run on Celery with RabbitMQ as the message broker.\n- The API gateway enforces a 30-second request timeout.\n- The staging environment mirrors production at one-quarter of the capacity.\n        </topic>\n        <topic name=\"Deployment and Feature Management\">\n        - Deploys are triggered via GitHub Actions on merge to the main branch.\n- Feature flags are managed using LaunchDarkly.\n        </topic>\n<topic name=\"Reliability and Policies\">\n- Outbound webhook retry policy uses exponential backoff.\n</topic>\n<topic name=\"Observability\">\n- Observability stack consists of Grafana dashboards built on top of Prometheus.\n</topic>\n<topic name=\"Incidents\">\n- A checkout outage occurred in February, caused by connection pool exhaustion.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:26:45.748000+05:30"
+    },
+    {
+      "id": "mem-696ee566-6c0b-4552-9f6e-a507226e8105",
+      "memory": "{\"context\":\"The user explicitly stated that object storage is S3 with lifecycle rules moving old objects to Glacier.\",\"preference\":\"Uses AWS S3 for object storage with lifecycle rules to move old objects to Glacier\",\"categories\":[\"technology\",\"infrastructure\",\"cloud\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-db6ebfec-56dd-4f20-94db-5ec279d8fbbc",
+      "memory": "{\"context\":\"The user explicitly stated that Redis is used for session storage and rate limiting in their system.\",\"preference\":\"Uses Redis for session storage and rate limiting\",\"categories\":[\"technology\",\"infrastructure\",\"backend\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-98cc4c10-284d-458a-bb4c-b3ba35d36058",
+      "memory": "{\"context\":\"The user explicitly stated that the payments database is Postgres 16 on RDS with a read replica.\",\"preference\":\"Uses Postgres 16 on AWS RDS with a read replica for the payments database\",\"categories\":[\"technology\",\"infrastructure\",\"database\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-7e43b986-5e5f-4832-9629-6e1383af635b",
+      "memory": "Sneha manages the on-call rotation.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-9ec8cf47-f209-4772-af9d-1638feb9e442",
+      "memory": "A retry storm doubled load on the payments service (described as 'earlier' as of 2026-01-10).",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-e8d1cdae-da83-40fe-8917-ea312996e7c1",
+      "memory": "The user's team requires one approval for code review before merging.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-10e36909-08df-49fe-92c0-1563766733c1",
+      "memory": "The user's team manages dependencies with uv.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-5b27a0f1-8065-4b43-b45f-d214d01efd52",
+      "memory": "The user's team keeps documentation in the docs directory of each repository.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-75508d07-0492-4d71-932f-c380c90bd870",
+      "memory": "The user's team stores secrets in AWS Secrets Manager, never in environment files.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-93648ea4413b840b8f9cd710ff2e702242eb",
+      "memory": "                <topic name=\"Engineering Standards and Policies\">\n        - Migrations must be backwards compatible for one release.\n- Code review requires at least one approval before merging.\n- The team writes runbooks for every alert.\n- Secrets are stored in AWS Secrets Manager and never in environment files.\n- Documentation lives in the `docs` directory of each repository.\n- Dependency updates are batched weekly.\n        </topic>\n        <topic name=\"Code Style and Tooling\">\n        - Type hints are required on all new Python code.\n- Line length is capped at 100 characters.\n- Linting uses `ruff`; formatting uses `ruff format`.\n- Type checking uses `mypy` in strict mode.\n- Dependencies are managed with `uv`.\n- Local development uses Docker Compose.\n        </topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:26:51.966000+05:30"
+    },
+    {
+      "id": "mem-df2271af-6a22-451c-bd2e-ec90f2052c98",
+      "memory": "{\"context\":\"The user explicitly stated that documentation lives in the docs directory of each repository.\",\"preference\":\"Documentation lives in the docs directory of each repository\",\"categories\":[\"software development\",\"engineering practices\",\"documentation\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:55.361000+05:30"
+    },
+    {
+      "id": "mem-91e93ef1-d1e0-457e-920d-eeecf31e9f05",
+      "memory": "{\"context\":\"The user explicitly stated that type hints are required on all new Python code.\",\"preference\":\"Type hints are required on all new Python code\",\"categories\":[\"software development\",\"engineering practices\",\"Python\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:56.904000+05:30"
+    },
+    {
+      "id": "mem-ff3642c8-0c1a-4511-9319-ebd7a4bcd47d",
+      "memory": "{\"context\":\"The user explicitly stated that database migrations must be backwards compatible for one release.\",\"preference\":\"Database migrations must be backwards compatible for one release\",\"categories\":[\"software development\",\"engineering practices\",\"database\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:53.919000+05:30"
+    },
+    {
+      "id": "mem-20c850f5-dbbb-447c-9605-817a5ecec8df",
+      "memory": "The user's team uses ruff for linting and ruff format for formatting.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-fa42ba1e-312c-43a8-adf2-96e89ad4a9ee",
+      "memory": "The user keeps commit messages in conventional format.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:12.531000+05:30"
+    },
+    {
+      "id": "mem-21532c73-43aa-488e-92b8-2073c4972071",
+      "memory": "{\"context\":\"The user explicitly stated that commit messages follow conventional commit format.\",\"preference\":\"Uses conventional commit messages\",\"categories\":[\"software development\",\"version control\",\"git\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.256000+05:30"
+    },
+    {
+      "id": "mem-0a9254d4-1c85-47e3-ba4c-64375c16b2ed",
+      "memory": "The user's retry policy for outbound webhooks uses exponential backoff.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-174c5161-69d5-4772-bbf6-3f89013ed09d",
+      "memory": "The user's checkout service runs on ECS Fargate in ap-south-1.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-40839e77-dc07-46c3-9069-43f9d242b7d7",
+      "memory": "The user's staging environment mirrors production at a quarter of the capacity.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-f19aee34-5887-458f-a7d8-55380fbfc524",
+      "memory": "The user's payments database is Postgres 16 on RDS with a read replica.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-2d6b8ba3-4d8f-4e4a-a155-6ed2f5db6625",
+      "memory": "The user runs background jobs on Celery with RabbitMQ as the broker.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-30b8555f-d89c-42b5-a748-1cc56b743e55",
+      "memory": "The user manages feature flags in LaunchDarkly.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-68eec533-3c5f-4dba-92a3-7add523cb20d",
+      "memory": "The user experienced a checkout outage in February caused by connection pool exhaustion.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-f4bd3d91-130b-46f0-ab12-18ae0b1d8924",
+      "memory": "The user uses Redis for session storage and rate limiting.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-91ce2e4b-e5db-4cfd-a8ac-516b58058a8d",
+      "memory": "{\"context\":\"The user explicitly stated that the API gateway enforces a 30 second request timeout.\",\"preference\":\"API gateway has a 30-second request timeout enforced\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-a9b64aa0-e76e-4535-95c3-7dbb814328db",
+      "memory": "The user's team postponed the Kafka migration to next quarter (as of 2026-01-10).",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-f0ac6028-e121-45bf-909c-92f0aa13efb1",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-d21b668e-6b04-4b05-a177-af86094d69ce",
+      "memory": "The March incident review (prior to 2026-01-10) recommended adding circuit breakers.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-602a829c-1275-47ae-a393-c01621146edb",
+      "memory": "The user's team batches dependency updates weekly.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-f2682619-d443-4f1e-befe-7f207ba0d1ef",
+      "memory": "{\"context\":\"The user explicitly stated that secrets are stored in AWS Secrets Manager and never in environment files.\",\"preference\":\"Secrets are stored in AWS Secrets Manager, never in environment files\",\"categories\":[\"software development\",\"engineering practices\",\"security\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:53.919000+05:30"
+    },
+    {
+      "id": "mem-05619787-d5c1-4164-b627-6d9546ddde99",
+      "memory": "{\"context\":\"The user explicitly stated that dependency updates are batched weekly.\",\"preference\":\"Dependency updates are batched weekly\",\"categories\":[\"software development\",\"engineering practices\",\"dependency management\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:56.822000+05:30"
+    },
+    {
+      "id": "mem-51870977-e8e8-42f6-bc4b-a2958ea4444d",
+      "memory": "{\"context\":\"The user explicitly stated that the team writes runbooks for every alert.\",\"preference\":\"Runbooks are written for every alert\",\"categories\":[\"software development\",\"engineering practices\",\"operations\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:53.919000+05:30"
+    },
+    {
+      "id": "mem-e3f02a1c-5da6-428c-bcf8-4c9f80810c16",
+      "memory": "{\"context\":\"The user explicitly stated that linting is done with ruff and formatting with ruff format.\",\"preference\":\"Linting is done with ruff and formatting with ruff format\",\"categories\":[\"software development\",\"engineering practices\",\"code style\",\"Python\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.423000+05:30"
+    },
+    {
+      "id": "mem-09478412-6c3b-47fb-8fe0-51a3456505c4",
+      "memory": "{\"context\":\"The user explicitly stated that the monorepo is split into services and packages directories.\",\"preference\":\"Organizes monorepo with a split into services and packages directories\",\"categories\":[\"software development\",\"architecture\",\"project structure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.128000+05:30"
+    },
+    {
+      "id": "mem-426e7b39-2696-479a-92b9-b2aaffeb9ed6",
+      "memory": "{\"context\":\"The user explicitly stated that they write tests using pytest.\",\"preference\":\"Writes tests using pytest\",\"categories\":[\"software development\",\"testing\",\"programming\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.178000+05:30"
+    },
+    {
+      "id": "mem-97c16abe-4785-4688-aa3f-34e26beefb0c",
+      "memory": "The user's observability stack consists of Grafana dashboards on top of Prometheus.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-479661fe-8de4-423f-bfeb-66d2b067d26b",
+      "memory": "The user's deploys go out through GitHub Actions on merge to main.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-13cb84d4-0cdd-4499-8dc4-684af8bd4042",
+      "memory": "{\"context\":\"The user explicitly stated that feature flags are managed in LaunchDarkly.\",\"preference\":\"Uses LaunchDarkly for feature flag management\",\"categories\":[\"technology\",\"devops\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-92d43d8e-64de-4b20-8135-0d26772e23f9",
+      "memory": "{\"context\":\"The user explicitly stated that the retry policy for outbound webhooks uses exponential backoff.\",\"preference\":\"Uses exponential backoff as the retry policy for outbound webhooks\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-e58a7955-bb11-430e-b857-2ba55ca53a8e",
+      "memory": "{\"context\":\"The user explicitly stated that the staging environment mirrors production at a quarter of the capacity.\",\"preference\":\"Maintains a staging environment that mirrors production at 25% capacity\",\"categories\":[\"technology\",\"infrastructure\",\"devops\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-370b524b-8138-4a87-a21d-39905e13dfa0",
+      "memory": "{\"context\":\"The user explicitly stated that observability is handled via Grafana dashboards on top of Prometheus.\",\"preference\":\"Uses Grafana dashboards on top of Prometheus for observability\",\"categories\":[\"technology\",\"infrastructure\",\"monitoring\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-337a676e-8397-43ca-9b49-243baea658c6",
+      "memory": "{\"context\":\"The user explicitly stated that deploys go out through GitHub Actions on merge to main.\",\"preference\":\"Uses GitHub Actions for CI/CD deployments triggered on merge to main\",\"categories\":[\"technology\",\"devops\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-b7d479e7-c927-467b-a5a7-d3f6ad9a6429",
+      "memory": "{\"context\":\"The user explicitly stated that the checkout service runs on ECS Fargate in ap-south-1.\",\"preference\":\"Runs the checkout service on AWS ECS Fargate in the ap-south-1 region\",\"categories\":[\"technology\",\"infrastructure\",\"cloud\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-fbb1e230bccfa13d218fc79e5453507de957",
+      "memory": "                <topic name=\"Infrastructure & Architecture\">\n        - The search index is OpenSearch, reindexed nightly.\n- The Kafka migration has been postponed to next quarter.\n        </topic>\n        <topic name=\"Incidents & Reliability\">\n        - An earlier retry storm doubled load on the payments service.\n- The March incident review recommended adding circuit breakers.\n- A memory leak in the notification worker was resolved by upgrading the SDK.\n        </topic>\n<topic name=\"Performance Testing\">\n- A load test conducted in July peaked at 4,000 requests per second.\n</topic>\n        <topic name=\"Team & Personnel\">\n        - Priya leads the platform team.\n- Sneha manages the on-call rotation.\n- Ananya maintains the design system.\n- Vikram works on the mobile client.\n- Karthik reviews all database migrations.\n- Meera is the product manager for checkout.\n        </topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:26:48.828000+05:30"
+    },
+    {
+      "id": "mem-7f7f3373-ecb2-4ffd-98b7-113327ac05d4",
+      "memory": "Priya leads the platform team.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-f1f372e3-22a8-4125-93a1-2b728963be61",
+      "memory": "The user's team conducted a load test in July that peaked at 4,000 requests per second.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-0e014fbd-e2ca-436c-a4b4-18912d02cfe1",
+      "memory": "Meera is the product manager for checkout.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-a24b1557-a998-48ec-842e-8adba00dce59",
+      "memory": "Karthik reviews all database migrations.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-6fd49707-370c-46a0-a96f-34046e9c417a",
+      "memory": "Vikram works on the mobile client.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-5013bd79-4625-4a36-9e90-853a302c681f",
+      "memory": "The user's team uses OpenSearch as the search index, reindexed nightly.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-1ffb958f-84c4-4ca1-b868-1c5bb1c78317",
+      "memory": "Ananya maintains the design system.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-33a03be1-5980-462e-a117-04ea9097da9f",
+      "memory": "The user's team requires database migrations to be backwards compatible for one release.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-27db8559-3ad1-4747-9409-acf71833b81f",
+      "memory": "The user's team requires type hints on all new Python code.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-05636299-11c8-40c3-ac00-58e5ece543a5",
+      "memory": "The user's team uses Docker Compose for local development.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-6feef77d-33d6-49b9-b81a-2a64845debe8",
+      "memory": "The user's team uses mypy in strict mode for type checking.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-6109ec71-39fe-45c7-9f33-7391a6a0b8e7",
+      "memory": "The user's team caps line length at 100 characters.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-3dda0f6c-06d4-4af5-a76f-98b957637b30",
+      "memory": "The user's team writes runbooks for every alert.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-dcd34aa2-a9f1-4c41-95fa-7df4b7244039",
+      "memory": "{\"context\":\"The user explicitly stated that line length is capped at 100 characters.\",\"preference\":\"Line length is capped at 100 characters\",\"categories\":[\"software development\",\"engineering practices\",\"code style\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:55.361000+05:30"
+    },
+    {
+      "id": "mem-64acd249-a5be-4d35-9e42-f64752b09af7",
+      "memory": "{\"context\":\"The user explicitly stated that code review requires one approval before merge.\",\"preference\":\"Code review requires one approval before merge\",\"categories\":[\"software development\",\"engineering practices\",\"code review\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:55.011000+05:30"
+    },
+    {
+      "id": "mem-0a7917d0-e806-446b-9d13-3b7c1652c41d",
+      "memory": "{\"context\":\"The user explicitly stated that dependencies are managed with uv.\",\"preference\":\"Dependencies are managed with uv\",\"categories\":[\"software development\",\"engineering practices\",\"dependency management\",\"Python\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.587000+05:30"
+    },
+    {
+      "id": "mem-cd40c809-b71e-47a7-8003-e387a0356880",
+      "memory": "{\"context\":\"The user explicitly stated that local development uses Docker Compose.\",\"preference\":\"Local development uses Docker Compose\",\"categories\":[\"software development\",\"engineering practices\",\"local development\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.336000+05:30"
+    },
+    {
+      "id": "mem-a364062b-d0d7-49e3-81ce-706a1aea45d9",
+      "memory": "{\"context\":\"The user explicitly stated that type checking is done with mypy in strict mode.\",\"preference\":\"Type checking is done with mypy in strict mode\",\"categories\":[\"software development\",\"engineering practices\",\"Python\",\"type checking\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.503000+05:30"
+    },
+    {
+      "id": "mem-23ce29ed-3462-4f47-a888-9c0e565c2bae",
+      "memory": "{\"context\":\"The user explicitly noted that a checkout outage in February was caused by connection pool exhaustion.\",\"preference\":\"Has experienced a checkout outage in February 2026 caused by connection pool exhaustion\",\"categories\":[\"technology\",\"infrastructure\",\"backend\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-b0e64fc2-bb40-4257-bc71-fa307538fc77",
+      "memory": "{\"context\":\"The user explicitly stated that background jobs run on Celery with RabbitMQ as the broker.\",\"preference\":\"Uses Celery with RabbitMQ as the broker for background jobs\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-98d77c56-b659-45cd-a343-102760271a4d",
+      "memory": "The user uses Terraform to manage all cloud infrastructure.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-0a908179-845f-4529-b899-8cfe22ff195e",
+      "memory": "The user's alerting routes through PagerDuty.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-9cb2bb1b-4941-4ab0-a0e9-c020e4514e19",
+      "memory": "The user's monorepo is split into services and packages directories.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-a34738eb-2250-4803-9b2e-8297a4369301",
+      "memory": "The user's changelog is generated from conventional commit messages.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-5a60b00a-673e-4988-a29b-2a54b6a07d4c",
+      "memory": "The user writes tests in pytest.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:12.531000+05:30"
+    },
+    {
+      "id": "mem-739f879e-3a70-4552-9d3a-9517ad19a093",
+      "memory": "Rohan is on-call and works at Nimbus on payments.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:12.531000+05:30"
+    },
+    {
+      "id": "mem-816047c3398a0731ce3d4dfbcc871a27ae6d",
+      "memory": "                <topic name=\"Deployment and Tooling\">\n        - The changelog is generated from conventional commit messages.\n- Terraform manages all cloud infrastructure.\n        </topic>\n<topic name=\"Observability and Alerting\">\n- Alerting routes through PagerDuty.\n</topic>\n<topic name=\"Repository Structure\">\n- The monorepo is split into `services` and `packages` directories.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:27:12.262000+05:30"
+    },
+    {
+      "id": "mem-1d93055dde8d0245b211b288adef3f3dd472",
+      "memory": "        <topic name=\"User Preferences and Practices\">\nThe user writes tests using pytest and follows conventional commit message formatting.\n</topic>\n<topic name=\"Team Context\">\nRohan is currently on-call; he works at a company called Nimbus on the payments domain.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-jan-3/"
+      ],
+      "created_at": "2026-09-06 23:27:13.281000+05:30"
+    },
+    {
+      "id": "mem-ce95aa29-6bd8-49e5-b5c5-e03c02a21168",
+      "memory": "{\"context\":\"The user explicitly stated that alerting routes through PagerDuty.\",\"preference\":\"Uses PagerDuty for alerting\",\"categories\":[\"software development\",\"monitoring\",\"operations\",\"tooling\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.042000+05:30"
+    },
+    {
+      "id": "mem-df5e1025-b87f-4586-9476-d42215b1b360",
+      "memory": "{\"context\":\"The user explicitly stated that Terraform manages all cloud infrastructure.\",\"preference\":\"Uses Terraform for managing all cloud infrastructure\",\"categories\":[\"software development\",\"infrastructure\",\"DevOps\",\"tooling\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.210000+05:30"
+    },
+    {
+      "id": "mem-260160e4-a40b-48e4-9def-e1ddfcc89acc",
+      "memory": "{\"context\":\"The user explicitly stated that the changelog is generated from conventional commit messages.\",\"preference\":\"Uses conventional commit messages for changelog generation\",\"categories\":[\"software development\",\"version control\",\"tooling\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:14.959000+05:30"
+    }
+  ],
+  "store_after_update": [
+    {
+      "id": "mem-ea84128c-dcdc-4585-ac35-f40b41a042ed",
+      "memory": "The user's object storage is S3 with lifecycle rules moving old objects to Glacier.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-49f292f5-1c2b-4bb6-b7ea-091124f549cb",
+      "memory": "The user's API gateway enforces a 30 second request timeout.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-0a835be16a5c9bb011af15d3fd8551b73018",
+      "memory": "                <topic name=\"Data Storage\">\n        - Redis is used for session storage and rate limiting.\n- Payments database is Postgres 16 hosted on RDS with a read replica.\n- Object storage uses S3 with lifecycle rules that move old objects to Glacier.\n        </topic>\n        <topic name=\"Services and Infrastructure\">\n        - The checkout service runs on ECS Fargate in the ap-south-1 region.\n- Background jobs run on Celery with RabbitMQ as the message broker.\n- The API gateway enforces a 30-second request timeout.\n- The staging environment mirrors production at one-quarter of the capacity.\n        </topic>\n        <topic name=\"Deployment and Feature Management\">\n        - Deploys are triggered via GitHub Actions on merge to the main branch.\n- Feature flags are managed using LaunchDarkly.\n        </topic>\n<topic name=\"Reliability and Policies\">\n- Outbound webhook retry policy uses exponential backoff.\n</topic>\n<topic name=\"Observability\">\n- Observability stack consists of Grafana dashboards built on top of Prometheus.\n</topic>\n<topic name=\"Incidents\">\n- A checkout outage occurred in February, caused by connection pool exhaustion.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:26:45.748000+05:30"
+    },
+    {
+      "id": "mem-696ee566-6c0b-4552-9f6e-a507226e8105",
+      "memory": "{\"context\":\"The user explicitly stated that object storage is S3 with lifecycle rules moving old objects to Glacier.\",\"preference\":\"Uses AWS S3 for object storage with lifecycle rules to move old objects to Glacier\",\"categories\":[\"technology\",\"infrastructure\",\"cloud\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-db6ebfec-56dd-4f20-94db-5ec279d8fbbc",
+      "memory": "{\"context\":\"The user explicitly stated that Redis is used for session storage and rate limiting in their system.\",\"preference\":\"Uses Redis for session storage and rate limiting\",\"categories\":[\"technology\",\"infrastructure\",\"backend\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-98cc4c10-284d-458a-bb4c-b3ba35d36058",
+      "memory": "{\"context\":\"The user explicitly stated that the payments database is Postgres 16 on RDS with a read replica.\",\"preference\":\"Uses Postgres 16 on AWS RDS with a read replica for the payments database\",\"categories\":[\"technology\",\"infrastructure\",\"database\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-7e43b986-5e5f-4832-9629-6e1383af635b",
+      "memory": "Sneha manages the on-call rotation.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-9ec8cf47-f209-4772-af9d-1638feb9e442",
+      "memory": "A retry storm doubled load on the payments service (described as 'earlier' as of 2026-01-10).",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-e8d1cdae-da83-40fe-8917-ea312996e7c1",
+      "memory": "The user's team requires one approval for code review before merging.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-10e36909-08df-49fe-92c0-1563766733c1",
+      "memory": "The user's team manages dependencies with uv.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-5b27a0f1-8065-4b43-b45f-d214d01efd52",
+      "memory": "The user's team keeps documentation in the docs directory of each repository.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-75508d07-0492-4d71-932f-c380c90bd870",
+      "memory": "The user's team stores secrets in AWS Secrets Manager, never in environment files.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-93648ea4413b840b8f9cd710ff2e702242eb",
+      "memory": "                <topic name=\"Engineering Standards and Policies\">\n        - Migrations must be backwards compatible for one release.\n- Code review requires at least one approval before merging.\n- The team writes runbooks for every alert.\n- Secrets are stored in AWS Secrets Manager and never in environment files.\n- Documentation lives in the `docs` directory of each repository.\n- Dependency updates are batched weekly.\n        </topic>\n        <topic name=\"Code Style and Tooling\">\n        - Type hints are required on all new Python code.\n- Line length is capped at 100 characters.\n- Linting uses `ruff`; formatting uses `ruff format`.\n- Type checking uses `mypy` in strict mode.\n- Dependencies are managed with `uv`.\n- Local development uses Docker Compose.\n        </topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:26:51.966000+05:30"
+    },
+    {
+      "id": "mem-df2271af-6a22-451c-bd2e-ec90f2052c98",
+      "memory": "{\"context\":\"The user explicitly stated that documentation lives in the docs directory of each repository.\",\"preference\":\"Documentation lives in the docs directory of each repository\",\"categories\":[\"software development\",\"engineering practices\",\"documentation\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:55.361000+05:30"
+    },
+    {
+      "id": "mem-91e93ef1-d1e0-457e-920d-eeecf31e9f05",
+      "memory": "{\"context\":\"The user explicitly stated that type hints are required on all new Python code.\",\"preference\":\"Type hints are required on all new Python code\",\"categories\":[\"software development\",\"engineering practices\",\"Python\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:56.904000+05:30"
+    },
+    {
+      "id": "mem-ff3642c8-0c1a-4511-9319-ebd7a4bcd47d",
+      "memory": "{\"context\":\"The user explicitly stated that database migrations must be backwards compatible for one release.\",\"preference\":\"Database migrations must be backwards compatible for one release\",\"categories\":[\"software development\",\"engineering practices\",\"database\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:53.919000+05:30"
+    },
+    {
+      "id": "mem-20c850f5-dbbb-447c-9605-817a5ecec8df",
+      "memory": "The user's team uses ruff for linting and ruff format for formatting.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-fa42ba1e-312c-43a8-adf2-96e89ad4a9ee",
+      "memory": "The user keeps commit messages in conventional format.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:12.531000+05:30"
+    },
+    {
+      "id": "mem-21532c73-43aa-488e-92b8-2073c4972071",
+      "memory": "{\"context\":\"The user explicitly stated that commit messages follow conventional commit format.\",\"preference\":\"Uses conventional commit messages\",\"categories\":[\"software development\",\"version control\",\"git\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.256000+05:30"
+    },
+    {
+      "id": "mem-0a9254d4-1c85-47e3-ba4c-64375c16b2ed",
+      "memory": "The user's retry policy for outbound webhooks uses exponential backoff.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-174c5161-69d5-4772-bbf6-3f89013ed09d",
+      "memory": "The user's checkout service runs on ECS Fargate in ap-south-1.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-40839e77-dc07-46c3-9069-43f9d242b7d7",
+      "memory": "The user's staging environment mirrors production at a quarter of the capacity.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-f19aee34-5887-458f-a7d8-55380fbfc524",
+      "memory": "The user's payments database is Postgres 16 on RDS with a read replica.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-2d6b8ba3-4d8f-4e4a-a155-6ed2f5db6625",
+      "memory": "The user runs background jobs on Celery with RabbitMQ as the broker.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-30b8555f-d89c-42b5-a748-1cc56b743e55",
+      "memory": "The user manages feature flags in LaunchDarkly.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-68eec533-3c5f-4dba-92a3-7add523cb20d",
+      "memory": "The user experienced a checkout outage in February caused by connection pool exhaustion.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-f4bd3d91-130b-46f0-ab12-18ae0b1d8924",
+      "memory": "The user uses Redis for session storage and rate limiting.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.682000+05:30"
+    },
+    {
+      "id": "mem-91ce2e4b-e5db-4cfd-a8ac-516b58058a8d",
+      "memory": "{\"context\":\"The user explicitly stated that the API gateway enforces a 30 second request timeout.\",\"preference\":\"API gateway has a 30-second request timeout enforced\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-a9b64aa0-e76e-4535-95c3-7dbb814328db",
+      "memory": "The user's team postponed the Kafka migration to next quarter (as of 2026-01-10).",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-f0ac6028-e121-45bf-909c-92f0aa13efb1",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-d21b668e-6b04-4b05-a177-af86094d69ce",
+      "memory": "The March incident review (prior to 2026-01-10) recommended adding circuit breakers.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-602a829c-1275-47ae-a393-c01621146edb",
+      "memory": "The user's team batches dependency updates weekly.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-f2682619-d443-4f1e-befe-7f207ba0d1ef",
+      "memory": "{\"context\":\"The user explicitly stated that secrets are stored in AWS Secrets Manager and never in environment files.\",\"preference\":\"Secrets are stored in AWS Secrets Manager, never in environment files\",\"categories\":[\"software development\",\"engineering practices\",\"security\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:53.919000+05:30"
+    },
+    {
+      "id": "mem-05619787-d5c1-4164-b627-6d9546ddde99",
+      "memory": "{\"context\":\"The user explicitly stated that dependency updates are batched weekly.\",\"preference\":\"Dependency updates are batched weekly\",\"categories\":[\"software development\",\"engineering practices\",\"dependency management\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:56.822000+05:30"
+    },
+    {
+      "id": "mem-51870977-e8e8-42f6-bc4b-a2958ea4444d",
+      "memory": "{\"context\":\"The user explicitly stated that the team writes runbooks for every alert.\",\"preference\":\"Runbooks are written for every alert\",\"categories\":[\"software development\",\"engineering practices\",\"operations\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:53.919000+05:30"
+    },
+    {
+      "id": "mem-e3f02a1c-5da6-428c-bcf8-4c9f80810c16",
+      "memory": "{\"context\":\"The user explicitly stated that linting is done with ruff and formatting with ruff format.\",\"preference\":\"Linting is done with ruff and formatting with ruff format\",\"categories\":[\"software development\",\"engineering practices\",\"code style\",\"Python\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.423000+05:30"
+    },
+    {
+      "id": "mem-09478412-6c3b-47fb-8fe0-51a3456505c4",
+      "memory": "{\"context\":\"The user explicitly stated that the monorepo is split into services and packages directories.\",\"preference\":\"Organizes monorepo with a split into services and packages directories\",\"categories\":[\"software development\",\"architecture\",\"project structure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.128000+05:30"
+    },
+    {
+      "id": "mem-0666c416-79af-4935-b8d9-c783607a6e8f",
+      "memory": "The user switched to unittest.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:29:48.326000+05:30"
+    },
+    {
+      "id": "mem-1921cf50e59ed39085dc8fe51936e1664137",
+      "memory": "        <topic name=\"Testing Framework\">\nThe user switched to unittest.\n</topic>\n<topic name=\"Personnel Change\">\nRohan left Nimbus in April and joined Lattice.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-sep-3/"
+      ],
+      "created_at": "2026-09-06 23:29:48.700000+05:30"
+    },
+    {
+      "id": "mem-65b64843-e9cc-489b-bce6-549b81a21b0e",
+      "memory": "{\"context\":\"The user initially used pytest for testing but explicitly stated they switched to unittest (a Python testing framework).\",\"preference\":\"Uses unittest for testing (switched from pytest)\",\"categories\":[\"software development\",\"testing\",\"programming\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:29:51.972000+05:30"
+    },
+    {
+      "id": "mem-97c16abe-4785-4688-aa3f-34e26beefb0c",
+      "memory": "The user's observability stack consists of Grafana dashboards on top of Prometheus.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:45.244000+05:30"
+    },
+    {
+      "id": "mem-479661fe-8de4-423f-bfeb-66d2b067d26b",
+      "memory": "The user's deploys go out through GitHub Actions on merge to main.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:44.980000+05:30"
+    },
+    {
+      "id": "mem-13cb84d4-0cdd-4499-8dc4-684af8bd4042",
+      "memory": "{\"context\":\"The user explicitly stated that feature flags are managed in LaunchDarkly.\",\"preference\":\"Uses LaunchDarkly for feature flag management\",\"categories\":[\"technology\",\"devops\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-92d43d8e-64de-4b20-8135-0d26772e23f9",
+      "memory": "{\"context\":\"The user explicitly stated that the retry policy for outbound webhooks uses exponential backoff.\",\"preference\":\"Uses exponential backoff as the retry policy for outbound webhooks\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-e58a7955-bb11-430e-b857-2ba55ca53a8e",
+      "memory": "{\"context\":\"The user explicitly stated that the staging environment mirrors production at a quarter of the capacity.\",\"preference\":\"Maintains a staging environment that mirrors production at 25% capacity\",\"categories\":[\"technology\",\"infrastructure\",\"devops\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-370b524b-8138-4a87-a21d-39905e13dfa0",
+      "memory": "{\"context\":\"The user explicitly stated that observability is handled via Grafana dashboards on top of Prometheus.\",\"preference\":\"Uses Grafana dashboards on top of Prometheus for observability\",\"categories\":[\"technology\",\"infrastructure\",\"monitoring\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-337a676e-8397-43ca-9b49-243baea658c6",
+      "memory": "{\"context\":\"The user explicitly stated that deploys go out through GitHub Actions on merge to main.\",\"preference\":\"Uses GitHub Actions for CI/CD deployments triggered on merge to main\",\"categories\":[\"technology\",\"devops\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-b7d479e7-c927-467b-a5a7-d3f6ad9a6429",
+      "memory": "{\"context\":\"The user explicitly stated that the checkout service runs on ECS Fargate in ap-south-1.\",\"preference\":\"Runs the checkout service on AWS ECS Fargate in the ap-south-1 region\",\"categories\":[\"technology\",\"infrastructure\",\"cloud\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.384000+05:30"
+    },
+    {
+      "id": "mem-fbb1e230bccfa13d218fc79e5453507de957",
+      "memory": "                <topic name=\"Infrastructure & Architecture\">\n        - The search index is OpenSearch, reindexed nightly.\n- The Kafka migration has been postponed to next quarter.\n        </topic>\n        <topic name=\"Incidents & Reliability\">\n        - An earlier retry storm doubled load on the payments service.\n- The March incident review recommended adding circuit breakers.\n- A memory leak in the notification worker was resolved by upgrading the SDK.\n        </topic>\n<topic name=\"Performance Testing\">\n- A load test conducted in July peaked at 4,000 requests per second.\n</topic>\n        <topic name=\"Team & Personnel\">\n        - Priya leads the platform team.\n- Sneha manages the on-call rotation.\n- Ananya maintains the design system.\n- Vikram works on the mobile client.\n- Karthik reviews all database migrations.\n- Meera is the product manager for checkout.\n        </topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:26:48.828000+05:30"
+    },
+    {
+      "id": "mem-7f7f3373-ecb2-4ffd-98b7-113327ac05d4",
+      "memory": "Priya leads the platform team.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-f1f372e3-22a8-4125-93a1-2b728963be61",
+      "memory": "The user's team conducted a load test in July that peaked at 4,000 requests per second.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.927000+05:30"
+    },
+    {
+      "id": "mem-0e014fbd-e2ca-436c-a4b4-18912d02cfe1",
+      "memory": "Meera is the product manager for checkout.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-a24b1557-a998-48ec-842e-8adba00dce59",
+      "memory": "Karthik reviews all database migrations.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-6fd49707-370c-46a0-a96f-34046e9c417a",
+      "memory": "Vikram works on the mobile client.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-5013bd79-4625-4a36-9e90-853a302c681f",
+      "memory": "The user's team uses OpenSearch as the search index, reindexed nightly.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:48.549000+05:30"
+    },
+    {
+      "id": "mem-1ffb958f-84c4-4ca1-b868-1c5bb1c78317",
+      "memory": "Ananya maintains the design system.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:49.193000+05:30"
+    },
+    {
+      "id": "mem-33a03be1-5980-462e-a117-04ea9097da9f",
+      "memory": "The user's team requires database migrations to be backwards compatible for one release.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-27db8559-3ad1-4747-9409-acf71833b81f",
+      "memory": "The user's team requires type hints on all new Python code.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-05636299-11c8-40c3-ac00-58e5ece543a5",
+      "memory": "The user's team uses Docker Compose for local development.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-6feef77d-33d6-49b9-b81a-2a64845debe8",
+      "memory": "The user's team uses mypy in strict mode for type checking.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:52.151000+05:30"
+    },
+    {
+      "id": "mem-6109ec71-39fe-45c7-9f33-7391a6a0b8e7",
+      "memory": "The user's team caps line length at 100 characters.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.888000+05:30"
+    },
+    {
+      "id": "mem-3dda0f6c-06d4-4af5-a76f-98b957637b30",
+      "memory": "The user's team writes runbooks for every alert.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:51.632000+05:30"
+    },
+    {
+      "id": "mem-dcd34aa2-a9f1-4c41-95fa-7df4b7244039",
+      "memory": "{\"context\":\"The user explicitly stated that line length is capped at 100 characters.\",\"preference\":\"Line length is capped at 100 characters\",\"categories\":[\"software development\",\"engineering practices\",\"code style\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:55.361000+05:30"
+    },
+    {
+      "id": "mem-64acd249-a5be-4d35-9e42-f64752b09af7",
+      "memory": "{\"context\":\"The user explicitly stated that code review requires one approval before merge.\",\"preference\":\"Code review requires one approval before merge\",\"categories\":[\"software development\",\"engineering practices\",\"code review\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:55.011000+05:30"
+    },
+    {
+      "id": "mem-0a7917d0-e806-446b-9d13-3b7c1652c41d",
+      "memory": "{\"context\":\"The user explicitly stated that dependencies are managed with uv.\",\"preference\":\"Dependencies are managed with uv\",\"categories\":[\"software development\",\"engineering practices\",\"dependency management\",\"Python\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.587000+05:30"
+    },
+    {
+      "id": "mem-cd40c809-b71e-47a7-8003-e387a0356880",
+      "memory": "{\"context\":\"The user explicitly stated that local development uses Docker Compose.\",\"preference\":\"Local development uses Docker Compose\",\"categories\":[\"software development\",\"engineering practices\",\"local development\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.336000+05:30"
+    },
+    {
+      "id": "mem-a364062b-d0d7-49e3-81ce-706a1aea45d9",
+      "memory": "{\"context\":\"The user explicitly stated that type checking is done with mypy in strict mode.\",\"preference\":\"Type checking is done with mypy in strict mode\",\"categories\":[\"software development\",\"engineering practices\",\"Python\",\"type checking\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:59.503000+05:30"
+    },
+    {
+      "id": "mem-23ce29ed-3462-4f47-a888-9c0e565c2bae",
+      "memory": "{\"context\":\"The user explicitly noted that a checkout outage in February was caused by connection pool exhaustion.\",\"preference\":\"Has experienced a checkout outage in February 2026 caused by connection pool exhaustion\",\"categories\":[\"technology\",\"infrastructure\",\"backend\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.879000+05:30"
+    },
+    {
+      "id": "mem-b0e64fc2-bb40-4257-bc71-fa307538fc77",
+      "memory": "{\"context\":\"The user explicitly stated that background jobs run on Celery with RabbitMQ as the broker.\",\"preference\":\"Uses Celery with RabbitMQ as the broker for background jobs\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:26:47.639000+05:30"
+    },
+    {
+      "id": "mem-98d77c56-b659-45cd-a343-102760271a4d",
+      "memory": "The user uses Terraform to manage all cloud infrastructure.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-0a908179-845f-4529-b899-8cfe22ff195e",
+      "memory": "The user's alerting routes through PagerDuty.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-9cb2bb1b-4941-4ab0-a0e9-c020e4514e19",
+      "memory": "The user's monorepo is split into services and packages directories.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-a34738eb-2250-4803-9b2e-8297a4369301",
+      "memory": "The user's changelog is generated from conventional commit messages.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:11.624000+05:30"
+    },
+    {
+      "id": "mem-5a60b00a-673e-4988-a29b-2a54b6a07d4c",
+      "memory": "The user writes tests in pytest.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:12.531000+05:30"
+    },
+    {
+      "id": "mem-739f879e-3a70-4552-9d3a-9517ad19a093",
+      "memory": "Rohan is on-call and works at Nimbus on payments.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:12.531000+05:30"
+    },
+    {
+      "id": "mem-816047c3398a0731ce3d4dfbcc871a27ae6d",
+      "memory": "                <topic name=\"Deployment and Tooling\">\n        - The changelog is generated from conventional commit messages.\n- Terraform manages all cloud infrastructure.\n        </topic>\n<topic name=\"Observability and Alerting\">\n- Alerting routes through PagerDuty.\n</topic>\n<topic name=\"Repository Structure\">\n- The monorepo is split into `services` and `packages` directories.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-prior-3/"
+      ],
+      "created_at": "2026-09-06 23:27:12.262000+05:30"
+    },
+    {
+      "id": "mem-1d93055dde8d0245b211b288adef3f3dd472",
+      "memory": "        <topic name=\"User Preferences and Practices\">\nThe user writes tests using pytest and follows conventional commit message formatting.\n</topic>\n<topic name=\"Team Context\">\nRohan is currently on-call; he works at a company called Nimbus on the payments domain.\n</topic>",
+      "strategy": "SessionSummarizer-fR0JKl8nkX",
+      "namespaces": [
+        "/summaries/aditya/amx-jan-3/"
+      ],
+      "created_at": "2026-09-06 23:27:13.281000+05:30"
+    },
+    {
+      "id": "mem-ce95aa29-6bd8-49e5-b5c5-e03c02a21168",
+      "memory": "{\"context\":\"The user explicitly stated that alerting routes through PagerDuty.\",\"preference\":\"Uses PagerDuty for alerting\",\"categories\":[\"software development\",\"monitoring\",\"operations\",\"tooling\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.042000+05:30"
+    },
+    {
+      "id": "mem-df5e1025-b87f-4586-9476-d42215b1b360",
+      "memory": "{\"context\":\"The user explicitly stated that Terraform manages all cloud infrastructure.\",\"preference\":\"Uses Terraform for managing all cloud infrastructure\",\"categories\":[\"software development\",\"infrastructure\",\"DevOps\",\"tooling\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:15.210000+05:30"
+    },
+    {
+      "id": "mem-260160e4-a40b-48e4-9def-e1ddfcc89acc",
+      "memory": "{\"context\":\"The user explicitly stated that the changelog is generated from conventional commit messages.\",\"preference\":\"Uses conventional commit messages for changelog generation\",\"categories\":[\"software development\",\"version control\",\"tooling\"]}",
+      "strategy": "PreferenceLearner-PgNCMv8DTT",
+      "namespaces": [
+        "/preferences/aditya/"
+      ],
+      "created_at": "2026-09-06 23:27:14.959000+05:30"
+    },
+    {
+      "id": "mem-169ea55b-a5f1-4041-afa4-754091340799",
+      "memory": "Rohan left Nimbus in April 2026 and joined Lattice.",
+      "strategy": "FactExtractor-gEnlqS3vNG",
+      "namespaces": [
+        "/facts/aditya/"
+      ],
+      "created_at": "2026-09-06 23:29:48.326000+05:30"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "The user experienced a checkout outage in February caused by connection pool exhaustion.",
+          "score": 0.43861893,
+          "id": "mem-68eec533-3c5f-4dba-92a3-7add523cb20d",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly noted that a checkout outage in February was caused by connection pool exhaustion.\",\"preference\":\"Has experienced a checkout outage in February 2026 caused by connection pool exhaustion\",\"categories\":[\"technology\",\"infrastructure\",\"backend\"]}",
+          "score": 0.428868,
+          "id": "mem-23ce29ed-3462-4f47-a888-9c0e565c2bae",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's checkout service runs on ECS Fargate in ap-south-1.",
+          "score": 0.41637322,
+          "id": "mem-174c5161-69d5-4772-bbf6-3f89013ed09d",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "                <topic name=\"Data Storage\">\n        - Redis is used for session storage and rate limiting.\n- Payments database is Postgres 16 hosted on RDS with a read replica.\n- Object storage uses S3 with lifecycle rules that move old objects to Glacier.\n        </topic>\n        <topic name=\"Services and Infrastructure\">\n        - The checkout service runs on ECS Fargate in the ap-south-1 region.\n- Background jobs run on Celery with RabbitMQ as the message broker.\n- The API gateway enforces a 30-second request timeout.\n- The staging environment mirrors production at one-quarter of the capacity.\n        </topic>\n        <topic name=\"Deployment and Feature Management\">\n        - Deploys are triggered via GitHub Actions on merge to the main branch.\n- Feature flags are managed using LaunchDarkly.\n        </topic>\n<topic name=\"Reliability and Policies\">\n- Outbound webhook retry policy uses exponential backoff.\n</topic>\n<topic name=\"Observability\">\n- Observability stack consists of Grafana dashboards built on top of Prometheus.\n</topic>\n<topic name=\"Incidents\">\n- A checkout outage occurred in February, caused by connection pool exhaustion.\n</topic>",
+          "score": 0.40749532,
+          "id": "mem-0a835be16a5c9bb011af15d3fd8551b73018",
+          "extra": {
+            "strategy": "SessionSummarizer-fR0JKl8nkX",
+            "namespaces": [
+              "/summaries/aditya/amx-prior-3/"
+            ]
+          }
+        },
+        {
+          "text": "                <topic name=\"Infrastructure & Architecture\">\n        - The search index is OpenSearch, reindexed nightly.\n- The Kafka migration has been postponed to next quarter.\n        </topic>\n        <topic name=\"Incidents & Reliability\">\n        - An earlier retry storm doubled load on the payments service.\n- The March incident review recommended adding circuit breakers.\n- A memory leak in the notification worker was resolved by upgrading the SDK.\n        </topic>\n<topic name=\"Performance Testing\">\n- A load test conducted in July peaked at 4,000 requests per second.\n</topic>\n        <topic name=\"Team & Personnel\">\n        - Priya leads the platform team.\n- Sneha manages the on-call rotation.\n- Ananya maintains the design system.\n- Vikram works on the mobile client.\n- Karthik reviews all database migrations.\n- Meera is the product manager for checkout.\n        </topic>",
+          "score": 0.3995888,
+          "id": "mem-fbb1e230bccfa13d218fc79e5453507de957",
+          "extra": {
+            "strategy": "SessionSummarizer-fR0JKl8nkX",
+            "namespaces": [
+              "/summaries/aditya/amx-prior-3/"
+            ]
+          }
+        },
+        {
+          "text": "The user's API gateway enforces a 30 second request timeout.",
+          "score": 0.39260158,
+          "id": "mem-49f292f5-1c2b-4bb6-b7ea-091124f549cb",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Meera is the product manager for checkout.",
+          "score": 0.39028004,
+          "id": "mem-0e014fbd-e2ca-436c-a4b4-18912d02cfe1",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "A retry storm doubled load on the payments service (described as 'earlier' as of 2026-01-10).",
+          "score": 0.38685048,
+          "id": "mem-9ec8cf47-f209-4772-af9d-1638feb9e442",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly stated that the checkout service runs on ECS Fargate in ap-south-1.\",\"preference\":\"Runs the checkout service on AWS ECS Fargate in the ap-south-1 region\",\"categories\":[\"technology\",\"infrastructure\",\"cloud\"]}",
+          "score": 0.3858923,
+          "id": "mem-b7d479e7-c927-467b-a5a7-d3f6ad9a6429",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team conducted a load test in July that peaked at 4,000 requests per second.",
+          "score": 0.384728,
+          "id": "mem-f1f372e3-22a8-4125-93a1-2b728963be61",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan."
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "A retry storm doubled load on the payments service (described as 'earlier' as of 2026-01-10).",
+          "score": 0.40676725,
+          "id": "mem-9ec8cf47-f209-4772-af9d-1638feb9e442",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly stated that the retry policy for outbound webhooks uses exponential backoff.\",\"preference\":\"Uses exponential backoff as the retry policy for outbound webhooks\",\"categories\":[\"technology\",\"backend\",\"infrastructure\"]}",
+          "score": 0.39859012,
+          "id": "mem-92d43d8e-64de-4b20-8135-0d26772e23f9",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's retry policy for outbound webhooks uses exponential backoff.",
+          "score": 0.39518878,
+          "id": "mem-0a9254d4-1c85-47e3-ba4c-64375c16b2ed",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The March incident review (prior to 2026-01-10) recommended adding circuit breakers.",
+          "score": 0.3784815,
+          "id": "mem-d21b668e-6b04-4b05-a177-af86094d69ce",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": 0.36896753,
+          "id": "mem-7e43b986-5e5f-4832-9629-6e1383af635b",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team uses OpenSearch as the search index, reindexed nightly.",
+          "score": 0.3668546,
+          "id": "mem-5013bd79-4625-4a36-9e90-853a302c681f",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team batches dependency updates weekly.",
+          "score": 0.36610088,
+          "id": "mem-602a829c-1275-47ae-a393-c01621146edb",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's API gateway enforces a 30 second request timeout.",
+          "score": 0.36331746,
+          "id": "mem-49f292f5-1c2b-4bb6-b7ea-091124f549cb",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team requires one approval for code review before merging.",
+          "score": 0.36301428,
+          "id": "mem-e8d1cdae-da83-40fe-8917-ea312996e7c1",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user runs background jobs on Celery with RabbitMQ as the broker.",
+          "score": 0.36225083,
+          "id": "mem-2d6b8ba3-4d8f-4e4a-a155-6ed2f5db6625",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it."
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "The user writes tests in pytest.",
+          "score": 0.44407046,
+          "id": "mem-5a60b00a-673e-4988-a29b-2a54b6a07d4c",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "        <topic name=\"User Preferences and Practices\">\nThe user writes tests using pytest and follows conventional commit message formatting.\n</topic>\n<topic name=\"Team Context\">\nRohan is currently on-call; he works at a company called Nimbus on the payments domain.\n</topic>",
+          "score": 0.41173944,
+          "id": "mem-1d93055dde8d0245b211b288adef3f3dd472",
+          "extra": {
+            "strategy": "SessionSummarizer-fR0JKl8nkX",
+            "namespaces": [
+              "/summaries/aditya/amx-jan-3/"
+            ]
+          }
+        },
+        {
+          "text": "The user switched to unittest.",
+          "score": 0.40206197,
+          "id": "mem-0666c416-79af-4935-b8d9-c783607a6e8f",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user initially used pytest for testing but explicitly stated they switched to unittest (a Python testing framework).\",\"preference\":\"Uses unittest for testing (switched from pytest)\",\"categories\":[\"software development\",\"testing\",\"programming\"]}",
+          "score": 0.39350432,
+          "id": "mem-65b64843-e9cc-489b-bce6-549b81a21b0e",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly stated that the team writes runbooks for every alert.\",\"preference\":\"Runbooks are written for every alert\",\"categories\":[\"software development\",\"engineering practices\",\"operations\"]}",
+          "score": 0.39087152,
+          "id": "mem-51870977-e8e8-42f6-bc4b-a2958ea4444d",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "        <topic name=\"Testing Framework\">\nThe user switched to unittest.\n</topic>\n<topic name=\"Personnel Change\">\nRohan left Nimbus in April and joined Lattice.\n</topic>",
+          "score": 0.38629583,
+          "id": "mem-1921cf50e59ed39085dc8fe51936e1664137",
+          "extra": {
+            "strategy": "SessionSummarizer-fR0JKl8nkX",
+            "namespaces": [
+              "/summaries/aditya/amx-sep-3/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team writes runbooks for every alert.",
+          "score": 0.38190413,
+          "id": "mem-3dda0f6c-06d4-4af5-a76f-98b957637b30",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly stated that linting is done with ruff and formatting with ruff format.\",\"preference\":\"Linting is done with ruff and formatting with ruff format\",\"categories\":[\"software development\",\"engineering practices\",\"code style\",\"Python\"]}",
+          "score": 0.37827358,
+          "id": "mem-e3f02a1c-5da6-428c-bcf8-4c9f80810c16",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user keeps commit messages in conventional format.",
+          "score": 0.37117353,
+          "id": "mem-fa42ba1e-312c-43a8-adf2-96e89ad4a9ee",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team uses mypy in strict mode for type checking.",
+          "score": 0.36964402,
+          "id": "mem-6feef77d-33d6-49b9-b81a-2a64845debe8",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high."
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "Priya leads the platform team.",
+          "score": 0.36461884,
+          "id": "mem-7f7f3373-ecb2-4ffd-98b7-113327ac05d4",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly stated that local development uses Docker Compose.\",\"preference\":\"Local development uses Docker Compose\",\"categories\":[\"software development\",\"engineering practices\",\"local development\"]}",
+          "score": 0.35961097,
+          "id": "mem-cd40c809-b71e-47a7-8003-e387a0356880",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Vikram works on the mobile client.",
+          "score": 0.3583148,
+          "id": "mem-6fd49707-370c-46a0-a96f-34046e9c417a",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team uses OpenSearch as the search index, reindexed nightly.",
+          "score": 0.35785565,
+          "id": "mem-5013bd79-4625-4a36-9e90-853a302c681f",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team uses Docker Compose for local development.",
+          "score": 0.357397,
+          "id": "mem-05636299-11c8-40c3-ac00-58e5ece543a5",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Meera is the product manager for checkout.",
+          "score": 0.35732237,
+          "id": "mem-0e014fbd-e2ca-436c-a4b4-18912d02cfe1",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user manages feature flags in LaunchDarkly.",
+          "score": 0.3558517,
+          "id": "mem-30b8555f-d89c-42b5-a748-1cc56b743e55",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "{\"context\":\"The user explicitly stated that alerting routes through PagerDuty.\",\"preference\":\"Uses PagerDuty for alerting\",\"categories\":[\"software development\",\"monitoring\",\"operations\",\"tooling\"]}",
+          "score": 0.35389364,
+          "id": "mem-ce95aa29-6bd8-49e5-b5c5-e03c02a21168",
+          "extra": {
+            "strategy": "PreferenceLearner-PgNCMv8DTT",
+            "namespaces": [
+              "/preferences/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team writes runbooks for every alert.",
+          "score": 0.3526925,
+          "id": "mem-3dda0f6c-06d4-4af5-a76f-98b957637b30",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Ananya maintains the design system.",
+          "score": 0.35230917,
+          "id": "mem-1ffb958f-84c4-4ca1-b868-1c5bb1c78317",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty."
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "Rohan is on-call and works at Nimbus on payments.",
+          "score": 0.53096116,
+          "id": "mem-739f879e-3a70-4552-9d3a-9517ad19a093",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Rohan left Nimbus in April 2026 and joined Lattice.",
+          "score": 0.50470906,
+          "id": "mem-169ea55b-a5f1-4041-afa4-754091340799",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": 0.3910294,
+          "id": "mem-7e43b986-5e5f-4832-9629-6e1383af635b",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "        <topic name=\"Testing Framework\">\nThe user switched to unittest.\n</topic>\n<topic name=\"Personnel Change\">\nRohan left Nimbus in April and joined Lattice.\n</topic>",
+          "score": 0.39009258,
+          "id": "mem-1921cf50e59ed39085dc8fe51936e1664137",
+          "extra": {
+            "strategy": "SessionSummarizer-fR0JKl8nkX",
+            "namespaces": [
+              "/summaries/aditya/amx-sep-3/"
+            ]
+          }
+        },
+        {
+          "text": "The March incident review (prior to 2026-01-10) recommended adding circuit breakers.",
+          "score": 0.3814678,
+          "id": "mem-d21b668e-6b04-4b05-a177-af86094d69ce",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "        <topic name=\"User Preferences and Practices\">\nThe user writes tests using pytest and follows conventional commit message formatting.\n</topic>\n<topic name=\"Team Context\">\nRohan is currently on-call; he works at a company called Nimbus on the payments domain.\n</topic>",
+          "score": 0.3814215,
+          "id": "mem-1d93055dde8d0245b211b288adef3f3dd472",
+          "extra": {
+            "strategy": "SessionSummarizer-fR0JKl8nkX",
+            "namespaces": [
+              "/summaries/aditya/amx-jan-3/"
+            ]
+          }
+        },
+        {
+          "text": "Vikram works on the mobile client.",
+          "score": 0.37551835,
+          "id": "mem-6fd49707-370c-46a0-a96f-34046e9c417a",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's checkout service runs on ECS Fargate in ap-south-1.",
+          "score": 0.36897573,
+          "id": "mem-174c5161-69d5-4772-bbf6-3f89013ed09d",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's team uses ruff for linting and ruff format for formatting.",
+          "score": 0.36576754,
+          "id": "mem-20c850f5-dbbb-447c-9605-817a5ecec8df",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        },
+        {
+          "text": "The user's API gateway enforces a 30 second request timeout.",
+          "score": 0.36347476,
+          "id": "mem-49f292f5-1c2b-4bb6-b7ea-091124f549cb",
+          "extra": {
+            "strategy": "FactExtractor-gEnlqS3vNG",
+            "namespaces": [
+              "/facts/aditya/"
+            ]
+          }
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
+    }
+  ],
+  "notes": [
+    "Extraction is asynchronous and server-side. Unlike every other system here, there is a gap between writing and being able to read.",
+    "Prior facts cannot be written verbatim: everything arrives as a conversational event and the strategies decide what a record is, so store sizes are not comparable with the string-based systems.",
+    "{'stage': 'after January', 'records': 78, 'seconds': 154.8}",
+    "{'stage': 'after the update', 'records': 81, 'seconds': 123.6}"
+  ]
+}

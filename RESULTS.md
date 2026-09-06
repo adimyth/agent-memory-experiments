@@ -23,7 +23,7 @@ ever kept a row out**.
 | Graphiti | 10 | 15 of 18 | 3 |
 | Memory Weave | 8 | 6 of 15 | 9 |
 
-For Mem0, LangMem, and Letta the cap is the only thing limiting output. Not once, on any
+For AgentCore, Mem0, LangMem, and Letta the cap is the only thing limiting output. Not once, on any
 probe, in any run, did a threshold or a floor exclude a row. That includes
 `What is my dog's name?`, where nothing in the store is about a dog and an empty
 result is the only correct answer. Mem0 applies a similarity threshold of `0.1` by
@@ -235,3 +235,53 @@ serves an OpenAI-shaped `/v1/embeddings` from the same local `bge-m3` weights, a
 agent's `embedding_config` points at it. Letta's chat model still goes to the real API.
 Every system in this repo is therefore on identical embedding weights, not merely the
 same model name.
+
+
+## AgentCore multiplies where the others append or overwrite
+
+Three built-in strategies were enabled: semantic, summary, and user preference. From
+roughly 43 input sentences they produced 78 to 87 records across three runs.
+
+| Strategy | Records (3 runs) |
+| --- | --- |
+| FactExtractor (semantic) | 45, 45, 46 |
+| PreferenceLearner | 26, 30, 36 |
+| SessionSummarizer | 6, 6, 6 |
+
+The same claim about pytest exists three times over: as a semantic fact, as a
+preference record carrying its own `context` and `categories` JSON, and inside a
+session summary. Each strategy consolidates only against its own records, so enabling
+a strategy multiplies the store rather than enriching it.
+
+Within a strategy, nothing supersedes. In all three runs `/facts/aditya/` held both
+claims afterwards:
+
+```
+/facts/aditya/  "The user writes tests in pytest."
+/facts/aditya/  "The user switched to unittest."
+```
+
+The employer change behaved the same way. So AgentCore sits with Mem0 on this axis
+rather than with a system that supersedes: the store accumulates and ranking decides
+which claim surfaces. Unlike Mem0, it accumulates in parallel across every enabled
+strategy at once.
+
+## AgentCore is the only system with a gap between writing and reading
+
+Extraction is asynchronous and server-side. Every other system here can be searched the
+moment the write call returns; AgentCore cannot.
+
+| Run | After January | After the update |
+| --- | --- | --- |
+| 1 | 74 records after 155.0s | 78 records after 154.5s |
+| 2 | 84 records after 124.7s | 87 records after 139.0s |
+| 3 | 78 records after 154.8s | 81 records after 123.6s |
+
+The runner polls until the record count stops moving rather than sleeping blindly.
+There is no completion signal on this path, which is worth knowing before designing
+around it: a first version of the poll accepted two stable counts and stopped on a slow
+start, recording a run with one record. Four consecutive stable polls and a floor on
+elapsed time were needed to tell a late-starting strategy from a finished one.
+
+That gap is the price of keeping extraction off the message path. The store is briefly,
+knowably wrong, and nothing in the API tells you when it stops being wrong.

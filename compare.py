@@ -20,7 +20,7 @@ RESULTS = Path(__file__).parent / "results"
 # matters: a system that returns 20 rows and one that returns 8 are not necessarily
 # behaving differently, they may just have different caps. What matters is whether
 # anything other than the cap ever kept a row out.
-CAPS = {"mem0": 20, "langmem": 10, "langmem-nodistractors": 10, "graphiti": 10, "weave": 8, "letta": 5}
+CAPS = {"mem0": 20, "langmem": 10, "langmem-nodistractors": 10, "graphiti": 10, "weave": 8, "letta": 5, "agentcore": 10}
 
 
 def row_id(row: dict) -> str:
@@ -159,6 +159,26 @@ def main() -> None:
                 f" added {len(added)}, removed {len(gone)}"
             )
         print()
+
+    waits = []
+    for s in systems:
+        for data in runs[s]:
+            for n in data.get("notes", []):
+                if n.startswith("{'stage'"):
+                    try:
+                        waits.append((s, data["run"], eval(n)))
+                    except Exception:
+                        pass
+    if waits:
+        print()
+        print("=" * 78)
+        print("TIME BETWEEN WRITING AND BEING ABLE TO READ")
+        print("=" * 78)
+        print("Extraction that runs server-side and asynchronously. Every other system in")
+        print("this comparison can be searched the moment the write call returns.")
+        print()
+        for sysname, run, w in waits:
+            print(f"  {sysname:<11} run {run}  {w['stage']:<18} {w['records']:>4} records after {w['seconds']}s")
 
     always_on = []
     for s in systems:

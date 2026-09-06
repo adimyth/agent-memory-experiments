@@ -1,14 +1,14 @@
 ==============================================================================
 ROWS RETURNED PER PROBE, at each system's documented defaults
 ==============================================================================
-probe                              kind        want   graphiti     langmem      langmem-nodistractors letta        mem0         weave       
+probe                              kind        want   agentcore    graphiti     langmem      langmem-nodistractors letta        mem0         weave       
 ------------------------------------------------------------------------------
-The checkout latency graph is red  ordinary    empty  10           10           3            5            20           8           
-Bump the retry count to 3.         ordinary    empty  10           10           3            5            20           8           
-What do I write tests in?          answerable  hit    10           10           3            5            20           3           
-What is my dog's name?             absent      empty  10           10           3            5            20           1           
-Where was Rohan working in March?  answerable  hit    10           10           3            5            20           2           
-Where was Rohan working? [valid_a  answerable  hit    1            -            -            -            -            -           
+The checkout latency graph is red  ordinary    empty  10           10           10           3            5            20           8           
+Bump the retry count to 3.         ordinary    empty  10           10           10           3            5            20           8           
+What do I write tests in?          answerable  hit    10           10           10           3            5            20           3           
+What is my dog's name?             absent      empty  10           10           10           3            5            20           1           
+Where was Rohan working in March?  answerable  hit    10           10           10           3            5            20           2           
+Where was Rohan working? [valid_a  answerable  hit    -            1            -            -            -            -            -           
 
 ==============================================================================
 DOES ANYTHING BUT THE CAP LIMIT THE RESULT?
@@ -19,6 +19,7 @@ the cap means something other than the cap decided to stop.
 
 system                   cap   at the cap     below it   note
 ------------------------------------------------------------------------------
+agentcore                10    15/15          0          
 graphiti                 10    15/18          3          
 langmem                  10    15/15          0          
 langmem-nodistractors    10    -              -          store smaller than the cap; uninformative
@@ -31,6 +32,7 @@ STORE SIZE
 ==============================================================================
 system         after January      after the update   net change
 ------------------------------------------------------------------------------
+agentcore      74-84 (74, 84, 78) 78-87 (78, 87, 81) 3-4 (4, 3, 3)
 graphiti       12                 14                 2
 langmem        42-43 (42, 43, 43) 44-45 (44, 45, 45) 2
 langmem-nodistractors 3                  3                  0
@@ -43,6 +45,10 @@ WHAT THE UPDATE TURN DID TO THE JANUARY ROWS
 ==============================================================================
 Tracked by row id, not by text. A row whose id survives but whose text
 changed was edited in place; the January wording is gone.
+
+  agentcore run 1:  74 -> 78 rows   kept 72, edited in place 0, added 6, removed 2
+  agentcore run 2:  84 -> 87 rows   kept 82, edited in place 0, added 5, removed 2
+  agentcore run 3:  78 -> 81 rows   kept 77, edited in place 0, added 4, removed 1
 
   graphiti  run 1:  12 -> 14 rows   kept 12, edited in place 0, added 2, removed 0
   graphiti  run 2:  12 -> 14 rows   kept 12, edited in place 0, added 2, removed 0
@@ -70,6 +76,19 @@ changed was edited in place; the January wording is gone.
 
 
 ==============================================================================
+TIME BETWEEN WRITING AND BEING ABLE TO READ
+==============================================================================
+Extraction that runs server-side and asynchronously. Every other system in
+this comparison can be searched the moment the write call returns.
+
+  agentcore   run 1  after January        74 records after 155.0s
+  agentcore   run 1  after the update     78 records after 154.5s
+  agentcore   run 2  after January        84 records after 124.7s
+  agentcore   run 2  after the update     87 records after 139.0s
+  agentcore   run 3  after January        78 records after 154.8s
+  agentcore   run 3  after the update     81 records after 123.6s
+
+==============================================================================
 CHARACTERS REACHING THE MODEL WITH NO SEARCH AT ALL
 ==============================================================================
 Text that is in the prompt on every turn regardless of what was asked.
@@ -82,6 +101,8 @@ Every other system in this comparison requires a search to surface anything.
 ==============================================================================
 CONFIG (must be identical across systems for the comparison to hold)
 ==============================================================================
+  agentcore    llm=service-managed (built-in strategies invoke no model in this account)  embedder=service-managed  runs=3
+               versions: {'api': 'bedrock-agentcore + bedrock-agentcore-control'}
   graphiti     llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
                versions: {'graphiti-core': '0.30.1'}
   langmem      llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
