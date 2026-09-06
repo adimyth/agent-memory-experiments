@@ -1,0 +1,164 @@
+{
+  "probes": [
+    "p2_retry_count",
+    "p3_test_runner",
+    "p4_dog_name",
+    "p5_march_employer"
+  ],
+  "rows": [
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.0,
+      "counts": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.1,
+      "counts": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.2,
+      "counts": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.3,
+      "counts": [
+        3,
+        3,
+        3,
+        4
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.4,
+      "counts": [
+        2,
+        2,
+        2,
+        4
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.5,
+      "counts": [
+        2,
+        2,
+        2,
+        4
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "RRF (the default)",
+      "reranker_min_score": 0.6,
+      "counts": [
+        1,
+        1,
+        1,
+        4
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.0,
+      "counts": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.1,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.2,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.3,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.4,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.5,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    },
+    {
+      "reranker": "cross-encoder",
+      "reranker_min_score": 0.6,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    }
+  ]
+}

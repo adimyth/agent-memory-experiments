@@ -354,3 +354,76 @@ which is what anyone would naturally try.
 That is a narrower and more defensible claim than "the relevance check does nothing", and
 it is an independent demonstration of what MemReranker reports: relevance scores are
 miscalibrated, which makes threshold-based filtering difficult.
+
+## Threshold audit: can any of them be tuned to abstain?
+
+The defaults result is only half the story. If a system ships an abstention knob and it
+is merely set permissively, that is a very different claim from the system being unable
+to abstain. So: does each one have a knob, and does turning it up work?
+
+| System | Abstention knob | Default | Does tuning fix it? |
+| --- | --- | --- | --- |
+| Mem0 | `threshold` | `0.1` | Partly, and it cannot be tuned by inspection |
+| Graphiti | `reranker_min_score`, `sim_min_score` | `0` with RRF | **Yes, with a different reranker** |
+| LangMem | none | n/a | No knob, and the scores are not separable |
+| Letta | none | n/a | No knob |
+| AgentCore | none | n/a | No knob |
+
+Verified from source and signatures, not inferred. `BaseStore.search` is
+`(namespace_prefix, *, query, filter, limit=10, offset=0, refresh_ttl=None)` and
+`InMemoryStore` contains no occurrence of "threshold". Letta's `passages.search` takes
+`query`, date bounds, tags, and `top_k`. AgentCore's `searchCriteria` is
+`searchQuery`, `memoryStrategyId`, `topK`, `metadataFilters`.
+
+### Graphiti can abstain. Its default reranker cannot.
+
+`Graphiti.search()` uses `EDGE_HYBRID_SEARCH_RRF` with `reranker_min_score=0`. Raising
+that floor truncates uniformly instead of discriminating:
+
+| min_score | ordinary | answerable | absent | dated |
+| --- | --- | --- | --- | --- |
+| 0.0 | 10 | 10 | 10 | 10 |
+| 0.2 | 5 | 5 | 5 | 5 |
+| 0.3 | 3 | 3 | 3 | 4 |
+| 0.6 | 1 | 1 | 1 | 4 |
+
+The three columns move in lockstep, which is exactly what reciprocal rank fusion should
+do: an RRF score is a function of a result's **rank**, not of how good it is. The top
+result scores about the same whether or not anything relevant exists, so a floor on it
+can express "give me fewer" but never "give me nothing".
+
+Swap in the cross-encoder recipe, which scores relevance directly, and the behaviour
+changes completely:
+
+| min_score | ordinary | answerable | absent | dated |
+| --- | --- | --- | --- | --- |
+| 0.0 | 10 | 10 | 10 | 10 |
+| 0.1 and above | **0** | 0 | **0** | **1** |
+
+At any floor from 0.1 up, Graphiti returns nothing on the ordinary turn, nothing on the
+dog question, and exactly one row on the dated question. The zero in the answerable
+column is also correct here: Graphiti's extractor never created an edge for the test
+runner in any of the three runs, so that fact is genuinely not in its store.
+
+**This is the only configuration in the whole experiment that abstains correctly.** The
+capability is shipped and it works. It is not what `Graphiti.search()` gives you.
+
+### LangMem cannot be fixed from the outside either
+
+There is no threshold to set, so the only option is filtering on returned scores in your
+own code. On this data that does not work, because the scores are not separable:
+
+- highest top score on a probe that should return nothing: **0.635** (`The checkout latency graph is red.`)
+- lowest top score on a probe that should return something: **0.496** (`Where was Rohan working in March?`)
+
+The unanswerable question outranks the answerable one. No single cutoff exists.
+
+### What this changes
+
+The honest headline is not "no system can decline to answer". It is:
+
+> At their documented defaults, none of the five returns nothing on a turn where nothing
+> should be returned. Of the five, one ships a mechanism that does the job correctly, and
+> it is not switched on: Graphiti's cross-encoder reranker with any floor at or above
+> 0.1. Mem0 ships a knob that helps and cannot be tuned by reading its own output. The
+> other three ship no knob at all.
