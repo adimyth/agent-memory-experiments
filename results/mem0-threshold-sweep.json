@@ -1,0 +1,90 @@
+{
+  "probes": [
+    "p2_retry_count",
+    "p3_test_runner",
+    "p4_dog_name",
+    "p5_march_employer"
+  ],
+  "rows": [
+    {
+      "threshold": 0.1,
+      "counts": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.3,
+      "counts": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.5,
+      "counts": [
+        15,
+        3,
+        0,
+        2
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.6,
+      "counts": [
+        1,
+        1,
+        0,
+        2
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.65,
+      "counts": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.7,
+      "counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.75,
+      "counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_correct": false
+    },
+    {
+      "threshold": 0.8,
+      "counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_correct": false
+    }
+  ]
+}

@@ -285,3 +285,72 @@ elapsed time were needed to tell a late-starting strategy from a finished one.
 
 That gap is the price of keeping extraction off the message path. The store is briefly,
 knowably wrong, and nothing in the API tells you when it stops being wrong.
+
+## Correction: Mem0's ranking works. Its threshold is a different number.
+
+An earlier draft of these notes said there was "no relevance check doing any work". That
+is wrong and unfair, and the sweep in `runners/sweep_mem0_threshold.py` is what corrects it.
+
+**The ranking discriminates correctly.** Top score per probe, same store, unfiltered:
+
+| Probe | Want | Top score |
+| --- | --- | --- |
+| Where was Rohan working in March? | a hit | 0.863 |
+| What do I write tests in? | a hit | 0.800 |
+| Bump the retry count to 3. | empty | 0.637 |
+| What is my dog's name? | empty | 0.461 |
+
+The two questions the store can answer score above the two it should decline. The order
+is right. Nothing is broken about the scoring.
+
+**The default threshold is simply far below all of it.** `0.1` sits under every score in
+that table, so it never excludes anything. That part of the original finding stands.
+
+**Raising it helps, but no setting gets all four right:**
+
+| threshold | ordinary | answerable | absent | answerable (dated) |
+| --- | --- | --- | --- | --- |
+| 0.1 | 20 | 20 | 20 | 20 |
+| 0.3 | 20 | 20 | 20 | 20 |
+| 0.5 | 15 | 3 | **0** | 2 |
+| 0.6 | 1 | 1 | 0 | 2 |
+| 0.65 | 0 | **0** | 0 | 1 |
+| 0.7 | 0 | 0 | 0 | 0 |
+
+At `0.5` the dog question correctly returns nothing, which the default never manages. But
+the ordinary turn still returns fifteen rows. By the time the ordinary turn is suppressed,
+the answerable ones are going too.
+
+**Why tuning it by inspection does not work.** The threshold and the returned score are
+not the same quantity. From `mem0/utils/scoring.py`:
+
+```
+threshold: Minimum semantic score required before hybrid scoring.
+...results below the threshold are excluded even if BM25/entity would boost them.
+
+    semantic_score = result.get("score") or 0.0
+    if semantic_score < threshold:
+        continue
+    raw_combined = semantic_score + bm25_score + entity_boost
+    combined = min(raw_combined / max_possible, 1.0)
+    ...
+    "score": combined,
+```
+
+The threshold filters on the **semantic score alone, before fusion**. The `score` handed
+back is the **fused** semantic + BM25 + entity value. So a row can be reported at 0.811
+and still be cut by a threshold of 0.65, because its pre-fusion semantic score was lower.
+Observed directly:
+
+```
+threshold=0.6   returned=1   top score 0.811
+threshold=0.65  returned=0
+```
+
+This is documented behaviour in their own docstring, not a defect. But it means the one
+knob available for abstention cannot be set by looking at the scores the API returns,
+which is what anyone would naturally try.
+
+That is a narrower and more defensible claim than "the relevance check does nothing", and
+it is an independent demonstration of what MemReranker reports: relevance scores are
+miscalibrated, which makes threshold-based filtering difficult.
