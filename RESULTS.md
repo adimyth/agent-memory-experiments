@@ -20,7 +20,7 @@ ever kept a row out**.
 | --- | --- | --- | --- |
 | LangMem | 10 | 15 of 15 | 0 |
 | Mem0 | 20 | 15 of 15 | 0 |
-| Graphiti | 10 | 10 of 12 | 2 |
+| Graphiti | 10 | 15 of 18 | 3 |
 | Memory Weave | 8 | 6 of 15 | 9 |
 
 For Mem0 and LangMem the cap is the only thing limiting output. Not once, on any
@@ -30,8 +30,8 @@ result is the only correct answer. Mem0 applies a similarity threshold of `0.1` 
 default; LangGraph's `BaseStore`, which LangMem builds on, applies none at all.
 Neither is high enough to bind on anything.
 
-Graphiti's two exceptions are both the as-of query described below, not its ordinary
-search.
+Graphiti's three exceptions are the as-of query described below, one per run. Its
+ordinary search returns the cap like the others.
 
 Memory Weave returned fewer than its cap on nine probes of fifteen. Its gate is the
 only mechanism in this comparison that ever decides to stop early. It is also not yet
@@ -55,7 +55,8 @@ SearchFilters(
 )
 ```
 
-That returns exactly one row: `Rohan works at Nimbus on payments.`
+That returns exactly one row, identically in all three runs:
+`Rohan works at Nimbus on payments.`
 
 It works because Graphiti read "Rohan left Nimbus in April and joined Lattice" and
 closed the interval on the old edge:
