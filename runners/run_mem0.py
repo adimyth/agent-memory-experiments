@@ -27,6 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from dotenv import load_dotenv
 
+import distractors
 import harness
 import transcript
 from harness import Hit, ProbeResult, RunResult
@@ -67,8 +68,26 @@ def build_memory(run: int, store_path: str):
     return Memory.from_config(config), config
 
 
+def seed_distractors(memory) -> None:
+    """Write the shared prior store verbatim.
+
+    ``infer=False`` skips the extractor so the text lands exactly as written. Every
+    system in this repo gets the same forty strings; only the transcript itself goes
+    through each library's own extraction.
+    """
+
+    for fact in distractors.TEXTS:
+        memory.add(
+            [{"role": "user", "content": fact}],
+            user_id=transcript.USER_ID,
+            infer=False,
+        )
+
+
 def dump_store(memory) -> list[dict]:
-    rows = memory.get_all(filters={"user_id": transcript.USER_ID})
+    # get_all also defaults to top_k=20, so the dump has to ask for more than the
+    # store could possibly hold or it silently truncates.
+    rows = memory.get_all(filters={"user_id": transcript.USER_ID}, top_k=1000)
     results = rows.get("results", rows) if isinstance(rows, dict) else rows
     out = []
     for r in results:
@@ -159,6 +178,11 @@ def main() -> None:
             "raw": config,
         },
         versions={"mem0ai": harness.pkg_version("mem0ai")},
+    )
+
+    seed_distractors(memory)
+    result.notes.append(
+        f"Seeded {len(distractors.DISTRACTORS)} distractor rows verbatim with infer=False."
     )
 
     # Session 1, 10 January.

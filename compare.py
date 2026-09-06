@@ -16,6 +16,12 @@ from pathlib import Path
 
 RESULTS = Path(__file__).parent / "results"
 
+# Each library's own default cap on a search result. These differ, and the difference
+# matters: a system that returns 20 rows and one that returns 8 are not necessarily
+# behaving differently, they may just have different caps. What matters is whether
+# anything other than the cap ever kept a row out.
+CAPS = {"mem0": 20, "langmem": 10, "graphiti": 10, "weave": 8}
+
 
 def row_id(row: dict) -> str:
     """A stable identifier for one stored row, whatever the library calls it."""
@@ -30,7 +36,10 @@ def row_text(row: dict) -> str:
         return str(row["memory"])
     value = row.get("value")
     if isinstance(value, dict):
-        return str(value.get("content", value))
+        inner = value.get("content", value)
+        if isinstance(inner, dict):
+            return str(inner.get("content", inner))
+        return str(inner)
     return str(value)
 
 
@@ -57,12 +66,12 @@ def main() -> None:
         return
 
     probe_order: list[tuple[str, str, str, bool]] = []
-    for data in next(iter(runs.values())):
-        for p in data["probes"]:
-            key = (p["probe_id"], p["query"], p["kind"], p["expect_empty"])
-            if key not in probe_order:
-                probe_order.append(key)
-        break
+    for system_runs in runs.values():
+        for data in system_runs:
+            for p in data["probes"]:
+                key = (p["probe_id"], p["query"], p["kind"], p["expect_empty"])
+                if key not in probe_order:
+                    probe_order.append(key)
 
     systems = sorted(runs)
 
@@ -85,30 +94,20 @@ def main() -> None:
 
     print()
     print("=" * 78)
-    print("ROWS RETURNED AS A FRACTION OF THE STORE")
+    print("DOES ANYTHING BUT THE CAP LIMIT THE RESULT?")
     print("=" * 78)
-    print("1.00 means the search returned everything the store held, whatever was asked.")
+    print("Every probe across every run. A probe that comes back at the cap means")
+    print("nothing else excluded a row: no threshold, no floor, no gate. A probe below")
+    print("the cap means something other than the cap decided to stop.")
     print()
-    print(f"{'probe':<34} {'want':<6} " + " ".join(f"{s:<12}" for s in systems))
+    print(f"{'system':<14} {'cap':<6} {'probes at the cap':<20} {'probes below it'}")
     print("-" * 78)
-    for probe_id, query, kind, expect_empty in probe_order:
-        want = "empty" if expect_empty else "hit"
-        cells = []
-        for s in systems:
-            fracs = []
-            for data in runs[s]:
-                stage_key = (
-                    "store_after_session_1"
-                    if probe_id == "p1_latency_graph"
-                    else "store_after_update"
-                )
-                size = len(data[stage_key])
-                for p in data["probes"]:
-                    if p["probe_id"] == probe_id and size:
-                        fracs.append(p["returned"] / size)
-            avg = sum(fracs) / len(fracs) if fracs else 0.0
-            cells.append(f"{avg:<12.2f}")
-        print(f"{query[:33]:<34} {want:<6} " + " ".join(cells))
+    for s in systems:
+        cap = CAPS.get(s)
+        counts = [p["returned"] for d in runs[s] for p in d["probes"]]
+        at_cap = sum(1 for c in counts if cap is not None and c >= cap)
+        below = len(counts) - at_cap
+        print(f"{s:<14} {str(cap):<6} {f'{at_cap}/{len(counts)}':<20} {below}")
 
     print()
     print("=" * 78)

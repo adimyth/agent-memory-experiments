@@ -1,0 +1,1458 @@
+{
+  "system": "weave",
+  "run": 3,
+  "started_at": "2026-09-06T14:39:53.881312+00:00",
+  "finished_at": "2026-09-06T14:39:58.790490+00:00",
+  "config": {
+    "llm": "none (no extractor; writes are explicit memory_write calls)",
+    "embedder": "BAAI/bge-m3",
+    "search_defaults": "k=8 default, gate floors from config (uncalibrated starting values)",
+    "trigger_mode": "tool_only",
+    "gate": "GateConfig(dense_floor=DenseFloorConfig(semantic=0.45, episodic=0.4, procedural=0.45), lexical_min_term_fraction=0.5, lexical_min_matched_terms=2, relative_floor=0.5, auto=AutoGateConfig(dense_floor=DenseFloorConfig(semantic=0.55, episodic=0.5, procedural=0.55), lexical_min_term_fraction=0.6, lexical_min_matched_terms=2, relative_floor=0.6, exclude_source_kinds=['session_summary']))"
+  },
+  "versions": {
+    "memory-weave": "local checkout"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "id": "01a07729-5a1c-74bc-914d-cf2e452ed72e",
+      "memory": "The checkout service runs on ECS Fargate in ap-south-1.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "runtime",
+      "subject": "01a07729-5a1d-78fb-b1be-8243fc58ac58/runtime",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-670c-7e3c-a966-a9cf2f0e2129",
+      "memory": "The payments database is Postgres 16 on RDS with a read replica.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "engine",
+      "subject": "01a07729-670d-7523-b67b-57862f7bf33f/engine",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-671e-7367-8b34-51c0ecc0ed37",
+      "memory": "Redis is used for session storage and rate limiting.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "use",
+      "subject": "01a07729-671f-7ff3-a41b-7fbac2b2e09f/use",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-673a-7a9a-9c1f-bc07b6a85dc2",
+      "memory": "The retry policy for outbound webhooks uses exponential backoff.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "retry_policy",
+      "subject": "01a07729-673b-7e7f-b758-b31c64015078/retry_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-674e-7c6a-9b41-4beeaa62562e",
+      "memory": "Feature flags are managed in LaunchDarkly.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "provider",
+      "subject": "01a07729-674f-75b1-9100-ba0bc1d19029/provider",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6769-7c7b-bdf4-049cf8697d53",
+      "memory": "The staging environment mirrors production at a quarter of the capacity.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "capacity",
+      "subject": "01a07729-676a-7445-8023-98d2eedda027/capacity",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-677a-70cd-b385-bdc6f8258644",
+      "memory": "Deploys go out through GitHub Actions on merge to main.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "trigger",
+      "subject": "01a07729-677b-754e-9c74-e0118ce0113e/trigger",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-678b-7577-883a-37bc33833b67",
+      "memory": "The API gateway enforces a 30 second request timeout.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "timeout",
+      "subject": "01a07729-678c-7a23-bd05-252c58c6247f/timeout",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-679c-794c-b738-29b43641fe20",
+      "memory": "Background jobs run on Celery with RabbitMQ as the broker.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "runner",
+      "subject": "01a07729-679d-7b72-bc85-9d1e3d830cac/runner",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67ad-7140-a549-73befb25f514",
+      "memory": "Observability is Grafana dashboards on top of Prometheus.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "components",
+      "subject": "01a07729-67ae-7dd3-84fb-75856bb811a8/components",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67bd-7b82-b8a0-27c8b38e0c12",
+      "memory": "The search index is OpenSearch, reindexed nightly.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "engine",
+      "subject": "01a07729-67be-7819-bd79-f8db4c5f771a/engine",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67d9-786e-a5b7-970a152d0c34",
+      "memory": "Object storage is S3 with lifecycle rules moving old objects to Glacier.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "lifecycle",
+      "subject": "01a07729-67da-7c25-9e18-0ba66f032152/lifecycle",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67e9-721d-bbbd-d1e8d8926e23",
+      "memory": "A checkout outage in February was caused by connection pool exhaustion.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "cause",
+      "subject": "01a07729-67ea-7076-a799-6e9497f61904/cause",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67fa-7edd-aaa5-a0bf385e099d",
+      "memory": "The March incident review recommended adding circuit breakers.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "recommendation",
+      "subject": "01a07729-67fb-766a-9e3a-f365e0c87ba0/recommendation",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6811-7b41-8202-e630e12ed2a8",
+      "memory": "An earlier retry storm doubled load on the payments service.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "impact",
+      "subject": "01a07729-6812-7afb-a931-6b2149c1f538/impact",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6820-7b36-96d0-2bcf764551d0",
+      "memory": "The team postponed the Kafka migration to next quarter.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "status",
+      "subject": "01a07729-6821-765a-8d9d-f8875eb5f608/status",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6839-7e9a-bced-960d33c84b2c",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "leak_fix",
+      "subject": "01a07729-683a-78be-a98c-a6dd6a55e1a5/leak_fix",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6849-770c-9b4e-ee7bc040dd6f",
+      "memory": "The load test in July peaked at 4K requests per second.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "peak",
+      "subject": "01a07729-684a-7895-aa3a-0df05303e7b1/peak",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6859-7f13-98a4-da426bb3ed29",
+      "memory": "Priya leads the platform team.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-685a-7361-a799-6d5fe3028166/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-686d-7f99-9f13-4b63127e4903",
+      "memory": "Karthik reviews all database migrations.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-686e-7fdd-8642-4a07b5cfa34f/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6882-7ac0-8776-3afab9d90e37",
+      "memory": "Sneha manages the on-call rotation.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-6883-7f65-b52b-507003aa2510/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-689a-7666-8e46-ce485a74cb7c",
+      "memory": "Vikram works on the mobile client.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-689b-7c31-9134-317f3869f754/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68af-7cab-bc3a-b103abb32019",
+      "memory": "The design system is maintained by Ananya.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-68b0-7086-955d-a6deba8f6396/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68c5-7095-8b85-0f29a287ed8d",
+      "memory": "Meera is the product manager for checkout.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-68c6-71ba-9731-3d80673c6f09/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68dc-7636-8fdf-2b6cf3bc781b",
+      "memory": "Code review requires one approval before merge.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "approval_policy",
+      "subject": "01a07729-68dd-7dc4-9426-ecaea44a242c/approval_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68f1-7872-948c-f1937b93e55e",
+      "memory": "Migrations must be backwards compatible for one release.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "compatibility_policy",
+      "subject": "01a07729-68f2-7f83-a5d0-721e89e3bf95/compatibility_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-690b-7218-b084-ae4415b6ccb3",
+      "memory": "The team writes runbooks for every alert.",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "runbook_policy",
+      "subject": "01a07729-690c-7ffe-965e-2b093530f548/runbook_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6922-7cd5-bdcb-119f3e55a422",
+      "memory": "Documentation lives in the docs directory of each repository.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "location",
+      "subject": "01a07729-6923-7da2-b434-a270d716b923/location",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6932-7b15-af1b-6e43bf739c24",
+      "memory": "Secrets are stored in AWS Secrets Manager, never in environment files.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "storage_policy",
+      "subject": "01a07729-6933-72a4-b5a4-dfe108f624ad/storage_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6943-7b9d-9431-4b147bf87193",
+      "memory": "Type hints are required on all new Python code.",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "type_hint_policy",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/type_hint_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-695c-73ca-b720-11371fb45a24",
+      "memory": "Line length is capped at 100 characters.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "line_length",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/line_length",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6afd-7512-bfa7-b0d600a8b498",
+      "memory": "Dependency updates are batched weekly.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "update_cadence",
+      "subject": "01a07729-6afe-7b26-88a8-d87ef42b1f60/update_cadence",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6b16-7eab-b428-07394faddc55",
+      "memory": "Local development uses Docker Compose.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "tooling",
+      "subject": "01a07729-6b17-799b-b783-b97e2c024630/tooling",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6b2c-792b-9685-7b84986762e4",
+      "memory": "Dependencies are managed with uv.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "manager",
+      "subject": "01a07729-6afe-7b26-88a8-d87ef42b1f60/manager",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6b56-7ec4-8271-02d989e46627",
+      "memory": "Linting is ruff, formatting is ruff format.",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "type_hint_policy",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/type_hint_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-6943-7b9d-9431-4b147bf87193"
+    },
+    {
+      "id": "01a07729-6b8b-7221-916f-326644825aad",
+      "memory": "Type checking is mypy in strict mode.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "type_hint_policy",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/type_hint_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-6b56-7ec4-8271-02d989e46627"
+    },
+    {
+      "id": "01a07729-6bc0-7003-b421-bb4b60b27c63",
+      "memory": "The monorepo is split into services and packages directories.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "layout",
+      "subject": "01a07729-6bc1-7c82-b706-0a1e764a4e57/layout",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6bd0-7b50-8438-9c73f04e8a0a",
+      "memory": "Terraform manages all cloud infrastructure.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "tooling",
+      "subject": "01a07729-6bd1-7d2b-9124-82ee0ec49106/tooling",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6be5-710f-a169-dd2cf3801e84",
+      "memory": "Alerting routes through PagerDuty.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "runbook_policy",
+      "subject": "01a07729-690c-7ffe-965e-2b093530f548/runbook_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-690b-7218-b084-ae4415b6ccb3"
+    },
+    {
+      "id": "01a07729-6c02-7044-93df-e9479567bffb",
+      "memory": "The changelog is generated from conventional commit messages.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "source",
+      "subject": "01a07729-6c03-74c1-8fcd-e2b92dfe924d/source",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6c2f-7ace-b5cc-817bdc27bb92",
+      "memory": "Aditya writes tests in pytest",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "test_runner",
+      "subject": "01a07729-5a19-7b01-a855-5778ce7a57aa/test_runner",
+      "source_kind": "agent_inference",
+      "evidence": "I write tests in pytest.",
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6c53-797b-805e-530440b09e9a",
+      "memory": "Aditya keeps commit messages conventional",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "test_runner",
+      "subject": "01a07729-5a19-7b01-a855-5778ce7a57aa/test_runner",
+      "source_kind": "agent_inference",
+      "evidence": "Commit messages stay conventional.",
+      "supersedes_id": "01a07729-6c2f-7ace-b5cc-817bdc27bb92"
+    },
+    {
+      "id": "01a07729-6c85-72e5-8ade-9e75a6581c29",
+      "memory": "Rohan works at Nimbus",
+      "type": "semantic",
+      "status": "confirmed",
+      "attribute": "employer",
+      "subject": "01a07729-6c86-7803-b899-0da89e37708d/employer",
+      "source_kind": "user_statement",
+      "evidence": "Rohan is on-call; he works at Nimbus, on payments.",
+      "supersedes_id": null
+    }
+  ],
+  "store_after_update": [
+    {
+      "id": "01a07729-5a1c-74bc-914d-cf2e452ed72e",
+      "memory": "The checkout service runs on ECS Fargate in ap-south-1.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "runtime",
+      "subject": "01a07729-5a1d-78fb-b1be-8243fc58ac58/runtime",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-670c-7e3c-a966-a9cf2f0e2129",
+      "memory": "The payments database is Postgres 16 on RDS with a read replica.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "engine",
+      "subject": "01a07729-670d-7523-b67b-57862f7bf33f/engine",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-671e-7367-8b34-51c0ecc0ed37",
+      "memory": "Redis is used for session storage and rate limiting.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "use",
+      "subject": "01a07729-671f-7ff3-a41b-7fbac2b2e09f/use",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-673a-7a9a-9c1f-bc07b6a85dc2",
+      "memory": "The retry policy for outbound webhooks uses exponential backoff.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "retry_policy",
+      "subject": "01a07729-673b-7e7f-b758-b31c64015078/retry_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-674e-7c6a-9b41-4beeaa62562e",
+      "memory": "Feature flags are managed in LaunchDarkly.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "provider",
+      "subject": "01a07729-674f-75b1-9100-ba0bc1d19029/provider",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6769-7c7b-bdf4-049cf8697d53",
+      "memory": "The staging environment mirrors production at a quarter of the capacity.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "capacity",
+      "subject": "01a07729-676a-7445-8023-98d2eedda027/capacity",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-677a-70cd-b385-bdc6f8258644",
+      "memory": "Deploys go out through GitHub Actions on merge to main.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "trigger",
+      "subject": "01a07729-677b-754e-9c74-e0118ce0113e/trigger",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-678b-7577-883a-37bc33833b67",
+      "memory": "The API gateway enforces a 30 second request timeout.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "timeout",
+      "subject": "01a07729-678c-7a23-bd05-252c58c6247f/timeout",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-679c-794c-b738-29b43641fe20",
+      "memory": "Background jobs run on Celery with RabbitMQ as the broker.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "runner",
+      "subject": "01a07729-679d-7b72-bc85-9d1e3d830cac/runner",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67ad-7140-a549-73befb25f514",
+      "memory": "Observability is Grafana dashboards on top of Prometheus.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "components",
+      "subject": "01a07729-67ae-7dd3-84fb-75856bb811a8/components",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67bd-7b82-b8a0-27c8b38e0c12",
+      "memory": "The search index is OpenSearch, reindexed nightly.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "engine",
+      "subject": "01a07729-67be-7819-bd79-f8db4c5f771a/engine",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67d9-786e-a5b7-970a152d0c34",
+      "memory": "Object storage is S3 with lifecycle rules moving old objects to Glacier.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "lifecycle",
+      "subject": "01a07729-67da-7c25-9e18-0ba66f032152/lifecycle",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67e9-721d-bbbd-d1e8d8926e23",
+      "memory": "A checkout outage in February was caused by connection pool exhaustion.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "cause",
+      "subject": "01a07729-67ea-7076-a799-6e9497f61904/cause",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-67fa-7edd-aaa5-a0bf385e099d",
+      "memory": "The March incident review recommended adding circuit breakers.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "recommendation",
+      "subject": "01a07729-67fb-766a-9e3a-f365e0c87ba0/recommendation",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6811-7b41-8202-e630e12ed2a8",
+      "memory": "An earlier retry storm doubled load on the payments service.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "impact",
+      "subject": "01a07729-6812-7afb-a931-6b2149c1f538/impact",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6820-7b36-96d0-2bcf764551d0",
+      "memory": "The team postponed the Kafka migration to next quarter.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "status",
+      "subject": "01a07729-6821-765a-8d9d-f8875eb5f608/status",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6839-7e9a-bced-960d33c84b2c",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "leak_fix",
+      "subject": "01a07729-683a-78be-a98c-a6dd6a55e1a5/leak_fix",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6849-770c-9b4e-ee7bc040dd6f",
+      "memory": "The load test in July peaked at 4K requests per second.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "peak",
+      "subject": "01a07729-684a-7895-aa3a-0df05303e7b1/peak",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6859-7f13-98a4-da426bb3ed29",
+      "memory": "Priya leads the platform team.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-685a-7361-a799-6d5fe3028166/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-686d-7f99-9f13-4b63127e4903",
+      "memory": "Karthik reviews all database migrations.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-686e-7fdd-8642-4a07b5cfa34f/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6882-7ac0-8776-3afab9d90e37",
+      "memory": "Sneha manages the on-call rotation.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-6883-7f65-b52b-507003aa2510/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-689a-7666-8e46-ce485a74cb7c",
+      "memory": "Vikram works on the mobile client.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-689b-7c31-9134-317f3869f754/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68af-7cab-bc3a-b103abb32019",
+      "memory": "The design system is maintained by Ananya.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-68b0-7086-955d-a6deba8f6396/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68c5-7095-8b85-0f29a287ed8d",
+      "memory": "Meera is the product manager for checkout.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "role",
+      "subject": "01a07729-68c6-71ba-9731-3d80673c6f09/role",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68dc-7636-8fdf-2b6cf3bc781b",
+      "memory": "Code review requires one approval before merge.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "approval_policy",
+      "subject": "01a07729-68dd-7dc4-9426-ecaea44a242c/approval_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-68f1-7872-948c-f1937b93e55e",
+      "memory": "Migrations must be backwards compatible for one release.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "compatibility_policy",
+      "subject": "01a07729-68f2-7f83-a5d0-721e89e3bf95/compatibility_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-690b-7218-b084-ae4415b6ccb3",
+      "memory": "The team writes runbooks for every alert.",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "runbook_policy",
+      "subject": "01a07729-690c-7ffe-965e-2b093530f548/runbook_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6922-7cd5-bdcb-119f3e55a422",
+      "memory": "Documentation lives in the docs directory of each repository.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "location",
+      "subject": "01a07729-6923-7da2-b434-a270d716b923/location",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6932-7b15-af1b-6e43bf739c24",
+      "memory": "Secrets are stored in AWS Secrets Manager, never in environment files.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "storage_policy",
+      "subject": "01a07729-6933-72a4-b5a4-dfe108f624ad/storage_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6943-7b9d-9431-4b147bf87193",
+      "memory": "Type hints are required on all new Python code.",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "type_hint_policy",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/type_hint_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-695c-73ca-b720-11371fb45a24",
+      "memory": "Line length is capped at 100 characters.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "line_length",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/line_length",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6afd-7512-bfa7-b0d600a8b498",
+      "memory": "Dependency updates are batched weekly.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "update_cadence",
+      "subject": "01a07729-6afe-7b26-88a8-d87ef42b1f60/update_cadence",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6b16-7eab-b428-07394faddc55",
+      "memory": "Local development uses Docker Compose.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "tooling",
+      "subject": "01a07729-6b17-799b-b783-b97e2c024630/tooling",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6b2c-792b-9685-7b84986762e4",
+      "memory": "Dependencies are managed with uv.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "manager",
+      "subject": "01a07729-6afe-7b26-88a8-d87ef42b1f60/manager",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6b56-7ec4-8271-02d989e46627",
+      "memory": "Linting is ruff, formatting is ruff format.",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "type_hint_policy",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/type_hint_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-6943-7b9d-9431-4b147bf87193"
+    },
+    {
+      "id": "01a07729-6b8b-7221-916f-326644825aad",
+      "memory": "Type checking is mypy in strict mode.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "type_hint_policy",
+      "subject": "01a07729-6944-7f88-8421-898895c64a67/type_hint_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-6b56-7ec4-8271-02d989e46627"
+    },
+    {
+      "id": "01a07729-6bc0-7003-b421-bb4b60b27c63",
+      "memory": "The monorepo is split into services and packages directories.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "layout",
+      "subject": "01a07729-6bc1-7c82-b706-0a1e764a4e57/layout",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6bd0-7b50-8438-9c73f04e8a0a",
+      "memory": "Terraform manages all cloud infrastructure.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "tooling",
+      "subject": "01a07729-6bd1-7d2b-9124-82ee0ec49106/tooling",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6be5-710f-a169-dd2cf3801e84",
+      "memory": "Alerting routes through PagerDuty.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "runbook_policy",
+      "subject": "01a07729-690c-7ffe-965e-2b093530f548/runbook_policy",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-690b-7218-b084-ae4415b6ccb3"
+    },
+    {
+      "id": "01a07729-6c02-7044-93df-e9479567bffb",
+      "memory": "The changelog is generated from conventional commit messages.",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "source",
+      "subject": "01a07729-6c03-74c1-8fcd-e2b92dfe924d/source",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6c2f-7ace-b5cc-817bdc27bb92",
+      "memory": "Aditya writes tests in pytest",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "test_runner",
+      "subject": "01a07729-5a19-7b01-a855-5778ce7a57aa/test_runner",
+      "source_kind": "agent_inference",
+      "evidence": "I write tests in pytest.",
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6c53-797b-805e-530440b09e9a",
+      "memory": "Aditya keeps commit messages conventional",
+      "type": "semantic",
+      "status": "superseded",
+      "attribute": "test_runner",
+      "subject": "01a07729-5a19-7b01-a855-5778ce7a57aa/test_runner",
+      "source_kind": "agent_inference",
+      "evidence": "Commit messages stay conventional.",
+      "supersedes_id": "01a07729-6c2f-7ace-b5cc-817bdc27bb92"
+    },
+    {
+      "id": "01a07729-6c85-72e5-8ade-9e75a6581c29",
+      "memory": "Rohan works at Nimbus",
+      "type": "semantic",
+      "status": "confirmed",
+      "attribute": "employer",
+      "subject": "01a07729-6c86-7803-b899-0da89e37708d/employer",
+      "source_kind": "user_statement",
+      "evidence": "Rohan is on-call; he works at Nimbus, on payments.",
+      "supersedes_id": null
+    },
+    {
+      "id": "01a07729-6cb2-7249-946c-0cf181d42d38",
+      "memory": "Aditya writes tests in unittest",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "test_runner",
+      "subject": "01a07729-5a19-7b01-a855-5778ce7a57aa/test_runner",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": "01a07729-6c53-797b-805e-530440b09e9a"
+    },
+    {
+      "id": "01a07729-6cce-7ec3-909a-da7e5f4315dd",
+      "memory": "Rohan works at Lattice",
+      "type": "semantic",
+      "status": "provisional",
+      "attribute": "employer",
+      "subject": "01a07729-6c86-7803-b899-0da89e37708d/employer",
+      "source_kind": "agent_inference",
+      "evidence": null,
+      "supersedes_id": null
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 8,
+      "hits": [
+        {
+          "text": "A checkout outage in February was caused by connection pool exhaustion.",
+          "score": 0.032266458495966696,
+          "id": "01a07729-67e9-721d-bbbd-d1e8d8926e23",
+          "extra": {
+            "attribute": "cause",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nA checkout outage in February was caused by connection pool exhaustion.\nmatched: dense 0.64 (rank 1), lexical 1/4 (rank 3); fused rank 1; passed dense 0.64 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense",
+                "lexical"
+              ],
+              "fused_rank": 1,
+              "gate": "passed dense 0.64 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Meera is the product manager for checkout.",
+          "score": 0.03225806451612903,
+          "id": "01a07729-68c5-7095-8b85-0f29a287ed8d",
+          "extra": {
+            "attribute": "role",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nMeera is the product manager for checkout.\nmatched: dense 0.62 (rank 2), lexical 1/4 (rank 2); fused rank 2; passed dense 0.62 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense",
+                "lexical"
+              ],
+              "fused_rank": 2,
+              "gate": "passed dense 0.62 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The checkout service runs on ECS Fargate in ap-south-1.",
+          "score": 0.032018442622950824,
+          "id": "01a07729-5a1c-74bc-914d-cf2e452ed72e",
+          "extra": {
+            "attribute": "runtime",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-5] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe checkout service runs on ECS Fargate in ap-south-1.\nmatched: dense 0.61 (rank 4), lexical 1/4 (rank 1); fused rank 3; passed dense 0.61 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense",
+                "lexical"
+              ],
+              "fused_rank": 3,
+              "gate": "passed dense 0.61 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The API gateway enforces a 30 second request timeout.",
+          "score": 0.015873015873015872,
+          "id": "01a07729-678b-7577-883a-37bc33833b67",
+          "extra": {
+            "attribute": "timeout",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe API gateway enforces a 30 second request timeout.\nmatched: dense 0.61 (rank 3); fused rank 4; passed dense 0.61 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 4,
+              "gate": "passed dense 0.61 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": 0.015384615384615385,
+          "id": "01a07729-6811-7b41-8202-e630e12ed2a8",
+          "extra": {
+            "attribute": "impact",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nAn earlier retry storm doubled load on the payments service.\nmatched: dense 0.59 (rank 5); fused rank 5; passed dense 0.59 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 5,
+              "gate": "passed dense 0.59 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The load test in July peaked at 4K requests per second.",
+          "score": 0.015151515151515152,
+          "id": "01a07729-6849-770c-9b4e-ee7bc040dd6f",
+          "extra": {
+            "attribute": "peak",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe load test in July peaked at 4K requests per second.\nmatched: dense 0.57 (rank 6); fused rank 6; passed dense 0.57 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 6,
+              "gate": "passed dense 0.57 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Redis is used for session storage and rate limiting.",
+          "score": 0.014925373134328358,
+          "id": "01a07729-671e-7367-8b34-51c0ecc0ed37",
+          "extra": {
+            "attribute": "use",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nRedis is used for session storage and rate limiting.\nmatched: dense 0.57 (rank 7); fused rank 7; passed dense 0.57 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 7,
+              "gate": "passed dense 0.57 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The changelog is generated from conventional commit messages.",
+          "score": 0.014705882352941176,
+          "id": "01a07729-6c02-7044-93df-e9479567bffb",
+          "extra": {
+            "attribute": "source",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe changelog is generated from conventional commit messages.\nmatched: dense 0.56 (rank 8); fused rank 8; passed dense 0.56 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 8,
+              "gate": "passed dense 0.56 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan.  empty_reason=None"
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 8,
+      "hits": [
+        {
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": 0.03278688524590164,
+          "id": "01a07729-6811-7b41-8202-e630e12ed2a8",
+          "extra": {
+            "attribute": "impact",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nAn earlier retry storm doubled load on the payments service.\nmatched: dense 0.62 (rank 1), lexical 1/3 (rank 1); fused rank 1; passed dense 0.62 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense",
+                "lexical"
+              ],
+              "fused_rank": 1,
+              "gate": "passed dense 0.62 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The retry policy for outbound webhooks uses exponential backoff.",
+          "score": 0.03225806451612903,
+          "id": "01a07729-673a-7a9a-9c1f-bc07b6a85dc2",
+          "extra": {
+            "attribute": "retry_policy",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe retry policy for outbound webhooks uses exponential backoff.\nmatched: dense 0.58 (rank 2), lexical 1/3 (rank 2); fused rank 2; passed dense 0.58 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense",
+                "lexical"
+              ],
+              "fused_rank": 2,
+              "gate": "passed dense 0.58 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": 0.015873015873015872,
+          "id": "01a07729-67fa-7edd-aaa5-a0bf385e099d",
+          "extra": {
+            "attribute": "recommendation",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe March incident review recommended adding circuit breakers.\nmatched: dense 0.54 (rank 3); fused rank 3; passed dense 0.54 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 3,
+              "gate": "passed dense 0.54 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Code review requires one approval before merge.",
+          "score": 0.015625,
+          "id": "01a07729-68dc-7636-8fdf-2b6cf3bc781b",
+          "extra": {
+            "attribute": "approval_policy",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nCode review requires one approval before merge.\nmatched: dense 0.53 (rank 4); fused rank 4; passed dense 0.53 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 4,
+              "gate": "passed dense 0.53 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Line length is capped at 100 characters.",
+          "score": 0.015384615384615385,
+          "id": "01a07729-695c-73ca-b720-11371fb45a24",
+          "extra": {
+            "attribute": "line_length",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nLine length is capped at 100 characters.\nmatched: dense 0.53 (rank 5); fused rank 5; passed dense 0.53 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 5,
+              "gate": "passed dense 0.53 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "The load test in July peaked at 4K requests per second.",
+          "score": 0.015151515151515152,
+          "id": "01a07729-6849-770c-9b4e-ee7bc040dd6f",
+          "extra": {
+            "attribute": "peak",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nThe load test in July peaked at 4K requests per second.\nmatched: dense 0.53 (rank 6); fused rank 6; passed dense 0.53 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 6,
+              "gate": "passed dense 0.53 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Redis is used for session storage and rate limiting.",
+          "score": 0.014925373134328358,
+          "id": "01a07729-671e-7367-8b34-51c0ecc0ed37",
+          "extra": {
+            "attribute": "use",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nRedis is used for session storage and rate limiting.\nmatched: dense 0.53 (rank 7); fused rank 7; passed dense 0.53 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 7,
+              "gate": "passed dense 0.53 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": 0.014705882352941176,
+          "id": "01a07729-6882-7ac0-8776-3afab9d90e37",
+          "extra": {
+            "attribute": "role",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nSneha manages the on-call rotation.\nmatched: dense 0.52 (rank 8); fused rank 8; passed dense 0.52 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 8,
+              "gate": "passed dense 0.52 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it.  empty_reason=None"
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 3,
+      "hits": [
+        {
+          "text": "Aditya writes tests in unittest",
+          "score": 0.03278688524590164,
+          "id": "01a07729-6cb2-7249-946c-0cf181d42d38",
+          "extra": {
+            "attribute": "test_runner",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nAditya writes tests in unittest\nmatched: dense 0.61 (rank 1), lexical 1/2 (rank 1); fused rank 1; passed dense 0.61 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense",
+                "lexical"
+              ],
+              "fused_rank": 1,
+              "gate": "passed dense 0.61 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Type checking is mypy in strict mode.",
+          "score": 0.016129032258064516,
+          "id": "01a07729-6b8b-7221-916f-326644825aad",
+          "extra": {
+            "attribute": "type_hint_policy",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nType checking is mypy in strict mode.\nmatched: dense 0.48 (rank 2); fused rank 2; passed dense 0.48 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 2,
+              "gate": "passed dense 0.48 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        },
+        {
+          "text": "Documentation lives in the docs directory of each repository.",
+          "score": 0.015873015873015872,
+          "id": "01a07729-6922-7cd5-bdcb-119f3e55a422",
+          "extra": {
+            "attribute": "location",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nDocumentation lives in the docs directory of each repository.\nmatched: dense 0.46 (rank 3); fused rank 3; passed dense 0.46 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 3,
+              "gate": "passed dense 0.46 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high.  empty_reason=None"
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 1,
+      "hits": [
+        {
+          "text": "Line length is capped at 100 characters.",
+          "score": 0.01639344262295082,
+          "id": "01a07729-695c-73ca-b720-11371fb45a24",
+          "extra": {
+            "attribute": "line_length",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nLine length is capped at 100 characters.\nmatched: dense 0.46 (rank 1); fused rank 1; passed dense 0.46 \u2265 0.45 (semantic)",
+              "matched_by": [
+                "dense"
+              ],
+              "fused_rank": 1,
+              "gate": "passed dense 0.46 \u2265 0.45 (semantic)",
+              "conflicts_with": []
+            }
+          }
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty.  empty_reason=None"
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 2,
+      "hits": [
+        {
+          "text": "Rohan works at Nimbus",
+          "score": 0.048651507139079855,
+          "id": "01a07729-6c85-72e5-8ade-9e75a6581c29",
+          "extra": {
+            "attribute": "employer",
+            "status": "confirmed",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 confirmed \u00b7 user_statement \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nRohan works at Nimbus\nmatched: dense 0.72 (rank 1), lexical 1/3 (rank 2), entity (rank 2); fused rank 1; passed exact entity match; conflicts with 01a07729-6cce-7ec3-909a-da7e5f4315dd",
+              "matched_by": [
+                "dense",
+                "lexical",
+                "entity"
+              ],
+              "fused_rank": 1,
+              "gate": "passed exact entity match",
+              "conflicts_with": [
+                "01a07729-6cce-7ec3-909a-da7e5f4315dd"
+              ]
+            }
+          }
+        },
+        {
+          "text": "Rohan works at Lattice",
+          "score": 0.04839549075403121,
+          "id": "01a07729-6cce-7ec3-909a-da7e5f4315dd",
+          "extra": {
+            "attribute": "employer",
+            "status": "provisional",
+            "explanation": {
+              "summary": "[01a07729-6] semantic \u00b7 provisional \u00b7 agent_inference \u00b7 event 2026-09-06 \u00b7 scope user:user-aditya\nRohan works at Lattice\nmatched: dense 0.69 (rank 2), lexical 1/3 (rank 3), entity (rank 1); fused rank 2; passed exact entity match; conflicts with 01a07729-6c85-72e5-8ade-9e75a6581c29",
+              "matched_by": [
+                "dense",
+                "lexical",
+                "entity"
+              ],
+              "fused_rank": 2,
+              "gate": "passed exact entity match",
+              "conflicts_with": [
+                "01a07729-6c85-72e5-8ade-9e75a6581c29"
+              ]
+            }
+          }
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus.  empty_reason=None"
+    }
+  ],
+  "notes": [
+    "Weave has no session extractor (Phase 10 unbuilt). Transcript facts are written through memory_write by hand, playing the role the chatting agent plays in its design. Write-side row counts are therefore not comparable with the other systems.",
+    "Seeded 40 distractor rows."
+  ]
+}

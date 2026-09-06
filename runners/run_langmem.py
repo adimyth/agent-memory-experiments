@@ -36,6 +36,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from dotenv import load_dotenv
 
+import distractors
 import harness
 import transcript
 from harness import Hit, ProbeResult, RunResult
@@ -68,6 +69,28 @@ def build_manager(store):
     return create_memory_store_manager(llm, namespace=NAMESPACE, store=store)
 
 
+def memory_text(value) -> str:
+    """LangMem nests the text as {"kind": "Memory", "content": {"content": ...}}."""
+
+    if isinstance(value, dict):
+        inner = value.get("content", value)
+        if isinstance(inner, dict):
+            return str(inner.get("content", inner))
+        return str(inner)
+    return str(value)
+
+
+def seed_distractors(store) -> None:
+    """Write the shared prior store verbatim, bypassing the extractor."""
+
+    for i, fact in enumerate(distractors.TEXTS):
+        store.put(
+            NAMESPACE,
+            f"distractor-{i:02d}",
+            {"kind": "Memory", "content": {"content": fact}},
+        )
+
+
 def dump_store(store) -> list[dict]:
     rows = store.search(NAMESPACE, limit=100)
     out = []
@@ -89,7 +112,7 @@ def probe(store, p: transcript.Probe) -> ProbeResult:
     rows = store.search(NAMESPACE, query=p.text)
     hits = [
         Hit(
-            text=str(r.value.get("content", r.value)),
+            text=memory_text(r.value),
             score=getattr(r, "score", None),
             id=r.key,
         )
@@ -139,6 +162,11 @@ def main() -> None:
             "langmem": harness.pkg_version("langmem"),
             "langgraph": harness.pkg_version("langgraph"),
         },
+    )
+
+    seed_distractors(store)
+    result.notes.append(
+        f"Seeded {len(distractors.DISTRACTORS)} distractor rows verbatim via store.put."
     )
 
     asyncio.run(ingest(manager, store, transcript.SESSION_1))

@@ -1,8 +1,8 @@
 {
   "system": "langmem",
   "run": 3,
-  "started_at": "2026-09-06T14:09:51.164472+00:00",
-  "finished_at": "2026-09-06T14:09:55.771005+00:00",
+  "started_at": "2026-09-06T14:25:55.611703+00:00",
+  "finished_at": "2026-09-06T14:26:02.610498+00:00",
   "config": {
     "llm": "gpt-4o",
     "embedder": "BAAI/bge-m3",
@@ -29,45 +29,645 @@
         "memories",
         "aditya"
       ],
-      "key": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+      "key": "distractor-00",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "Rohan, who works at Nimbus, is on-call and specializes in payments."
+          "content": "The checkout service runs on ECS Fargate in ap-south-1."
         }
       },
-      "created_at": "2026-09-06 14:09:53.416254+00:00",
-      "updated_at": "2026-09-06 14:09:53.416257+00:00"
+      "created_at": "2026-09-06 14:25:55.723834+00:00",
+      "updated_at": "2026-09-06 14:25:55.723842+00:00"
     },
     {
       "namespace": [
         "memories",
         "aditya"
       ],
-      "key": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+      "key": "distractor-01",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "The user writes tests using the pytest framework."
+          "content": "The payments database is Postgres 16 on RDS with a read replica."
         }
       },
-      "created_at": "2026-09-06 14:09:53.416380+00:00",
-      "updated_at": "2026-09-06 14:09:53.416381+00:00"
+      "created_at": "2026-09-06 14:25:55.744342+00:00",
+      "updated_at": "2026-09-06 14:25:55.744345+00:00"
     },
     {
       "namespace": [
         "memories",
         "aditya"
       ],
-      "key": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+      "key": "distractor-02",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "The user's commit messages adhere to conventional commit standards."
+          "content": "Redis is used for session storage and rate limiting."
         }
       },
-      "created_at": "2026-09-06 14:09:53.416421+00:00",
-      "updated_at": "2026-09-06 14:09:53.416421+00:00"
+      "created_at": "2026-09-06 14:25:55.765773+00:00",
+      "updated_at": "2026-09-06 14:25:55.765776+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-03",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The retry policy for outbound webhooks uses exponential backoff."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.785790+00:00",
+      "updated_at": "2026-09-06 14:25:55.785793+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-04",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Feature flags are managed in LaunchDarkly."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.805437+00:00",
+      "updated_at": "2026-09-06 14:25:55.805440+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-05",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The staging environment mirrors production at a quarter of the capacity."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.824445+00:00",
+      "updated_at": "2026-09-06 14:25:55.824447+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-06",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Deploys go out through GitHub Actions on merge to main."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.842339+00:00",
+      "updated_at": "2026-09-06 14:25:55.842342+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-07",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The API gateway enforces a 30 second request timeout."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.861741+00:00",
+      "updated_at": "2026-09-06 14:25:55.861743+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-08",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Background jobs run on Celery with RabbitMQ as the broker."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.880473+00:00",
+      "updated_at": "2026-09-06 14:25:55.880475+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-09",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Observability is Grafana dashboards on top of Prometheus."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.898747+00:00",
+      "updated_at": "2026-09-06 14:25:55.898748+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-10",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The search index is OpenSearch, reindexed nightly."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.917781+00:00",
+      "updated_at": "2026-09-06 14:25:55.917783+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-11",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Object storage is S3 with lifecycle rules moving old objects to Glacier."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.937655+00:00",
+      "updated_at": "2026-09-06 14:25:55.937657+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-12",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "A checkout outage in February was caused by connection pool exhaustion."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.956316+00:00",
+      "updated_at": "2026-09-06 14:25:55.956317+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-13",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The March incident review recommended adding circuit breakers."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.974977+00:00",
+      "updated_at": "2026-09-06 14:25:55.974980+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-14",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "An earlier retry storm doubled load on the payments service."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.993184+00:00",
+      "updated_at": "2026-09-06 14:25:55.993185+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-15",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The team postponed the Kafka migration to next quarter."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.011915+00:00",
+      "updated_at": "2026-09-06 14:25:56.011917+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-16",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "A memory leak in the notification worker was fixed by upgrading the SDK."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.031228+00:00",
+      "updated_at": "2026-09-06 14:25:56.031229+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-17",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The load test in July peaked at 4K requests per second."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.049318+00:00",
+      "updated_at": "2026-09-06 14:25:56.049319+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-18",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Priya leads the platform team."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.066811+00:00",
+      "updated_at": "2026-09-06 14:25:56.066814+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-19",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Karthik reviews all database migrations."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.084815+00:00",
+      "updated_at": "2026-09-06 14:25:56.084817+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-20",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Sneha manages the on-call rotation."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.103360+00:00",
+      "updated_at": "2026-09-06 14:25:56.103360+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-21",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Vikram works on the mobile client."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.121137+00:00",
+      "updated_at": "2026-09-06 14:25:56.121138+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-22",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The design system is maintained by Ananya."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.138652+00:00",
+      "updated_at": "2026-09-06 14:25:56.138653+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-23",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Meera is the product manager for checkout."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.156258+00:00",
+      "updated_at": "2026-09-06 14:25:56.156260+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-24",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Code review requires one approval before merge."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.173984+00:00",
+      "updated_at": "2026-09-06 14:25:56.173986+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-25",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Migrations must be backwards compatible for one release."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.192438+00:00",
+      "updated_at": "2026-09-06 14:25:56.192439+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-26",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The team writes runbooks for every alert."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.209571+00:00",
+      "updated_at": "2026-09-06 14:25:56.209572+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-27",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Documentation lives in the docs directory of each repository."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.228551+00:00",
+      "updated_at": "2026-09-06 14:25:56.228552+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-28",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Secrets are stored in AWS Secrets Manager, never in environment files."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.247038+00:00",
+      "updated_at": "2026-09-06 14:25:56.247040+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-29",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Type hints are required on all new Python code."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.265562+00:00",
+      "updated_at": "2026-09-06 14:25:56.265563+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-30",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Line length is capped at 100 characters."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.284250+00:00",
+      "updated_at": "2026-09-06 14:25:56.284251+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-31",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Dependency updates are batched weekly."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.302463+00:00",
+      "updated_at": "2026-09-06 14:25:56.302465+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-32",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Local development uses Docker Compose."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.321891+00:00",
+      "updated_at": "2026-09-06 14:25:56.321892+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-33",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Dependencies are managed with uv."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.339502+00:00",
+      "updated_at": "2026-09-06 14:25:56.339503+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-34",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Linting is ruff, formatting is ruff format."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.357886+00:00",
+      "updated_at": "2026-09-06 14:25:56.357886+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-35",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Type checking is mypy in strict mode."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.377262+00:00",
+      "updated_at": "2026-09-06 14:25:56.377262+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-36",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The monorepo is split into services and packages directories."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.397057+00:00",
+      "updated_at": "2026-09-06 14:25:56.397057+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-37",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Terraform manages all cloud infrastructure."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.416459+00:00",
+      "updated_at": "2026-09-06 14:25:56.416459+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-38",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Alerting routes through PagerDuty."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.434333+00:00",
+      "updated_at": "2026-09-06 14:25:56.434334+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-39",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Commit messages are conventional."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.685225+00:00",
+      "updated_at": "2026-09-06 14:26:00.685225+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "34374b4d-10ba-4822-a52e-0ed5d3b2919a",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan is on-call and works at Nimbus, focusing on payments."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.684788+00:00",
+      "updated_at": "2026-09-06 14:26:00.684791+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "3a00e9f7-d878-4d7b-9c4f-71c025f97ec6",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests in pytest."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.685021+00:00",
+      "updated_at": "2026-09-06 14:26:00.685022+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "09085b09-8b89-4cc2-91e5-3bdfbc4d5d2d",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Commit messages are conventional."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.685415+00:00",
+      "updated_at": "2026-09-06 14:26:00.685415+00:00"
     }
   ],
   "store_after_update": [
@@ -76,60 +676,675 @@
         "memories",
         "aditya"
       ],
-      "key": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+      "key": "distractor-00",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "Rohan, who joined Lattice in April, is on-call and specializes in payments."
+          "content": "The checkout service runs on ECS Fargate in ap-south-1."
         }
       },
-      "created_at": "2026-09-06 14:09:55.685214+00:00",
-      "updated_at": "2026-09-06 14:09:55.685217+00:00"
+      "created_at": "2026-09-06 14:25:55.723834+00:00",
+      "updated_at": "2026-09-06 14:25:55.723842+00:00"
     },
     {
       "namespace": [
         "memories",
         "aditya"
       ],
-      "key": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+      "key": "distractor-01",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "The user writes tests using the pytest framework."
+          "content": "The payments database is Postgres 16 on RDS with a read replica."
         }
       },
-      "created_at": "2026-09-06 14:09:53.416380+00:00",
-      "updated_at": "2026-09-06 14:09:53.416381+00:00"
+      "created_at": "2026-09-06 14:25:55.744342+00:00",
+      "updated_at": "2026-09-06 14:25:55.744345+00:00"
     },
     {
       "namespace": [
         "memories",
         "aditya"
       ],
-      "key": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+      "key": "distractor-02",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "The user's commit messages adhere to conventional commit standards."
+          "content": "Redis is used for session storage and rate limiting."
         }
       },
-      "created_at": "2026-09-06 14:09:53.416421+00:00",
-      "updated_at": "2026-09-06 14:09:53.416421+00:00"
+      "created_at": "2026-09-06 14:25:55.765773+00:00",
+      "updated_at": "2026-09-06 14:25:55.765776+00:00"
     },
     {
       "namespace": [
         "memories",
         "aditya"
       ],
-      "key": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+      "key": "distractor-03",
       "value": {
         "kind": "Memory",
         "content": {
-          "content": "The user switched from pytest to unittest for writing tests."
+          "content": "The retry policy for outbound webhooks uses exponential backoff."
         }
       },
-      "created_at": "2026-09-06 14:09:55.685527+00:00",
-      "updated_at": "2026-09-06 14:09:55.685528+00:00"
+      "created_at": "2026-09-06 14:25:55.785790+00:00",
+      "updated_at": "2026-09-06 14:25:55.785793+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-04",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Feature flags are managed in LaunchDarkly."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.805437+00:00",
+      "updated_at": "2026-09-06 14:25:55.805440+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-05",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The staging environment mirrors production at a quarter of the capacity."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.824445+00:00",
+      "updated_at": "2026-09-06 14:25:55.824447+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-06",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Deploys go out through GitHub Actions on merge to main."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.842339+00:00",
+      "updated_at": "2026-09-06 14:25:55.842342+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-07",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The API gateway enforces a 30 second request timeout."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.861741+00:00",
+      "updated_at": "2026-09-06 14:25:55.861743+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-08",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Background jobs run on Celery with RabbitMQ as the broker."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.880473+00:00",
+      "updated_at": "2026-09-06 14:25:55.880475+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-09",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Observability is Grafana dashboards on top of Prometheus."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.898747+00:00",
+      "updated_at": "2026-09-06 14:25:55.898748+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-10",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The search index is OpenSearch, reindexed nightly."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.917781+00:00",
+      "updated_at": "2026-09-06 14:25:55.917783+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-11",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Object storage is S3 with lifecycle rules moving old objects to Glacier."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.937655+00:00",
+      "updated_at": "2026-09-06 14:25:55.937657+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-12",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "A checkout outage in February was caused by connection pool exhaustion."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.956316+00:00",
+      "updated_at": "2026-09-06 14:25:55.956317+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-13",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The March incident review recommended adding circuit breakers."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.974977+00:00",
+      "updated_at": "2026-09-06 14:25:55.974980+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-14",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "An earlier retry storm doubled load on the payments service."
+        }
+      },
+      "created_at": "2026-09-06 14:25:55.993184+00:00",
+      "updated_at": "2026-09-06 14:25:55.993185+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-15",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The team postponed the Kafka migration to next quarter."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.011915+00:00",
+      "updated_at": "2026-09-06 14:25:56.011917+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-16",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "A memory leak in the notification worker was fixed by upgrading the SDK."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.031228+00:00",
+      "updated_at": "2026-09-06 14:25:56.031229+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-17",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The load test in July peaked at 4K requests per second."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.049318+00:00",
+      "updated_at": "2026-09-06 14:25:56.049319+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-18",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Priya leads the platform team."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.066811+00:00",
+      "updated_at": "2026-09-06 14:25:56.066814+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-19",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Karthik reviews all database migrations."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.084815+00:00",
+      "updated_at": "2026-09-06 14:25:56.084817+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-20",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Sneha manages the on-call rotation."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.103360+00:00",
+      "updated_at": "2026-09-06 14:25:56.103360+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-21",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Vikram works on the mobile client."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.121137+00:00",
+      "updated_at": "2026-09-06 14:25:56.121138+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-22",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The design system is maintained by Ananya."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.138652+00:00",
+      "updated_at": "2026-09-06 14:25:56.138653+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-23",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Meera is the product manager for checkout."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.156258+00:00",
+      "updated_at": "2026-09-06 14:25:56.156260+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-24",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Code review requires one approval before merge."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.173984+00:00",
+      "updated_at": "2026-09-06 14:25:56.173986+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-25",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Migrations must be backwards compatible for one release."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.192438+00:00",
+      "updated_at": "2026-09-06 14:25:56.192439+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-26",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The team writes runbooks for every alert."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.209571+00:00",
+      "updated_at": "2026-09-06 14:25:56.209572+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-27",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Documentation lives in the docs directory of each repository."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.228551+00:00",
+      "updated_at": "2026-09-06 14:25:56.228552+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-28",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Secrets are stored in AWS Secrets Manager, never in environment files."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.247038+00:00",
+      "updated_at": "2026-09-06 14:25:56.247040+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-29",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Type hints are required on all new Python code."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.265562+00:00",
+      "updated_at": "2026-09-06 14:25:56.265563+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-30",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Line length is capped at 100 characters."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.284250+00:00",
+      "updated_at": "2026-09-06 14:25:56.284251+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-31",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Dependency updates are batched weekly."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.302463+00:00",
+      "updated_at": "2026-09-06 14:25:56.302465+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-32",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Local development uses Docker Compose."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.321891+00:00",
+      "updated_at": "2026-09-06 14:25:56.321892+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-33",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Dependencies are managed with uv."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.339502+00:00",
+      "updated_at": "2026-09-06 14:25:56.339503+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-34",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Linting is ruff, formatting is ruff format."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.357886+00:00",
+      "updated_at": "2026-09-06 14:25:56.357886+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-35",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Type checking is mypy in strict mode."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.377262+00:00",
+      "updated_at": "2026-09-06 14:25:56.377262+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-36",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The monorepo is split into services and packages directories."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.397057+00:00",
+      "updated_at": "2026-09-06 14:25:56.397057+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-37",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Terraform manages all cloud infrastructure."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.416459+00:00",
+      "updated_at": "2026-09-06 14:25:56.416459+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-38",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Alerting routes through PagerDuty."
+        }
+      },
+      "created_at": "2026-09-06 14:25:56.434333+00:00",
+      "updated_at": "2026-09-06 14:25:56.434334+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "distractor-39",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Commit messages are conventional."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.685225+00:00",
+      "updated_at": "2026-09-06 14:26:00.685225+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "34374b4d-10ba-4822-a52e-0ed5d3b2919a",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan is on-call and works at Nimbus, focusing on payments."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.684788+00:00",
+      "updated_at": "2026-09-06 14:26:00.684791+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "3a00e9f7-d878-4d7b-9c4f-71c025f97ec6",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user writes tests in pytest."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.685021+00:00",
+      "updated_at": "2026-09-06 14:26:00.685022+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "09085b09-8b89-4cc2-91e5-3bdfbc4d5d2d",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Commit messages are conventional."
+        }
+      },
+      "created_at": "2026-09-06 14:26:00.685415+00:00",
+      "updated_at": "2026-09-06 14:26:00.685415+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "f8066aae-a8ce-4db4-8091-e83f7e666f07",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "Rohan left Nimbus in April and joined Lattice."
+        }
+      },
+      "created_at": "2026-09-06 14:26:02.521476+00:00",
+      "updated_at": "2026-09-06 14:26:02.521480+00:00"
+    },
+    {
+      "namespace": [
+        "memories",
+        "aditya"
+      ],
+      "key": "217247c0-9265-4d5e-bd76-8cb5616c4b07",
+      "value": {
+        "kind": "Memory",
+        "content": {
+          "content": "The user has switched to using unittest."
+        }
+      },
+      "created_at": "2026-09-06 14:26:02.521847+00:00",
+      "updated_at": "2026-09-06 14:26:02.521848+00:00"
     }
   ],
   "probes": [
@@ -138,24 +1353,66 @@
       "query": "The checkout latency graph is red.",
       "kind": "ordinary",
       "expect_empty": true,
-      "returned": 3,
+      "returned": 10,
       "hits": [
         {
-          "text": "{'content': 'Rohan, who works at Nimbus, is on-call and specializes in payments.'}",
-          "score": 0.5242414898501666,
-          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "text": "A checkout outage in February was caused by connection pool exhaustion.",
+          "score": 0.6351429629534333,
+          "id": "distractor-12",
           "extra": {}
         },
         {
-          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
-          "score": 0.49081083283926713,
-          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "text": "The checkout service runs on ECS Fargate in ap-south-1.",
+          "score": 0.602742748541668,
+          "id": "distractor-00",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user writes tests using the pytest framework.'}",
-          "score": 0.4223075544480389,
-          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "text": "The API gateway enforces a 30 second request timeout.",
+          "score": 0.577197565990269,
+          "id": "distractor-07",
+          "extra": {}
+        },
+        {
+          "text": "Meera is the product manager for checkout.",
+          "score": 0.5767893439570361,
+          "id": "distractor-23",
+          "extra": {}
+        },
+        {
+          "text": "The load test in July peaked at 4K requests per second.",
+          "score": 0.5546564285827582,
+          "id": "distractor-17",
+          "extra": {}
+        },
+        {
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": 0.5529775039554701,
+          "id": "distractor-14",
+          "extra": {}
+        },
+        {
+          "text": "Redis is used for session storage and rate limiting.",
+          "score": 0.5520803480797705,
+          "id": "distractor-02",
+          "extra": {}
+        },
+        {
+          "text": "Rohan is on-call and works at Nimbus, focusing on payments.",
+          "score": 0.5298608690656557,
+          "id": "34374b4d-10ba-4822-a52e-0ed5d3b2919a",
+          "extra": {}
+        },
+        {
+          "text": "Background jobs run on Celery with RabbitMQ as the broker.",
+          "score": 0.5225780562889838,
+          "id": "distractor-08",
+          "extra": {}
+        },
+        {
+          "text": "The payments database is Postgres 16 on RDS with a read replica.",
+          "score": 0.519394096623277,
+          "id": "distractor-01",
           "extra": {}
         }
       ],
@@ -166,30 +1423,66 @@
       "query": "Bump the retry count to 3.",
       "kind": "ordinary",
       "expect_empty": true,
-      "returned": 4,
+      "returned": 10,
       "hits": [
         {
-          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
-          "score": 0.49694212251051745,
-          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": 0.5961145399981257,
+          "id": "distractor-14",
           "extra": {}
         },
         {
-          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
-          "score": 0.4660807626303886,
-          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "text": "The retry policy for outbound webhooks uses exponential backoff.",
+          "score": 0.5450740573494346,
+          "id": "distractor-03",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user writes tests using the pytest framework.'}",
-          "score": 0.45241261822640677,
-          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": 0.5292631475662041,
+          "id": "distractor-13",
           "extra": {}
         },
         {
-          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
-          "score": 0.4406074962128441,
-          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "text": "The user has switched to using unittest.",
+          "score": 0.5178850897583915,
+          "id": "217247c0-9265-4d5e-bd76-8cb5616c4b07",
+          "extra": {}
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": 0.5112069393597068,
+          "id": "distractor-20",
+          "extra": {}
+        },
+        {
+          "text": "Redis is used for session storage and rate limiting.",
+          "score": 0.5074207556023888,
+          "id": "distractor-02",
+          "extra": {}
+        },
+        {
+          "text": "Code review requires one approval before merge.",
+          "score": 0.5072454437336307,
+          "id": "distractor-24",
+          "extra": {}
+        },
+        {
+          "text": "The team writes runbooks for every alert.",
+          "score": 0.5067202571579237,
+          "id": "distractor-26",
+          "extra": {}
+        },
+        {
+          "text": "The load test in July peaked at 4K requests per second.",
+          "score": 0.4967880621122386,
+          "id": "distractor-17",
+          "extra": {}
+        },
+        {
+          "text": "Type checking is mypy in strict mode.",
+          "score": 0.4965644962015087,
+          "id": "distractor-35",
           "extra": {}
         }
       ],
@@ -200,30 +1493,66 @@
       "query": "What do I write tests in?",
       "kind": "answerable",
       "expect_empty": false,
-      "returned": 4,
+      "returned": 10,
       "hits": [
         {
-          "text": "{'content': 'The user writes tests using the pytest framework.'}",
-          "score": 0.614807743345505,
-          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "text": "The user writes tests in pytest.",
+          "score": 0.6322948400862118,
+          "id": "3a00e9f7-d878-4d7b-9c4f-71c025f97ec6",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
-          "score": 0.5992623154289407,
-          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "text": "The user has switched to using unittest.",
+          "score": 0.5092228546697094,
+          "id": "217247c0-9265-4d5e-bd76-8cb5616c4b07",
           "extra": {}
         },
         {
-          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
-          "score": 0.4443167435960567,
-          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "text": "The team writes runbooks for every alert.",
+          "score": 0.4873015328177879,
+          "id": "distractor-26",
           "extra": {}
         },
         {
-          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
-          "score": 0.3642678305744913,
-          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "text": "Type checking is mypy in strict mode.",
+          "score": 0.4719481122521342,
+          "id": "distractor-35",
+          "extra": {}
+        },
+        {
+          "text": "Linting is ruff, formatting is ruff format.",
+          "score": 0.4441497369757939,
+          "id": "distractor-34",
+          "extra": {}
+        },
+        {
+          "text": "Documentation lives in the docs directory of each repository.",
+          "score": 0.4412622680804941,
+          "id": "distractor-27",
+          "extra": {}
+        },
+        {
+          "text": "Code review requires one approval before merge.",
+          "score": 0.43971192945978604,
+          "id": "distractor-24",
+          "extra": {}
+        },
+        {
+          "text": "Type hints are required on all new Python code.",
+          "score": 0.43841593824006725,
+          "id": "distractor-29",
+          "extra": {}
+        },
+        {
+          "text": "The load test in July peaked at 4K requests per second.",
+          "score": 0.4378298622229246,
+          "id": "distractor-17",
+          "extra": {}
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": 0.4274671094640192,
+          "id": "distractor-13",
           "extra": {}
         }
       ],
@@ -234,30 +1563,66 @@
       "query": "What is my dog's name?",
       "kind": "absent",
       "expect_empty": true,
-      "returned": 4,
+      "returned": 10,
       "hits": [
         {
-          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
-          "score": 0.3784104478353139,
-          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "text": "Line length is capped at 100 characters.",
+          "score": 0.4123450161179127,
+          "id": "distractor-30",
           "extra": {}
         },
         {
-          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
-          "score": 0.3556102670249307,
-          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "text": "Type checking is mypy in strict mode.",
+          "score": 0.40272769142358894,
+          "id": "distractor-35",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user writes tests using the pytest framework.'}",
-          "score": 0.3468771051751242,
-          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "text": "The team writes runbooks for every alert.",
+          "score": 0.3991316869604637,
+          "id": "distractor-26",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
-          "score": 0.3342094560244837,
-          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "text": "Background jobs run on Celery with RabbitMQ as the broker.",
+          "score": 0.3940003633495711,
+          "id": "distractor-08",
+          "extra": {}
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": 0.39249998567676947,
+          "id": "distractor-20",
+          "extra": {}
+        },
+        {
+          "text": "Code review requires one approval before merge.",
+          "score": 0.38679884490450156,
+          "id": "distractor-24",
+          "extra": {}
+        },
+        {
+          "text": "Dependency updates are batched weekly.",
+          "score": 0.3782020453484909,
+          "id": "distractor-31",
+          "extra": {}
+        },
+        {
+          "text": "The search index is OpenSearch, reindexed nightly.",
+          "score": 0.3779106044792086,
+          "id": "distractor-10",
+          "extra": {}
+        },
+        {
+          "text": "Rohan is on-call and works at Nimbus, focusing on payments.",
+          "score": 0.3775855504240165,
+          "id": "34374b4d-10ba-4822-a52e-0ed5d3b2919a",
+          "extra": {}
+        },
+        {
+          "text": "Linting is ruff, formatting is ruff format.",
+          "score": 0.37410068997084306,
+          "id": "distractor-34",
           "extra": {}
         }
       ],
@@ -268,35 +1633,73 @@
       "query": "Where was Rohan working in March?",
       "kind": "answerable",
       "expect_empty": false,
-      "returned": 4,
+      "returned": 10,
       "hits": [
         {
-          "text": "{'content': 'Rohan, who joined Lattice in April, is on-call and specializes in payments.'}",
-          "score": 0.5126964188140551,
-          "id": "290a6c69-4cbc-4322-b5cd-28df4d5b7de3",
+          "text": "Rohan left Nimbus in April and joined Lattice.",
+          "score": 0.4962378394078899,
+          "id": "f8066aae-a8ce-4db4-8091-e83f7e666f07",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user writes tests using the pytest framework.'}",
-          "score": 0.25287385246183663,
-          "id": "3ad894c5-7987-4704-b84d-4cb0f600b49d",
+          "text": "Rohan is on-call and works at Nimbus, focusing on payments.",
+          "score": 0.4904236731659168,
+          "id": "34374b4d-10ba-4822-a52e-0ed5d3b2919a",
           "extra": {}
         },
         {
-          "text": "{'content': 'The user switched from pytest to unittest for writing tests.'}",
-          "score": 0.25207033278367136,
-          "id": "1c44a28e-1949-4c1e-8f11-0cec00c58d06",
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": 0.39293241807550405,
+          "id": "distractor-13",
           "extra": {}
         },
         {
-          "text": "{'content': \"The user's commit messages adhere to conventional commit standards.\"}",
-          "score": 0.23590074392198082,
-          "id": "1604a684-2355-4c64-b128-37ebf6e7bb45",
+          "text": "Vikram works on the mobile client.",
+          "score": 0.3712567273389185,
+          "id": "distractor-21",
+          "extra": {}
+        },
+        {
+          "text": "Sneha manages the on-call rotation.",
+          "score": 0.35940703470120333,
+          "id": "distractor-20",
+          "extra": {}
+        },
+        {
+          "text": "Background jobs run on Celery with RabbitMQ as the broker.",
+          "score": 0.317774144395929,
+          "id": "distractor-08",
+          "extra": {}
+        },
+        {
+          "text": "Karthik reviews all database migrations.",
+          "score": 0.3163074086142248,
+          "id": "distractor-19",
+          "extra": {}
+        },
+        {
+          "text": "A checkout outage in February was caused by connection pool exhaustion.",
+          "score": 0.3096153893871865,
+          "id": "distractor-12",
+          "extra": {}
+        },
+        {
+          "text": "The team writes runbooks for every alert.",
+          "score": 0.30133624972020306,
+          "id": "distractor-26",
+          "extra": {}
+        },
+        {
+          "text": "An earlier retry storm doubled load on the payments service.",
+          "score": 0.3010631489677426,
+          "id": "distractor-14",
           "extra": {}
         }
       ],
       "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus."
     }
   ],
-  "notes": []
+  "notes": [
+    "Seeded 40 distractor rows verbatim via store.put."
+  ]
 }

@@ -1,0 +1,783 @@
+{
+  "system": "graphiti",
+  "run": 1,
+  "started_at": "2026-09-06T14:30:06.020355+00:00",
+  "finished_at": "2026-09-06T14:33:54.292043+00:00",
+  "config": {
+    "llm": "gpt-4o",
+    "embedder": "BAAI/bge-m3",
+    "search_defaults": "num_results=10; hybrid over vector, BM25, and graph traversal",
+    "backend": "FalkorDB on port 6389",
+    "cross_encoder": "library default (OpenAIRerankerClient)",
+    "small_model": "gpt-4o"
+  },
+  "versions": {
+    "graphiti-core": "0.30.1"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.7.5-arm64-i386-64bit"
+  },
+  "store_after_session_1": [
+    {
+      "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "name": "FIXED_BY_UPGRADING",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:47.435698+00:00"
+    },
+    {
+      "id": "b73bbd7d-0880-4b90-a64a-25d8d5bd6afa",
+      "memory": "Grafana uses Prometheus for its dashboards.",
+      "name": "USES",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:07.892643+00:00"
+    },
+    {
+      "id": "aa2ac988-cd3a-4371-bdb3-0d9a223772ca",
+      "memory": "S3 has lifecycle rules that move old objects to Glacier.",
+      "name": "MOVES_OLD_OBJECTS_TO",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:18.476117+00:00"
+    },
+    {
+      "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+      "memory": "Rohan works at Nimbus on payments.",
+      "name": "WORKS_AT",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:33:42.190941+00:00"
+    },
+    {
+      "id": "838376d3-3bd7-4608-8180-532e5c76c0e7",
+      "memory": "ECS Fargate runs in the ap-south-1 region.",
+      "name": "RUNS_ON",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:29:34.092184+00:00"
+    },
+    {
+      "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+      "memory": "The March incident review recommended adding circuit breakers.",
+      "name": "RECOMMENDED_ADDING",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:29.955423+00:00"
+    },
+    {
+      "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+      "memory": "A checkout outage occurred in February.",
+      "name": "OCCURRED_IN",
+      "valid_at": "2026-02-01 00:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:24.224183+00:00"
+    },
+    {
+      "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+      "memory": "Celery runs on RabbitMQ as the broker for background jobs.",
+      "name": "RUNS_ON",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:01.862621+00:00"
+    },
+    {
+      "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+      "memory": "Postgres 16 is on RDS.",
+      "name": "IS_ON",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:30:19.474452+00:00"
+    },
+    {
+      "id": "3add4bca-b63f-4eb0-b548-566a7f6069fd",
+      "memory": "The staging environment mirrors production at a quarter of the capacity.",
+      "name": "MIRRORS_AT_CAPACITY",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:30:45.102641+00:00"
+    },
+    {
+      "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+      "memory": "The monorepo is split into services and packages directories.",
+      "name": "IS_SPLIT_INTO",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:33:23.206977+00:00"
+    },
+    {
+      "id": "133bb6a3-63be-4a3b-895b-1dc95962ba6f",
+      "memory": "The retry policy for outbound webhooks uses exponential backoff.",
+      "name": "USES",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:30:32.286468+00:00"
+    }
+  ],
+  "store_after_update": [
+    {
+      "id": "ff2bce1f-f75a-423e-a039-30f76db95eaf",
+      "memory": "Rohan joined Lattice.",
+      "name": "JOINED",
+      "valid_at": "2026-04-01 00:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:33:49.247241+00:00"
+    },
+    {
+      "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+      "memory": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+      "name": "FIXED_BY_UPGRADING",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:47.435698+00:00"
+    },
+    {
+      "id": "b73bbd7d-0880-4b90-a64a-25d8d5bd6afa",
+      "memory": "Grafana uses Prometheus for its dashboards.",
+      "name": "USES",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:07.892643+00:00"
+    },
+    {
+      "id": "aa2ac988-cd3a-4371-bdb3-0d9a223772ca",
+      "memory": "S3 has lifecycle rules that move old objects to Glacier.",
+      "name": "MOVES_OLD_OBJECTS_TO",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:18.476117+00:00"
+    },
+    {
+      "id": "a7afef73-d2c1-4bdc-bb79-18e647fdd852",
+      "memory": "Rohan left Nimbus.",
+      "name": "LEFT",
+      "valid_at": "2026-04-01 00:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:33:49.247169+00:00"
+    },
+    {
+      "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+      "memory": "Rohan works at Nimbus on payments.",
+      "name": "WORKS_AT",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": "2026-04-01 00:00:00+00:00",
+      "expired_at": "2026-09-06 14:33:50.703163+00:00",
+      "created_at": "2026-09-06 14:33:42.190941+00:00"
+    },
+    {
+      "id": "838376d3-3bd7-4608-8180-532e5c76c0e7",
+      "memory": "ECS Fargate runs in the ap-south-1 region.",
+      "name": "RUNS_ON",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:29:34.092184+00:00"
+    },
+    {
+      "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+      "memory": "The March incident review recommended adding circuit breakers.",
+      "name": "RECOMMENDED_ADDING",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:29.955423+00:00"
+    },
+    {
+      "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+      "memory": "A checkout outage occurred in February.",
+      "name": "OCCURRED_IN",
+      "valid_at": "2026-02-01 00:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:24.224183+00:00"
+    },
+    {
+      "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+      "memory": "Celery runs on RabbitMQ as the broker for background jobs.",
+      "name": "RUNS_ON",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:31:01.862621+00:00"
+    },
+    {
+      "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+      "memory": "Postgres 16 is on RDS.",
+      "name": "IS_ON",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:30:19.474452+00:00"
+    },
+    {
+      "id": "3add4bca-b63f-4eb0-b548-566a7f6069fd",
+      "memory": "The staging environment mirrors production at a quarter of the capacity.",
+      "name": "MIRRORS_AT_CAPACITY",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:30:45.102641+00:00"
+    },
+    {
+      "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+      "memory": "The monorepo is split into services and packages directories.",
+      "name": "IS_SPLIT_INTO",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:33:23.206977+00:00"
+    },
+    {
+      "id": "133bb6a3-63be-4a3b-895b-1dc95962ba6f",
+      "memory": "The retry policy for outbound webhooks uses exponential backoff.",
+      "name": "USES",
+      "valid_at": "2026-01-10 10:00:00+00:00",
+      "invalid_at": null,
+      "expired_at": null,
+      "created_at": "2026-09-06 14:30:32.286468+00:00"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "p1_latency_graph",
+      "query": "The checkout latency graph is red.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "A checkout outage occurred in February.",
+          "score": null,
+          "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+          "extra": {
+            "valid_at": "2026-02-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Postgres 16 is on RDS.",
+          "score": null,
+          "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The staging environment mirrors production at a quarter of the capacity.",
+          "score": null,
+          "id": "3add4bca-b63f-4eb0-b548-566a7f6069fd",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+          "score": null,
+          "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Celery runs on RabbitMQ as the broker for background jobs.",
+          "score": null,
+          "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The retry policy for outbound webhooks uses exponential backoff.",
+          "score": null,
+          "id": "133bb6a3-63be-4a3b-895b-1dc95962ba6f",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan works at Nimbus on payments.",
+          "score": null,
+          "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Grafana uses Prometheus for its dashboards.",
+          "score": null,
+          "id": "b73bbd7d-0880-4b90-a64a-25d8d5bd6afa",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The monorepo is split into services and packages directories.",
+          "score": null,
+          "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        }
+      ],
+      "note": "First September turn. Nobody mentioned pytest, commits, or Rohan.  (search defaults to num_results=10)"
+    },
+    {
+      "probe_id": "p2_retry_count",
+      "query": "Bump the retry count to 3.",
+      "kind": "ordinary",
+      "expect_empty": true,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "The retry policy for outbound webhooks uses exponential backoff.",
+          "score": null,
+          "id": "133bb6a3-63be-4a3b-895b-1dc95962ba6f",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+          "score": null,
+          "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Postgres 16 is on RDS.",
+          "score": null,
+          "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "S3 has lifecycle rules that move old objects to Glacier.",
+          "score": null,
+          "id": "aa2ac988-cd3a-4371-bdb3-0d9a223772ca",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The staging environment mirrors production at a quarter of the capacity.",
+          "score": null,
+          "id": "3add4bca-b63f-4eb0-b548-566a7f6069fd",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A checkout outage occurred in February.",
+          "score": null,
+          "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+          "extra": {
+            "valid_at": "2026-02-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Celery runs on RabbitMQ as the broker for background jobs.",
+          "score": null,
+          "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The monorepo is split into services and packages directories.",
+          "score": null,
+          "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan joined Lattice.",
+          "score": null,
+          "id": "ff2bce1f-f75a-423e-a039-30f76db95eaf",
+          "extra": {
+            "valid_at": "2026-04-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        }
+      ],
+      "note": "The headline turn. A real request with no memory question in it.  (search defaults to num_results=10)"
+    },
+    {
+      "probe_id": "p3_test_runner",
+      "query": "What do I write tests in?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The staging environment mirrors production at a quarter of the capacity.",
+          "score": null,
+          "id": "3add4bca-b63f-4eb0-b548-566a7f6069fd",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+          "score": null,
+          "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The monorepo is split into services and packages directories.",
+          "score": null,
+          "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A checkout outage occurred in February.",
+          "score": null,
+          "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+          "extra": {
+            "valid_at": "2026-02-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Celery runs on RabbitMQ as the broker for background jobs.",
+          "score": null,
+          "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Postgres 16 is on RDS.",
+          "score": null,
+          "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan works at Nimbus on payments.",
+          "score": null,
+          "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": "2026-04-01 00:00:00+00:00"
+          }
+        },
+        {
+          "text": "Grafana uses Prometheus for its dashboards.",
+          "score": null,
+          "id": "b73bbd7d-0880-4b90-a64a-25d8d5bd6afa",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The retry policy for outbound webhooks uses exponential backoff.",
+          "score": null,
+          "id": "133bb6a3-63be-4a3b-895b-1dc95962ba6f",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        }
+      ],
+      "note": "Control. The store holds this and should return it, or the floor is too high.  (search defaults to num_results=10)"
+    },
+    {
+      "probe_id": "p4_dog_name",
+      "query": "What is my dog's name?",
+      "kind": "absent",
+      "expect_empty": true,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "Postgres 16 is on RDS.",
+          "score": null,
+          "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Celery runs on RabbitMQ as the broker for background jobs.",
+          "score": null,
+          "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A checkout outage occurred in February.",
+          "score": null,
+          "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+          "extra": {
+            "valid_at": "2026-02-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Grafana uses Prometheus for its dashboards.",
+          "score": null,
+          "id": "b73bbd7d-0880-4b90-a64a-25d8d5bd6afa",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+          "score": null,
+          "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan left Nimbus.",
+          "score": null,
+          "id": "a7afef73-d2c1-4bdc-bb79-18e647fdd852",
+          "extra": {
+            "valid_at": "2026-04-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The monorepo is split into services and packages directories.",
+          "score": null,
+          "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan joined Lattice.",
+          "score": null,
+          "id": "ff2bce1f-f75a-423e-a039-30f76db95eaf",
+          "extra": {
+            "valid_at": "2026-04-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan works at Nimbus on payments.",
+          "score": null,
+          "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": "2026-04-01 00:00:00+00:00"
+          }
+        }
+      ],
+      "note": "Control. Nothing in the store is about a dog. Easy empty.  (search defaults to num_results=10)"
+    },
+    {
+      "probe_id": "p5_march_employer",
+      "query": "Where was Rohan working in March?",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 10,
+      "hits": [
+        {
+          "text": "Rohan works at Nimbus on payments.",
+          "score": null,
+          "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": "2026-04-01 00:00:00+00:00"
+          }
+        },
+        {
+          "text": "Rohan joined Lattice.",
+          "score": null,
+          "id": "ff2bce1f-f75a-423e-a039-30f76db95eaf",
+          "extra": {
+            "valid_at": "2026-04-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The March incident review recommended adding circuit breakers.",
+          "score": null,
+          "id": "6796d67e-cb2d-43d4-a878-c92fd34de1f8",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Rohan left Nimbus.",
+          "score": null,
+          "id": "a7afef73-d2c1-4bdc-bb79-18e647fdd852",
+          "extra": {
+            "valid_at": "2026-04-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A checkout outage occurred in February.",
+          "score": null,
+          "id": "56c972f2-12a8-45b9-b42a-3ddc031a3dea",
+          "extra": {
+            "valid_at": "2026-02-01 00:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Celery runs on RabbitMQ as the broker for background jobs.",
+          "score": null,
+          "id": "53e83084-3821-4843-8c9e-ebf082f305f5",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "A memory leak in the notification worker was fixed by upgrading the SDK.",
+          "score": null,
+          "id": "df954989-4128-4374-88a4-ab951e3f6a59",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "Postgres 16 is on RDS.",
+          "score": null,
+          "id": "431278ee-835e-40d1-9fdc-ae59254d44bf",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The monorepo is split into services and packages directories.",
+          "score": null,
+          "id": "1a2119e8-e7f0-4ff4-a8fb-648489c13137",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        },
+        {
+          "text": "The staging environment mirrors production at a quarter of the capacity.",
+          "score": null,
+          "id": "3add4bca-b63f-4eb0-b548-566a7f6069fd",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": null
+          }
+        }
+      ],
+      "note": "Dated question. Rohan left Nimbus in April, so March is Nimbus.  (search defaults to num_results=10)"
+    },
+    {
+      "probe_id": "p6_march_as_of",
+      "query": "Where was Rohan working? [valid_at <= 2026-03-15 < invalid_at]",
+      "kind": "answerable",
+      "expect_empty": false,
+      "returned": 1,
+      "hits": [
+        {
+          "text": "Rohan works at Nimbus on payments.",
+          "score": null,
+          "id": "a32091a7-9497-4b7a-a17b-71d0d2f6ea5a",
+          "extra": {
+            "valid_at": "2026-01-10 10:00:00+00:00",
+            "invalid_at": "2026-04-01 00:00:00+00:00"
+          }
+        }
+      ],
+      "note": "As-of query. Nothing else in this comparison can express it."
+    }
+  ],
+  "notes": [
+    "Graphiti cannot take rows verbatim: every episode goes through its own LLM entity and edge extractor. Its distractor set is what that extractor derived from the same forty sentences, so store sizes are not comparable with the string-based systems."
+  ]
+}
