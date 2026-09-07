@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "top_k": 5,
+      "targets_found": 3,
+      "ordinary_rows": 5
+    },
+    {
+      "top_k": 10,
+      "targets_found": 6,
+      "ordinary_rows": 10
+    },
+    {
+      "top_k": 20,
+      "targets_found": 7,
+      "ordinary_rows": 20
+    },
+    {
+      "top_k": 30,
+      "targets_found": 8,
+      "ordinary_rows": 30
+    },
+    {
+      "top_k": 40,
+      "targets_found": 9,
+      "ordinary_rows": 40
+    },
+    {
+      "top_k": 44,
+      "targets_found": 9,
+      "ordinary_rows": 44
+    }
+  ],
+  "store_size": 44
+}

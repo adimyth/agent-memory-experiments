@@ -174,6 +174,31 @@ def probe(data, memory_id: str, p: transcript.Probe) -> ProbeResult:
     )
 
 
+
+def run_indirect(probe_fn, store_texts: list[str], cap: int):
+    """Indirect-association probes through this runner's own search path."""
+
+    from harness import IndirectResult, find_target_rank
+
+    blob = " ".join(store_texts).lower()
+    out = []
+    for ip in transcript.INDIRECT_PROBES:
+        shim = transcript.Probe(
+            id=ip.id, text=ip.text, kind="indirect", note="", expect_empty=False
+        )
+        res = probe_fn(shim)
+        rank, above = find_target_rank(res.hits, ip.target)
+        key = harness._target_key(ip.target)
+        out.append(
+            IndirectResult(
+                probe_id=ip.id, query=ip.text, target=ip.target,
+                embedding_rank=ip.embedding_rank, returned=res.returned, cap=cap,
+                in_store=key in blob, target_rank=rank, outranked_by=above[:5],
+            )
+        )
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", type=int, default=1)
@@ -232,6 +257,12 @@ def main() -> None:
 
         for p in transcript.PROBES_BY_STAGE["after_update"]:
             result.probes.append(probe(data, memory_id, p))
+
+        result.indirect = run_indirect(
+            lambda pr: probe(data, memory_id, pr),
+            [r.get("memory") or "" for r in result.store_after_update],
+            10,
+        )
     finally:
         if not args.keep:
             control.delete_memory(memoryId=memory_id)

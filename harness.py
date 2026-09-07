@@ -63,6 +63,57 @@ class ProbeResult:
 
 
 @dataclass
+class IndirectResult:
+    """Where the useful memory landed on a query that never names it."""
+
+    probe_id: str
+    query: str
+    target: str
+    embedding_rank: int
+    returned: int
+    cap: int | None
+    in_store: bool
+    target_rank: int | None          # None means it was not returned at all
+    outranked_by: list[str] = field(default_factory=list)
+    note: str = ""
+
+
+def find_target_rank(hits: list[Hit], target: str) -> tuple[int | None, list[str]]:
+    """Locate the target among returned rows and name whatever beat it.
+
+    Matching is on a distinctive phrase rather than the whole string, because Graphiti
+    and AgentCore re-extract rather than storing rows verbatim, so the exact sentence
+    never appears in their stores.
+    """
+
+    key = _target_key(target)
+    for i, h in enumerate(hits):
+        if key in (h.text or "").lower():
+            return i + 1, [x.text for x in hits[:i]]
+    return None, [h.text for h in hits]
+
+
+def _target_key(target: str) -> str:
+    """The shortest distinctive phrase from a target fact."""
+
+    keys = {
+        "Secrets are stored": "secrets manager",
+        "Migrations must be": "backwards compatible",
+        "Type hints are": "type hint",
+        "Line length is": "line length",
+        "Deploys go out": "github actions",
+        "The payments database": "postgres",
+        "Dependency updates": "batched weekly",
+        "The team writes runbooks": "runbook",
+        "Code review requires": "one approval",
+    }
+    for prefix, key in keys.items():
+        if target.startswith(prefix):
+            return key
+    return target.lower()[:24]
+
+
+@dataclass
 class RunResult:
     system: str
     run: int
@@ -71,6 +122,7 @@ class RunResult:
     store_after_session_1: list[dict[str, Any]] = field(default_factory=list)
     store_after_update: list[dict[str, Any]] = field(default_factory=list)
     probes: list[ProbeResult] = field(default_factory=list)
+    indirect: list[IndirectResult] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
     started_at: str = ""
     finished_at: str = ""
@@ -90,6 +142,7 @@ class RunResult:
             "store_after_session_1": self.store_after_session_1,
             "store_after_update": self.store_after_update,
             "probes": [asdict(p) for p in self.probes],
+            "indirect": [asdict(p) for p in self.indirect],
             "notes": self.notes,
         }
 

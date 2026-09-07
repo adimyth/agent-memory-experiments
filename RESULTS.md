@@ -427,3 +427,47 @@ The honest headline is not "no system can decline to answer". It is:
 > it is not switched on: Graphiti's cross-encoder reranker with any floor at or above
 > 0.1. Mem0 ships a knob that helps and cannot be tuned by reading its own output. The
 > other three ship no knob at all.
+
+
+## Indirect association: the other direction of failure
+
+The probes above measure whether a system returns rows it should not. These measure the
+opposite: nine realistic requests, each with a standing rule already in the store that
+should change the answer, and which shares almost no words with the request. Targets were
+validated blind by a model that picked the intended one for 9 of 9 probes, and every miss
+recorded below was verified to be present in that system's store.
+
+| Query | Similarity rank | AgentCore | Graphiti | LangMem | Letta | Mem0 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Add the Stripe API key to the config. | 37/40 | – | absent | – | – | – |
+| Drop the legacy_status column. | 25/40 | 3 | absent | – | – | – |
+| Add a helper that parses the CSV. | 19/40 | 2 | absent | – | – | 19 |
+| Reformat this function. | 10/40 | 6 | absent | – | – | 10 |
+| Ship this fix straight to production. | 7/40 | 1 | absent | 10 | – | 9 |
+| Write a query to find duplicate charges. | 5/40 | 5 | 9 | 4 | 5 | 9 |
+| Bump the requests library. | 3/40 | 4 | absent | 6 | 3 | 4 |
+| Add an alert for high latency. | 2/40 | 8 | absent | 3 | 2 | 3 |
+| Merge this PR. | 1/40 | 2 | absent | 1 | 1 | 1 |
+
+A dash is a retrieval failure: the fact was in the store and the search did not return it.
+`absent` is an extraction failure: the fact never entered the store.
+
+For Mem0, LangMem and Letta the pattern is monotonic. Targets near the top of the
+similarity ranking come back; targets near the bottom do not. Mem0 runs all three
+retrieval signals and recovers nothing beyond raw embedding rank.
+
+AgentCore is the exception and is covered in ROBUSTNESS.md section 8. Graphiti's eight
+`absent` results are covered there too.
+
+**The single clearest example.** On `Add the Stripe API key to the config.`, Mem0 returned
+twenty rows including "The API gateway enforces a 30 second request timeout", "The March
+incident review recommended adding circuit breakers", and "Feature flags are managed in
+LaunchDarkly". It did not return "Secrets are stored in AWS Secrets Manager, never in
+environment files", which is the one rule in the store that would have changed the answer.
+It lost to a row that matched on the word API.
+
+**The two failures are the same system on the same store.** On `Bump the retry count to 3.`
+these systems return everything they have. On `Add the Stripe API key to the config.` they
+stay quiet about the only row that mattered. Nothing is broken about the ranking; it is
+doing what it was built to do. Wording proximity and answer usefulness have simply come
+apart, and nothing here measures the second one.

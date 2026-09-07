@@ -197,6 +197,40 @@ def main() -> None:
         for sysname, run, chars in always_on:
             print(f"  {sysname:<10} run {run}:  {chars} characters")
 
+    indirect_systems = [s for s in systems if any(d.get("indirect") for d in runs[s])]
+    if indirect_systems:
+        print()
+        print("=" * 78)
+        print("INDIRECT ASSOCIATION: where the useful memory landed")
+        print("=" * 78)
+        print("Each query is a real request whose answer a stored standing rule should")
+        print("change, and which shares almost no words with that rule. 'emb' is where the")
+        print("rule ranks among the 40 prior facts by raw embedding similarity, measured")
+        print("before any memory system was involved. A dash means the rule was in the")
+        print("store and the search did not return it.")
+        print()
+        header = f"{'query':<38}{'emb':<5}" + "".join(f"{s[:9]:<10}" for s in indirect_systems)
+        print(header)
+        print("-" * len(header))
+        first = runs[indirect_systems[0]][0]["indirect"]
+        for row in first:
+            cells = []
+            for sysname in indirect_systems:
+                ranks = []
+                for d in runs[sysname]:
+                    for i in d.get("indirect", []):
+                        if i["probe_id"] == row["probe_id"]:
+                            if not i["in_store"]:
+                                ranks.append("absent")
+                            else:
+                                ranks.append(str(i["target_rank"]) if i["target_rank"] else "-")
+                uniq = sorted(set(ranks), key=lambda x: (x in ("-", "absent"), x))
+                cells.append(f"{'/'.join(uniq):<10}")
+            print(f"{row['query'][:36]:<38}{row['embedding_rank']:<5}" + "".join(cells))
+        print()
+        print("'absent' means the fact never made it into that system's store at all,")
+        print("which is an extraction failure rather than a retrieval one.")
+
     print()
     print("=" * 78)
     print("CONFIG (must be identical across systems for the comparison to hold)")

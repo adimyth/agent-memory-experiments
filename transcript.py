@@ -134,3 +134,56 @@ GROUND_TRUTH = {
     "rohan_employer_march": "Nimbus",
     "rohan_left_nimbus": "April 2026",
 }
+
+
+@dataclass(frozen=True)
+class IndirectProbe:
+    """A realistic request whose answer should change because of a stored standing rule.
+
+    The query and the target share almost no vocabulary. ``embedding_rank`` is where the
+    target sits among the forty prior facts by raw ``bge-m3`` similarity to this query,
+    measured before any memory system is involved. ``control_query`` asks about the same
+    fact directly; every control ranks the target 1 of 40, which is what proves the fact
+    is findable and the indirect phrasing is what breaks it.
+
+    The set deliberately spans easy to hard. "Merge this PR" is a case where similarity
+    happens to agree with usefulness; "Add the Stripe API key" is one where they disagree
+    completely. Keeping both is what stops this being a rigged set.
+    """
+
+    id: str
+    text: str
+    target: str
+    control_query: str
+    embedding_rank: int
+
+
+INDIRECT_PROBES: list[IndirectProbe] = [
+    IndirectProbe("i1_secrets", "Add the Stripe API key to the config.",
+                  "Secrets are stored in AWS Secrets Manager, never in environment files.",
+                  "Where are secrets stored?", 37),
+    IndirectProbe("i2_migrations", "Drop the legacy_status column.",
+                  "Migrations must be backwards compatible for one release.",
+                  "Do migrations need to be backwards compatible?", 25),
+    IndirectProbe("i3_typehints", "Add a helper that parses the CSV.",
+                  "Type hints are required on all new Python code.",
+                  "Are type hints required?", 19),
+    IndirectProbe("i4_linelength", "Reformat this function.",
+                  "Line length is capped at 100 characters.",
+                  "What is the line length limit?", 10),
+    IndirectProbe("i5_deploy", "Ship this fix straight to production.",
+                  "Deploys go out through GitHub Actions on merge to main.",
+                  "How do deploys go out?", 7),
+    IndirectProbe("i6_database", "Write a query to find duplicate charges.",
+                  "The payments database is Postgres 16 on RDS with a read replica.",
+                  "What database do payments use?", 5),
+    IndirectProbe("i7_deps", "Bump the requests library.",
+                  "Dependency updates are batched weekly.",
+                  "How often are dependencies updated?", 3),
+    IndirectProbe("i8_runbooks", "Add an alert for high latency.",
+                  "The team writes runbooks for every alert.",
+                  "Do alerts need runbooks?", 2),
+    IndirectProbe("i9_review", "Merge this PR.",
+                  "Code review requires one approval before merge.",
+                  "How many approvals does review need?", 1),
+]

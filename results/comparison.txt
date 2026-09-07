@@ -32,9 +32,9 @@ STORE SIZE
 ==============================================================================
 system         after January      after the update   net change
 ------------------------------------------------------------------------------
-agentcore      74-84 (74, 84, 78) 78-87 (78, 87, 81) 3-4 (4, 3, 3)
-graphiti       12                 14                 2
-langmem        42-43 (42, 43, 43) 44-45 (44, 45, 45) 2
+agentcore      67-77 (67, 67, 77) 70-80 (70, 71, 80) 3-4 (3, 4, 3)
+graphiti       16-17 (16, 17, 16) 16-17 (16, 17, 16) 0
+langmem        42-43 (43, 43, 42) 44-45 (44, 45, 44) 1-2 (1, 2, 2)
 langmem-nodistractors 3                  3                  0
 letta          40                 40                 0
 mem0           42                 44                 2
@@ -46,17 +46,17 @@ WHAT THE UPDATE TURN DID TO THE JANUARY ROWS
 Tracked by row id, not by text. A row whose id survives but whose text
 changed was edited in place; the January wording is gone.
 
-  agentcore run 1:  74 -> 78 rows   kept 72, edited in place 0, added 6, removed 2
-  agentcore run 2:  84 -> 87 rows   kept 82, edited in place 0, added 5, removed 2
-  agentcore run 3:  78 -> 81 rows   kept 77, edited in place 0, added 4, removed 1
+  agentcore run 1:  67 -> 70 rows   kept 65, edited in place 0, added 5, removed 2
+  agentcore run 2:  67 -> 71 rows   kept 65, edited in place 0, added 6, removed 2
+  agentcore run 3:  77 -> 80 rows   kept 76, edited in place 0, added 4, removed 1
 
-  graphiti  run 1:  12 -> 14 rows   kept 12, edited in place 0, added 2, removed 0
-  graphiti  run 2:  12 -> 14 rows   kept 12, edited in place 0, added 2, removed 0
-  graphiti  run 3:  12 -> 14 rows   kept 12, edited in place 0, added 2, removed 0
+  graphiti  run 1:  16 -> 16 rows   kept 16, edited in place 0, added 0, removed 0
+  graphiti  run 2:  17 -> 17 rows   kept 17, edited in place 0, added 0, removed 0
+  graphiti  run 3:  16 -> 16 rows   kept 16, edited in place 0, added 0, removed 0
 
-  langmem   run 1:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
+  langmem   run 1:  43 -> 44 rows   kept 43, edited in place 1, added 1, removed 0
   langmem   run 2:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
-  langmem   run 3:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
+  langmem   run 3:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
 
   langmem-nodistractors run 1:  3 -> 3 rows   kept 3, edited in place 2, added 0, removed 0
   langmem-nodistractors run 2:  3 -> 3 rows   kept 3, edited in place 2, added 0, removed 0
@@ -81,12 +81,12 @@ TIME BETWEEN WRITING AND BEING ABLE TO READ
 Extraction that runs server-side and asynchronously. Every other system in
 this comparison can be searched the moment the write call returns.
 
-  agentcore   run 1  after January        74 records after 155.0s
-  agentcore   run 1  after the update     78 records after 154.5s
-  agentcore   run 2  after January        84 records after 124.7s
-  agentcore   run 2  after the update     87 records after 139.0s
-  agentcore   run 3  after January        78 records after 154.8s
-  agentcore   run 3  after the update     81 records after 123.6s
+  agentcore   run 1  after January        67 records after 154.8s
+  agentcore   run 1  after the update     70 records after 139.2s
+  agentcore   run 2  after January        67 records after 154.4s
+  agentcore   run 2  after the update     71 records after 154.3s
+  agentcore   run 3  after January        77 records after 169.9s
+  agentcore   run 3  after the update     80 records after 138.9s
 
 ==============================================================================
 CHARACTERS REACHING THE MODEL WITH NO SEARCH AT ALL
@@ -94,9 +94,33 @@ CHARACTERS REACHING THE MODEL WITH NO SEARCH AT ALL
 Text that is in the prompt on every turn regardless of what was asked.
 Every other system in this comparison requires a search to surface anything.
 
-  letta      run 1:  195 characters
-  letta      run 2:  185 characters
-  letta      run 3:  200 characters
+  letta      run 1:  224 characters
+  letta      run 2:  176 characters
+  letta      run 3:  184 characters
+
+==============================================================================
+INDIRECT ASSOCIATION: where the useful memory landed
+==============================================================================
+Each query is a real request whose answer a stored standing rule should
+change, and which shares almost no words with that rule. 'emb' is where the
+rule ranks among the 40 prior facts by raw embedding similarity, measured
+before any memory system was involved. A dash means the rule was in the
+store and the search did not return it.
+
+query                                 emb  agentcore graphiti  langmem   letta     mem0      
+---------------------------------------------------------------------------------------------
+Add the Stripe API key to the config  37   -         absent    -         -         -         
+Drop the legacy_status column.        25   2/3       absent    -         -         -         
+Add a helper that parses the CSV.     19   2         absent    -         -         19        
+Reformat this function.               10   6/7/8     absent    -         -         10/11     
+Ship this fix straight to production  7    1/5       absent    10        -         9         
+Write a query to find duplicate char  5    2/5       10/8/9    4         5         9         
+Bump the requests library.            3    3/4       absent    6         3         4         
+Add an alert for high latency.        2    8/9       absent    3         2         3         
+Merge this PR.                        1    1/2       absent    1         1         1         
+
+'absent' means the fact never made it into that system's store at all,
+which is an extraction failure rather than a retrieval one.
 
 ==============================================================================
 CONFIG (must be identical across systems for the comparison to hold)

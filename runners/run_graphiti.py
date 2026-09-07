@@ -154,6 +154,31 @@ async def probe_as_of_march(client) -> ProbeResult:
     )
 
 
+
+async def run_indirect(probe_fn, store_texts: list[str], cap: int):
+    """Indirect-association probes through this runner's own search path."""
+
+    from harness import IndirectResult, find_target_rank
+
+    blob = " ".join(store_texts).lower()
+    out = []
+    for ip in transcript.INDIRECT_PROBES:
+        shim = transcript.Probe(
+            id=ip.id, text=ip.text, kind="indirect", note="", expect_empty=False
+        )
+        res = await probe_fn(shim)
+        rank, above = find_target_rank(res.hits, ip.target)
+        key = harness._target_key(ip.target)
+        out.append(
+            IndirectResult(
+                probe_id=ip.id, query=ip.text, target=ip.target,
+                embedding_rank=ip.embedding_rank, returned=res.returned, cap=cap,
+                in_store=key in blob, target_rank=rank, outranked_by=above[:5],
+            )
+        )
+    return out
+
+
 async def run(args) -> None:
     client = build_client(args.run)
     result = RunResult(
@@ -211,6 +236,12 @@ async def run(args) -> None:
             result.probes.append(await probe(client, p))
 
         result.probes.append(await probe_as_of_march(client))
+
+        result.indirect = await run_indirect(
+            lambda pr: probe(client, pr),
+            [e.get("memory") or "" for e in result.store_after_update],
+            10,
+        )
     finally:
         await client.close()
 

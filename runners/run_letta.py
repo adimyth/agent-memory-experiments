@@ -122,6 +122,40 @@ def send(client, agent_id: str, text: str) -> None:
     client.agents.messages.create(agent_id, messages=[{"role": "user", "content": text}])
 
 
+
+def run_indirect(probe_fn, store_texts: list[str], cap: int) -> list["harness.IndirectResult"]:
+    """Run the indirect-association probes through this runner's own search path.
+
+    Reuses the runner's existing probe function so the search is identical to the main
+    experiment; only the questions and the scoring differ.
+    """
+
+    from harness import IndirectResult, find_target_rank
+
+    blob = " ".join(store_texts).lower()
+    out = []
+    for ip in transcript.INDIRECT_PROBES:
+        shim = transcript.Probe(
+            id=ip.id, text=ip.text, kind="indirect", note="", expect_empty=False
+        )
+        res = probe_fn(shim)
+        rank, above = find_target_rank(res.hits, ip.target)
+        key = harness._target_key(ip.target)
+        out.append(
+            IndirectResult(
+                probe_id=ip.id,
+                query=ip.text,
+                target=ip.target,
+                embedding_rank=ip.embedding_rank,
+                returned=res.returned,
+                cap=cap,
+                in_store=key in blob,
+                target_rank=rank,
+                outranked_by=above[:5],
+            )
+        )
+    return out
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", type=int, default=1)
@@ -173,6 +207,13 @@ def main() -> None:
 
         for p in transcript.PROBES_BY_STAGE["after_update"]:
             result.probes.append(probe(client, agent.id, p))
+
+        # Must run before the finally block deletes the agent.
+        result.indirect = run_indirect(
+            lambda p: probe(client, agent.id, p),
+            [r.get("memory") or "" for r in result.store_after_update],
+            5,
+        )
     finally:
         client.agents.delete(agent.id)
 
