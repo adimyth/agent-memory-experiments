@@ -32,7 +32,7 @@ class Write:
 class Probe:
     """A search issued with one turn's text, and what the store ought to do with it.
 
-    ``kind`` follows the three-way split in the Memory Weave README:
+    ``kind`` is a three-way split:
 
     - ``answerable``   the store holds the answer and should return it (type 1)
     - ``absent``       the store holds nothing on the subject; empty is correct (type 2)

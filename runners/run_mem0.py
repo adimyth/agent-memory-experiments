@@ -46,8 +46,8 @@ def build_memory(run: int, store_path: str):
             "provider": "openai",
             "config": {"model": harness.LLM_MODEL, "temperature": 0.0},
         },
-        # Local embedder. bge-m3 is what Memory Weave uses, so every system in this
-        # repo is embedded identically and the run needs no embedding API access.
+        # Local embedder, so every system in this repo is embedded identically and
+        # the run needs no embedding API access.
         "embedder": {
             "provider": "huggingface",
             "config": {"model": harness.EMBED_MODEL, "embedding_dims": harness.EMBED_DIMS},

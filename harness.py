@@ -27,8 +27,7 @@ RESULTS_DIR = Path(__file__).parent / "results"
 # One provider for every system, so the comparison is not confounded by model choice.
 # One provider and one embedder for every system, so the comparison is not
 # confounded by model choice. The embedder is local, which means the run needs no
-# API access for embeddings and anyone can reproduce it. Both match what Memory
-# Weave itself is configured with.
+# API access for embeddings and anyone can reproduce it.
 LLM_MODEL = os.environ.get("EXPERIMENT_LLM", "gpt-4o")
 EMBED_MODEL = os.environ.get("EXPERIMENT_EMBEDDER", "BAAI/bge-m3")
 EMBED_DIMS = int(os.environ.get("EXPERIMENT_EMBED_DIMS", "1024"))

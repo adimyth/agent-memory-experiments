@@ -2,25 +2,18 @@
 
 Why this exists: with only the transcript's own facts a store holds two to four rows,
 and "the search returned every row" is true but uninteresting when the default result
-cap is 20. Forty prior facts make the store big enough that returning all of it is a
-choice rather than an artefact of its size.
+cap is 20. Forty prior facts make returning all of it a choice rather than an artefact
+of its size.
 
-They are deliberately the same user's real work. That is the hard case named in the
-Memory Weave README: on an ordinary turn the store is full of things that look
-related to whatever was just said, so scores stay high enough to look plausible. A
-distractor set about unrelated topics would flatter every system.
+They are deliberately the same user's real work. That is the hard case: on an ordinary
+turn the store is full of things that look related to whatever was just said, so scores
+stay high enough to look plausible. A distractor set about unrelated topics would
+flatter every system.
 
-Each fact carries a subject and an attribute as well as its text. Only Memory Weave
-uses them, because a record's identity there is ``entity + attribute`` rather than
-its text, and it refuses a semantic write without one. Mem0 and LangMem have no such
-concept and store the string alone; Graphiti derives its own entities and edges.
-Carrying the structure here means every system receives byte-identical text while
-Weave still gets a well-formed, correctly-attributed write.
-
-Getting this wrong is not a small mistake. An earlier version of this file wrote all
-forty facts against the principal with ad-hoc attributes, so Weave read them as forty
-competing claims about Aditya and superseded most of them. The subjects below are
-what stop "Postgres 16 is on RDS" from colliding with "Aditya writes tests in pytest".
+Each fact carries a subject and an attribute as well as its text. Most systems ignore
+them and store the string alone; Graphiti and AgentCore re-extract into their own
+shapes. They are carried here so that a system keyed on entity plus attribute can be
+given a well-formed write without changing the text any other system sees.
 """
 
 from __future__ import annotations

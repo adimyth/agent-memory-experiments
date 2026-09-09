@@ -1,7 +1,7 @@
 # Robustness: how this experiment could be attacked, and what survives
 
 Written adversarially against our own results, before publication. Each objection is one
-a careful reader would actually raise. Where a check weakened a claim, the weakened
+a careful reader would raise. Where a check weakened a claim, the weakened
 version is what stands.
 
 ## 1. "The target was missed only because top_k was too small. Raise it."
@@ -32,7 +32,7 @@ intended answer, and asks which notes would change how the request is carried ou
 **It selected the intended target for 9 of 9 probes.** It was the judge's first choice on
 7 of 9, second on one, third on one.
 
-Guard against the judge simply agreeing: each query was re-run with the target removed. The
+Guard against the judge agreeing with the prompt: each query was re-run with the target removed. The
 judge then picked different facts rather than insisting, so its judgments track the target
 rather than the prompt.
 
@@ -105,7 +105,7 @@ because it only ever returns five rows. Cross-system rank comparison is not made
 ## 7. "Your matching could be counting a miss when the fact was returned in other words."
 
 Matching is on a short distinctive phrase (`secrets manager`, `github actions`,
-`backwards compatible`), not the whole sentence, precisely because Graphiti and AgentCore
+`backwards compatible`), not the whole sentence, because Graphiti and AgentCore
 re-extract rather than storing rows verbatim. Every miss recorded so far was verified to
 have `in_store: true`, meaning the phrase was present somewhere in that system's store and
 the search still did not return it. **Zero misses were extraction failures.**
@@ -136,7 +136,7 @@ Wrong. AgentCore breaks it, reproducibly across three runs:
 | 19 / 40 | 2, 2, 2 |
 | 2 / 40 | 8, 8, 9 |
 
-The ordering is not merely better, it is partly inverted: a target that ranks 25th by
+The ordering is partly inverted: a target that ranks 25th by
 similarity comes back second or third, while one that ranks 2nd comes back eighth.
 
 The mechanism is the redundancy criticised elsewhere in these notes. AgentCore stores the

@@ -1,14 +1,14 @@
-.PHONY: all local mem0 langmem weave letta graphiti agentcore sweeps validate compare shim
+.PHONY: all local mem0 langmem letta graphiti agentcore sweeps validate compare shim
 
 RUNS ?= 1 2 3
 
 # Everything that needs no external service beyond an OpenAI key.
-local: mem0 langmem weave compare
+local: mem0 langmem compare
 
 # Everything, including the systems that need Docker or AWS. Read the README first:
 # letta needs the server and the embedding shim, graphiti needs FalkorDB, agentcore
 # needs an AWS profile and costs money.
-all: mem0 langmem weave letta graphiti agentcore compare
+all: mem0 langmem letta graphiti agentcore compare
 
 mem0:
 	@for r in $(RUNS); do uv run --script runners/run_mem0.py --run $$r; done
@@ -16,9 +16,6 @@ mem0:
 langmem:
 	@for r in $(RUNS); do uv run --script runners/run_langmem.py --run $$r; done
 	@for r in $(RUNS); do uv run --script runners/run_langmem.py --run $$r --no-distractors; done
-
-weave:
-	@for r in $(RUNS); do uv run --script runners/run_weave.py --run $$r; done
 
 letta:
 	@for r in $(RUNS); do uv run --script runners/run_letta.py --run $$r; done

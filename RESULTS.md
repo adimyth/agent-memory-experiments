@@ -21,7 +21,6 @@ ever kept a row out**.
 | LangMem | 10 | 15 of 15 | 0 |
 | Mem0 | 20 | 15 of 15 | 0 |
 | Graphiti | 10 | 15 of 18 | 3 |
-| Memory Weave | 8 | 6 of 15 | 9 |
 
 For AgentCore, Mem0, LangMem, and Letta the cap is the only thing limiting output. Not once, on any
 probe, in any run, did a threshold or a floor exclude a row. That includes
@@ -50,7 +49,7 @@ After the update turn, run 1's human block read:
 > Aditya now writes tests in unittest and keeps commit messages conventional.
 > Rohan joined Lattice after leaving Nimbus in April.
 
-That text reaches the model on `Bump the retry count to 3.` exactly as it reaches it on
+That text reaches the model on `Bump the retry count to 3.` as it reaches it on
 a question about testing. There is no threshold to tune and no gate to pass, because
 there is no retrieval step to gate. Every other system in this comparison has to be
 asked before it says anything; Letta has already spoken.
@@ -61,13 +60,6 @@ full cap of five on every probe as well.
 The agent also rewrote the block in place. The January wording ("Aditya writes tests in
 pytest") is gone, with no lineage, in all three runs. Same overwrite semantics LangMem
 showed on a small store, reached by a different mechanism.
-
-Memory Weave returned fewer than its cap on nine probes of fifteen. Its gate is the
-only mechanism in this comparison that ever decides to stop early. It is also not yet
-doing the job it is meant to: on the two ordinary turns it returned a full eight rows
-every time, so the case it was built for is the case it currently fails. Its floors
-are uncalibrated starting values and this measures the current configuration, not the
-design.
 
 ## The one query only a temporal graph can answer
 
@@ -84,7 +76,7 @@ SearchFilters(
 )
 ```
 
-That returns exactly one row, identically in all three runs:
+That returns one row, the same one in all three runs:
 `Rohan works at Nimbus on payments.`
 
 It works because Graphiti read "Rohan left Nimbus in April and joined Lattice" and
@@ -102,7 +94,7 @@ this question at all. They can only be handed everything and asked to reason.
 ## What the update turn did
 
 Mem0 never edits and never deletes, in all three runs: two rows in, two new rows out.
-That is v3's specified ADD-only extraction and it is perfectly consistent. Afterwards
+That is v3's specified ADD-only extraction, with no run departing from it. Afterwards
 the store holds both the pytest fact and the unittest fact. Ranking, not the store,
 decides which one the model sees.
 
@@ -130,7 +122,7 @@ falls outside that window, the manager cannot update what it never retrieved, so
 inserts a second one.
 
 That is a scaling property worth knowing about, and it is unanimous in both directions
-rather than a tendency. A memory layer that consolidates correctly in a demo can quietly
+rather than a tendency. A memory layer that consolidates correctly in a demo can
 degrade to append-only in production, and nothing in the output says it happened.
 
 Reproduce with `uv run --script runners/run_langmem.py --run 1 --no-distractors`.
@@ -169,44 +161,15 @@ From the identical January paragraph, with the identical model:
 - Mem0 wrote **2** rows, every run, merging pytest and conventional commits into one.
 - LangMem wrote **3** rows, every run, splitting them.
 - Graphiti wrote **12** edges from 41 episodes, discarding most preference-style facts
-  entirely because they do not fit an entity-relationship-entity shape.
+  because they do not fit an entity-relationship-entity shape.
 - Letta wrote **0** archival rows from the transcript, because its agent chose to put
   those facts in the core block instead. Its archival store holds only the forty seeded
   facts, which is why its answerable probe returns five unrelated rows: the answer is
   real and it is in the system prompt, not in the searchable store.
 
-Each is internally consistent across runs. They simply disagree about what a fact is.
+Each is internally consistent across runs. They disagree about what a fact is.
 Any row count quoted for these systems is a property of the extraction prompt, not of
 the conversation.
-
-## Two things this harness found in Memory Weave
-
-Both reproduce in isolation, outside this harness, with two writes and no distractors.
-
-**The supplied attribute is ignored.** Two semantic writes about the same subject with
-different explicit attributes (`test_runner` and `commit_style`) both land under
-`test_runner`, and the second supersedes the first:
-
-```
-write attr='test_runner'  -> created
-write attr='commit_style' -> superseded:01a07728-19f3...
-  stored: attr='test_runner' status=superseded  :: Aditya writes tests in pytest
-  stored: attr='test_runner' status=provisional :: Aditya keeps commit messages conventional
-```
-
-Two unrelated facts about one person cannot both be live. That contradicts the
-documented contract, where a record's identity is `entity + attribute` and one live
-record exists per key.
-
-**Supersession is inconsistent in the other direction too.** In the same run where
-Aditya's two unrelated facts collapsed into one chain, Rohan's genuine employer change
-did *not* supersede: `Rohan works at Nimbus` and `Rohan works at Lattice` were both
-left live. So the same mechanism merges what should stay separate and separates what
-should merge.
-
-Neither is a finding about the harness. Both are recorded here because running the
-thing is how they surfaced.
-
 
 ## Letta's documentation and Letta's server disagree
 
@@ -230,22 +193,22 @@ One more correction while here: the block character limit. Letta's docs examples
 
 Letta is the one system whose server owns its embedding pipeline, and the only OpenAI
 key available for this work has no embedding model access. Rather than let Letta run on
-a different embedder and quietly confound the comparison, `tools/embedding_shim.py`
+a different embedder and confound the comparison, `tools/embedding_shim.py`
 serves an OpenAI-shaped `/v1/embeddings` from the same local `bge-m3` weights, and the
 agent's `embedding_config` points at it. Letta's chat model still goes to the real API.
-Every system in this repo is therefore on identical embedding weights, not merely the
+Every system in this repo is therefore on identical embedding weights rather than the
 same model name.
 
 
 ## AgentCore multiplies where the others append or overwrite
 
 Three built-in strategies were enabled: semantic, summary, and user preference. From
-roughly 43 input sentences they produced 78 to 87 records across three runs.
+roughly 43 input sentences they produced 70 to 80 records across three runs.
 
 | Strategy | Records (3 runs) |
 | --- | --- |
-| FactExtractor (semantic) | 45, 45, 46 |
-| PreferenceLearner | 26, 30, 36 |
+| FactExtractor (semantic) | 45, 46, 45 |
+| PreferenceLearner | 19, 19, 29 |
 | SessionSummarizer | 6, 6, 6 |
 
 The same claim about pytest exists three times over: as a semantic fact, as a
@@ -273,9 +236,9 @@ moment the write call returns; AgentCore cannot.
 
 | Run | After January | After the update |
 | --- | --- | --- |
-| 1 | 74 records after 155.0s | 78 records after 154.5s |
-| 2 | 84 records after 124.7s | 87 records after 139.0s |
-| 3 | 78 records after 154.8s | 81 records after 123.6s |
+| 1 | 67 records after 154.8s | 70 records after 139.2s |
+| 2 | 67 records after 154.4s | 71 records after 154.3s |
+| 3 | 77 records after 169.9s | 80 records after 138.9s |
 
 The runner polls until the record count stops moving rather than sleeping blindly.
 There is no completion signal on this path, which is worth knowing before designing
@@ -295,15 +258,15 @@ is wrong and unfair, and the sweep in `runners/sweep_mem0_threshold.py` is what 
 
 | Probe | Want | Top score |
 | --- | --- | --- |
-| Where was Rohan working in March? | a hit | 0.863 |
-| What do I write tests in? | a hit | 0.800 |
+| Where was Rohan working in March? | a hit | 0.858 |
+| What do I write tests in? | a hit | 0.798 |
 | Bump the retry count to 3. | empty | 0.637 |
 | What is my dog's name? | empty | 0.461 |
 
 The two questions the store can answer score above the two it should decline. The order
 is right. Nothing is broken about the scoring.
 
-**The default threshold is simply far below all of it.** `0.1` sits under every score in
+**The default threshold sits far below all of it.** `0.1` is under every score in
 that table, so it never excludes anything. That part of the original finding stands.
 
 **Raising it helps, but no setting gets all four right:**
@@ -358,7 +321,7 @@ miscalibrated, which makes threshold-based filtering difficult.
 ## Threshold audit: can any of them be tuned to abstain?
 
 The defaults result is only half the story. If a system ships an abstention knob and it
-is merely set permissively, that is a very different claim from the system being unable
+is set permissively, that is a different claim from the system being unable
 to abstain. So: does each one have a knob, and does turning it up work?
 
 | System | Abstention knob | Default | Does tuning fix it? |
@@ -387,13 +350,13 @@ that floor truncates uniformly instead of discriminating:
 | 0.3 | 3 | 3 | 3 | 4 |
 | 0.6 | 1 | 1 | 1 | 4 |
 
-The three columns move in lockstep, which is exactly what reciprocal rank fusion should
+The three columns move in lockstep, which is what reciprocal rank fusion should
 do: an RRF score is a function of a result's **rank**, not of how good it is. The top
 result scores about the same whether or not anything relevant exists, so a floor on it
 can express "give me fewer" but never "give me nothing".
 
 Swap in the cross-encoder recipe, which scores relevance directly, and the behaviour
-changes completely:
+changes:
 
 | min_score | ordinary | answerable | absent | dated |
 | --- | --- | --- | --- | --- |
@@ -401,7 +364,7 @@ changes completely:
 | 0.1 and above | **0** | 0 | **0** | **1** |
 
 At any floor from 0.1 up, Graphiti returns nothing on the ordinary turn, nothing on the
-dog question, and exactly one row on the dated question. The zero in the answerable
+dog question, and one row on the dated question. The zero in the answerable
 column is also correct here: Graphiti's extractor never created an edge for the test
 runner in any of the three runs, so that fact is genuinely not in its store.
 
@@ -469,5 +432,5 @@ It lost to a row that matched on the word API.
 **The two failures are the same system on the same store.** On `Bump the retry count to 3.`
 these systems return everything they have. On `Add the Stripe API key to the config.` they
 stay quiet about the only row that mattered. Nothing is broken about the ranking; it is
-doing what it was built to do. Wording proximity and answer usefulness have simply come
+doing what it was built to do. Wording proximity and answer usefulness have come
 apart, and nothing here measures the second one.

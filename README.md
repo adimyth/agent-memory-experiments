@@ -1,7 +1,7 @@
 # agent-memory-experiments
 
 One fixed transcript, run through five agent memory systems at their documented defaults,
-dumping what is literally in each store and what literally comes back on each turn.
+dumping what sits in each store and what comes back on each turn.
 
 This is not a benchmark. There is no score and no leaderboard. Published memory benchmarks
 (LoCoMo, LongMemEval) only ever search on benchmark questions, so they cannot measure the
@@ -24,13 +24,13 @@ in [`distractors.py`](distractors.py), verbatim, so you can disagree with the se
 
 They exist because without them a store holds two to four rows against a default result cap
 of twenty, and "the search returned everything" is then an artefact of size rather than a
-result. They are deliberately the same user's real work, because a store of unrelated
+result. They are the same user's real work by design, because a store of unrelated
 topics flatters every system: nothing scores highly, so nothing looks wrong.
 
-Each fact also carries a subject and an attribute. Only Memory Weave uses them, because a
-record's identity there is `entity + attribute` and it refuses a semantic write without one.
-The other systems store the string alone; Graphiti and AgentCore re-extract into their own
-shapes, so they never hold these rows verbatim.
+Each fact also carries a subject and an attribute. Most systems ignore both and store the
+string alone; Graphiti and AgentCore re-extract into their own shapes, so they never hold
+these rows verbatim. The structure is carried so a system keyed on something other than raw
+text can still be given a well-formed write without changing the text anyone else sees.
 
 ### The transcript
 
@@ -117,7 +117,7 @@ same embedding weights.
 Letta owns its embedding pipeline and cannot be handed a local model directly, so
 [`tools/embedding_shim.py`](tools/embedding_shim.py) serves the same weights over an
 OpenAI-shaped `/v1/embeddings` endpoint and Letta's `embedding_config` points at it. Every
-system therefore runs on identical weights, not merely the same model name.
+system therefore runs on identical weights rather than the same model name.
 
 Every system runs at its **documented defaults**. Nothing is tuned. Where a default is
 surprising it is recorded in the result file rather than changed.
@@ -127,7 +127,7 @@ surprising it is recorded in the result file rather than changed.
 A plain `pip install mem0ai` gives **semantic search only**. Mem0 v3's documented
 "multi-signal hybrid search (semantic + BM25 keyword + entity matching)" needs
 `mem0ai[nlp]` for spaCy and `mem0ai[extras]` for the fastembed BM25 model. Without them the
-library logs a warning and quietly runs one channel. The runner records which signals were
+library logs a warning and runs one channel. The runner records which signals were
 live in `config.active_signals`, so a result file cannot be mistaken for a configuration it
 did not have.
 
@@ -170,7 +170,7 @@ the Hub's revision check the load can hang for minutes, which is why the harness
 ### 2. The systems that need nothing else
 
 ```bash
-make local     # mem0, langmem (both store sizes), weave, then the comparison
+make local     # mem0 and langmem (both store sizes), then the comparison
 ```
 
 ### 3. The systems that need a service
@@ -216,7 +216,7 @@ make validate    # blind re-check of the indirect probe targets
 ```
 
 `sweep_mem0_threshold.py` asks whether Mem0 can be tuned to abstain.
-`sweep_topk_tradeoff.py` answers the obvious rebuttal that the cap was simply too small.
+`sweep_topk_tradeoff.py` answers the obvious rebuttal that the cap was too small.
 `sweep_graphiti_threshold.py` compares Graphiti's default RRF reranker against its
 cross-encoder recipe.
 
@@ -233,15 +233,11 @@ system runs three times and the variance is reported rather than hidden.
 | Letta | Runs here, 3 runs | Letta server in Docker, plus the embedding shim |
 | Graphiti | Runs here, 3 runs | FalkorDB in Docker, an OpenAI key |
 | AgentCore | Runs here, 3 runs | An AWS account, see `docs/agentcore-setup.md`. Costs money |
-| Memory Weave | Runs here | A local checkout beside this repo, no key |
 | Claude Code | Partially | Run a real session and read `~/.claude/projects/<project>/memory/`. Not scriptable against this harness |
 | ChatGPT, Claude chat, Hermes, OpenClaw | No | Products, not libraries. Described from their documentation only |
 
 Anything not run here is labelled as such wherever it is described. A schematic snapshot and
 a measured one are not the same claim and are not presented as one.
-
-`run_weave.py` expects the Memory Weave checkout beside this repo; edit the path in its
-`[tool.uv.sources]` block if yours lives elsewhere.
 
 ## Known limitations
 

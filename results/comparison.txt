@@ -1,14 +1,14 @@
 ==============================================================================
 ROWS RETURNED PER PROBE, at each system's documented defaults
 ==============================================================================
-probe                              kind        want   agentcore    graphiti     langmem      langmem-nodistractors letta        mem0         weave       
+probe                              kind        want   agentcore    graphiti     langmem      langmem-nodistractors letta        mem0        
 ------------------------------------------------------------------------------
-The checkout latency graph is red  ordinary    empty  10           10           10           3            5            20           8           
-Bump the retry count to 3.         ordinary    empty  10           10           10           3            5            20           8           
-What do I write tests in?          answerable  hit    10           10           10           3            5            20           3           
-What is my dog's name?             absent      empty  10           10           10           3            5            20           1           
-Where was Rohan working in March?  answerable  hit    10           10           10           3            5            20           2           
-Where was Rohan working? [valid_a  answerable  hit    -            1            -            -            -            -            -           
+The checkout latency graph is red  ordinary    empty  10           10           10           3            5            20          
+Bump the retry count to 3.         ordinary    empty  10           10           10           3            5            20          
+What do I write tests in?          answerable  hit    10           10           10           3            5            20          
+What is my dog's name?             absent      empty  10           10           10           3            5            20          
+Where was Rohan working in March?  answerable  hit    10           10           10           3            5            20          
+Where was Rohan working? [valid_a  answerable  hit    -            1            -            -            -            -           
 
 ==============================================================================
 DOES ANYTHING BUT THE CAP LIMIT THE RESULT?
@@ -25,7 +25,6 @@ langmem                  10    15/15          0
 langmem-nodistractors    10    -              -          store smaller than the cap; uninformative
 letta                    5     15/15          0          
 mem0                     20    15/15          0          
-weave                    8     6/15           9          
 
 ==============================================================================
 STORE SIZE
@@ -38,7 +37,6 @@ langmem        42-43 (43, 43, 42) 44-45 (44, 45, 44) 1-2 (1, 2, 2)
 langmem-nodistractors 3                  3                  0
 letta          40                 40                 0
 mem0           42                 44                 2
-weave          43                 45                 2
 
 ==============================================================================
 WHAT THE UPDATE TURN DID TO THE JANUARY ROWS
@@ -69,10 +67,6 @@ changed was edited in place; the January wording is gone.
   mem0      run 1:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
   mem0      run 2:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
   mem0      run 3:  42 -> 44 rows   kept 42, edited in place 0, added 2, removed 0
-
-  weave     run 1:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
-  weave     run 2:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
-  weave     run 3:  43 -> 45 rows   kept 43, edited in place 0, added 2, removed 0
 
 
 ==============================================================================
@@ -138,5 +132,3 @@ CONFIG (must be identical across systems for the comparison to hold)
   mem0         llm=gpt-4o  embedder=BAAI/bge-m3  runs=3
                retrieval signals: {'semantic': True, 'bm25': True, 'entity': True}
                versions: {'mem0ai': '2.0.20'}
-  weave        llm=none (no extractor; writes are explicit memory_write calls)  embedder=BAAI/bge-m3  runs=3
-               versions: {'memory-weave': 'local checkout'}
