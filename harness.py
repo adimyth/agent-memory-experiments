@@ -10,10 +10,6 @@ from __future__ import annotations
 import json
 import os
 
-# The embedder is cached locally. Without this the Hub is contacted for a revision
-# check on every load, which can hang for minutes behind a restrictive network.
-os.environ.setdefault("HF_HUB_OFFLINE", "1")
-os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
 import platform
 import subprocess
 from dataclasses import asdict, dataclass, field
@@ -24,10 +20,9 @@ from typing import Any
 
 RESULTS_DIR = Path(__file__).parent / "results"
 
-# One provider for every system, so the comparison is not confounded by model choice.
-# One provider and one embedder for every system, so the comparison is not
-# confounded by model choice. The embedder is local, which means the run needs no
-# API access for embeddings and anyone can reproduce it.
+# One provider and one embedder for every locally configured system, so the comparison
+# is not confounded by model choice. AgentCore's models are service-managed. The local
+# embedder means the other runs need no API access for embeddings.
 LLM_MODEL = os.environ.get("EXPERIMENT_LLM", "gpt-4o")
 EMBED_MODEL = os.environ.get("EXPERIMENT_EMBEDDER", "BAAI/bge-m3")
 EMBED_DIMS = int(os.environ.get("EXPERIMENT_EMBED_DIMS", "1024"))

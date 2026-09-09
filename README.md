@@ -112,8 +112,9 @@ the request is carried out. It picked the intended target for 9 of 9.
 
 ## Fairness
 
-Every system gets the same transcript in the same order, the same extraction LLM, and the
-same embedding weights.
+Every system gets the same transcript in the same order. Mem0, LangMem, Graphiti, and
+Letta use the same extraction LLM and embedding weights; AgentCore's extraction model and
+embedder are service-managed.
 
 - **LLM**: `gpt-4o` at `temperature=0`, pinned because several newer models accept only
   their default temperature. Note Mem0 sends `temperature=0.1` if you do not override it.
@@ -123,8 +124,8 @@ same embedding weights.
 
 Letta owns its embedding pipeline and cannot be handed a local model directly, so
 [`tools/embedding_shim.py`](tools/embedding_shim.py) serves the same weights over an
-OpenAI-shaped `/v1/embeddings` endpoint and Letta's `embedding_config` points at it. Every
-system therefore runs on identical weights rather than the same model name.
+OpenAI-shaped `/v1/embeddings` endpoint and Letta's `embedding_config` points at it. Those
+four systems therefore run on identical weights rather than merely the same model name.
 
 Every system runs at its **documented defaults**. Nothing is tuned. Where a default is
 surprising it is recorded in the result file rather than changed.
@@ -158,7 +159,7 @@ depend on `uv`; a plain `python runners/run_mem0.py` ignores the inline block.
 python -m venv .venv-mem0 && .venv-mem0/bin/pip install 'mem0ai[nlp,extras]==2.0.20' sentence-transformers python-dotenv
 python -m venv .venv-langmem && .venv-langmem/bin/pip install langmem==0.0.30 langchain-openai sentence-transformers python-dotenv
 python -m venv .venv-graphiti && .venv-graphiti/bin/pip install 'graphiti-core[falkordb]==0.30.1' httpx openai sentence-transformers python-dotenv
-python -m venv .venv-letta && .venv-letta/bin/pip install letta-client python-dotenv
+python -m venv .venv-letta && .venv-letta/bin/pip install letta-client==1.12.1 python-dotenv
 python -m venv .venv-agentcore && .venv-agentcore/bin/pip install boto3 python-dotenv
 ```
 
@@ -170,9 +171,8 @@ python -m venv .venv-agentcore && .venv-agentcore/bin/pip install boto3 python-d
 cp .env.example .env      # add your OpenAI key; leave the model settings alone
 ```
 
-The embedder downloads from HuggingFace on first use, about 1.6GB. If your network blocks
-the Hub's revision check the load can hang for minutes, which is why the harness sets
-`HF_HUB_OFFLINE=1` once the model is cached.
+The embedder downloads from HuggingFace on first use, about 1.6GB. After it is cached, set
+`HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1` yourself if you need fully offline runs.
 
 ### 2. The systems that need nothing else
 
@@ -193,7 +193,7 @@ make graphiti
 terminal:
 
 ```bash
-docker run -d --name amx-letta -p 8283:8283 -e OPENAI_API_KEY=$OPENAI_API_KEY letta/letta:latest
+docker run -d --name amx-letta -p 8283:8283 -e OPENAI_API_KEY=$OPENAI_API_KEY letta/letta:0.16.8
 make shim        # separate terminal, leave running
 make letta
 ```

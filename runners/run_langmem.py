@@ -65,7 +65,7 @@ def build_manager(store):
     from langchain_openai import ChatOpenAI
     from langmem import create_memory_store_manager
 
-    llm = ChatOpenAI(model=harness.LLM_MODEL)
+    llm = ChatOpenAI(model=harness.LLM_MODEL, temperature=0.0)
     return create_memory_store_manager(llm, namespace=NAMESPACE, store=store)
 
 

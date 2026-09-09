@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.12,<3.13"
 # dependencies = [
-#   "letta-client",
+#   "letta-client==1.12.1",
 #   "python-dotenv",
 # ]
 # ///
@@ -30,7 +30,7 @@ twice:
 
 Requires a server:
 
-    docker run -d --name amx-letta -p 8283:8283 -e OPENAI_API_KEY=... letta/letta:latest
+    docker run -d --name amx-letta -p 8283:8283 -e OPENAI_API_KEY=... letta/letta:0.16.8
 """
 
 from __future__ import annotations
