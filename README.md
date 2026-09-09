@@ -3,11 +3,18 @@
 One fixed transcript, run through five agent memory systems at their documented defaults,
 dumping what sits in each store and what comes back on each turn.
 
-This is not a benchmark. There is no score and no leaderboard. Published memory benchmarks
-(LoCoMo, LongMemEval) only ever search on benchmark questions, so they cannot measure the
-two cases that matter most in production: an ordinary turn where nobody asked about the
-past and the right answer is nothing, and a request whose answer a stored rule should
-change but which shares no words with it. Those two cases are the reason this repo exists.
+This is not a benchmark. There is no score and no leaderboard. It measures two cases.
+
+The first is an ordinary turn where nobody asked about the past and the right answer is
+nothing. LoCoMo and LongMemEval only ever issue questions, so neither contains a turn of
+this shape and neither can measure it.
+
+The second is a request whose answer a stored rule should change but which shares almost no
+words with it. That case is measured, by the [InMind
+benchmark](https://huggingface.co/papers/2607.24368), which found six memory systems
+retrieving the decisive memory at most 14.4% of the time while the same model answered
+84.0% correctly when handed it directly. What these runs add is whether the same pattern
+shows up in five shipped systems at their documented defaults.
 
 - **Findings:** [`RESULTS.md`](RESULTS.md)
 - **How the findings could be wrong:** [`ROBUSTNESS.md`](ROBUSTNESS.md), an adversarial

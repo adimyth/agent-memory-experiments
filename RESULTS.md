@@ -1,6 +1,6 @@
 # Results
 
-Four systems, three runs each, 6 September 2026. Same transcript, same LLM
+Five systems, three runs each, 6 September 2026. Same transcript, same LLM
 (`gpt-4o` at `temperature=0`), same local embedder (`BAAI/bge-m3`). Every system at
 its documented defaults, nothing tuned.
 
@@ -12,14 +12,16 @@ Raw dumps are in `results/`. Regenerate with `uv run --script compare.py`.
 
 ## The headline
 
-The four systems have different default caps on a search result, so raw row counts
+These systems have different default caps on a search result, so raw row counts
 are not comparable. The comparable question is whether **anything other than the cap
 ever kept a row out**.
 
 | System | Cap | Probes returning the cap | Probes returning fewer |
 | --- | --- | --- | --- |
-| LangMem | 10 | 15 of 15 | 0 |
 | Mem0 | 20 | 15 of 15 | 0 |
+| LangMem | 10 | 15 of 15 | 0 |
+| AgentCore | 10 | 15 of 15 | 0 |
+| Letta | 5 | 15 of 15 | 0 |
 | Graphiti | 10 | 15 of 18 | 3 |
 
 For AgentCore, Mem0, LangMem, and Letta the cap is the only thing limiting output. Not once, on any
@@ -39,9 +41,12 @@ core memory blocks are compiled into the system prompt on every turn:
 
 | Run | Characters in the prompt on every turn |
 | --- | --- |
-| 1 | 195 |
-| 2 | 185 |
-| 3 | 200 |
+| 1 | 224 |
+| 2 | 176 |
+| 3 | 184 |
+
+<!-- persona + human blocks after the update turn; see the `Core blocks after the update`
+     note in each results/letta-run*.json -->
 
 After the update turn, run 1's human block read:
 
@@ -61,7 +66,7 @@ The agent also rewrote the block in place. The January wording ("Aditya writes t
 pytest") is gone, with no lineage, in all three runs. Same overwrite semantics LangMem
 showed on a small store, reached by a different mechanism.
 
-## The one query only a temporal graph can answer
+## Only Graphiti can be asked about March as a query
 
 `Where was Rohan working in March?` Rohan left Nimbus in April, so the answer is
 Nimbus, and every store's current value is Lattice.
@@ -87,9 +92,12 @@ closed the interval on the old edge:
 | Rohan works at Nimbus on payments. | 2026-01-10 | 2026-04-01 |
 | Rohan joined Lattice. | 2026-04-01 | none |
 
-It inferred April from natural language and wrote it as a boundary. No other system
-here recorded when the old fact stopped being true, so no other system can be asked
-this question at all. They can only be handed everything and asked to reason.
+It inferred April from natural language and wrote it as a boundary. No other system here
+recorded when the old fact stopped being true, so no other system exposes this as a query.
+That is a difference in precision rather than in capability: on an ordinary search, Mem0,
+LangMem and AgentCore all return the Nimbus fact and the April departure at ranks 1 and 2,
+which is enough for a model to answer March correctly. Graphiti returns one row and no
+reasoning is required; the others return ten or twenty and some is.
 
 ## What the update turn did
 
